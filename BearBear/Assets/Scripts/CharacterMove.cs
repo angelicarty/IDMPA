@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class CharacterMove : MonoBehaviour
 {
-     Vector3 playerPosition;
+
+    Vector3 playerPosition;
     public Sprite lookUp,lookDown,lookRight,lookLeft;
+    bool movingUp, movingDown, movingLeft, movingRight;
+
     public void moveUp()
     {
         //character position change
@@ -47,25 +50,19 @@ public class CharacterMove : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = lookLeft;
     }
 
+    public void notMoving()
+    {
 
-    //animation stuff yet to be done but here's the code anyway 
-    /*
-     * 
-     *IEnumerator animateUp()
-     * {
-     *    for (int i = 1; i < lookUp.Length; i++) //length is the number of frames for look up animation
-          {
-              yield return new WaitForSeconds(0.18f); //change number to match however many frames there is and how long each change between frame should be
-              GetComponent<SpriteRenderer>().sprite = lookUp[i];
-          }
-     * }
-     * 
-     * 
-     * public void stopAnimation()
-     * {
-     *    stopCoroutine(animateup());
-     * }
-     * 
-     * */
+    }
+
+    IEnumerator animateUp()
+    {
+        while(movingUp)
+        {
+            yield return new WaitForSeconds(0.02f); //will change depending on drames
+        }
+    }
+
+
 
 }

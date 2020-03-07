@@ -4,30 +4,42 @@ using UnityEngine;
 
 public class KeyboardInputManager : MonoBehaviour
 {
-    bool moved = false;
+    bool characterMoving;
 
     void Update()
     {
-        if(Input.GetKey("up"))
+        if (characterMoving)
         {
-            FindObjectOfType<CharacterMove>().moveUp();
-            //moved = true
+            if (Input.GetKey("up"))
+            {
+                FindObjectOfType<CharacterMove>().moveUp();
+            }
+            else if (Input.GetKey("down"))
+            {
+                FindObjectOfType<CharacterMove>().moveDown();
+            }
+            else if (Input.GetKey("right"))
+            {
+                FindObjectOfType<CharacterMove>().moveRight();
+            }
+            else if (Input.GetKey("left"))
+            {
+                FindObjectOfType<CharacterMove>().moveLeft();
+            }
+            else
+            {
+                FindObjectOfType<CharacterMove>().notMoving();
+            }
         }
-        else if (Input.GetKey("down"))
-        {
-            FindObjectOfType<CharacterMove>().moveDown();
-        }
-        else if (Input.GetKey("right"))
-        {
-            FindObjectOfType<CharacterMove>().moveRight();
-        }
-        else if (Input.GetKey("left"))
-        {
-            FindObjectOfType<CharacterMove>().moveLeft();
-        }
-        else if(moved)
-        {
-            //FindObjectOfType<CharacterMove>().stopAnimation();
-        }
+    }
+
+    public void disableCharacterMovement() //prevents character from moving
+    {
+        characterMoving = false;
+    }
+
+    public void enableCharacterMovement() //reenable character to move
+    {
+        characterMoving = true;
     }
 }

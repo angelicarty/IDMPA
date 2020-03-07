@@ -280,10 +280,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slimeWalk:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 96769efb40bf0374a9baed555827add7, type: 3}
+  - {fileID: 21300000, guid: f3bf210fb7a37c045bfb344eb25d422b, type: 3}
+  - {fileID: 21300000, guid: e02feea29ea6b4b42898382c84830ce9, type: 3}
+  - {fileID: 21300000, guid: 31370bd3b73d7ce46b3c27713c029a45, type: 3}
 --- !u!212 &1691489628
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -346,8 +346,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf6e48ecf7a4c54cb3bfce0e6b6f9e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
+  MHP: 0
+  CHP: 0
   ATK: 0
+  SPD: 0
+  battleSprite: {fileID: 0}
 --- !u!4 &1691489630
 Transform:
   m_ObjectHideFlags: 0
@@ -440,8 +443,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf6e48ecf7a4c54cb3bfce0e6b6f9e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
+  MHP: 0
+  CHP: 0
   ATK: 10
+  SPD: 0
+  battleSprite: {fileID: 0}
 --- !u!58 &2034020366
 CircleCollider2D:
   m_ObjectHideFlags: 0
