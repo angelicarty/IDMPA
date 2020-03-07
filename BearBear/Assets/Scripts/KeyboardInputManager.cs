@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeyboardInputManager : MonoBehaviour
 {
-    bool characterMoving;
+    bool characterMoving = true; 
 
     void Update()
     {
