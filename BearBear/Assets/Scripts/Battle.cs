@@ -13,7 +13,7 @@ public class Battle : MonoBehaviour
     public GameObject over_enemy;//the enemy the player collided with to begin combat, determines combatants and their stats
 
 
-    private GameObject bp;//I don't remember what this was for
+    public GameObject battleScene;
     private Stats player;
     private Stats enemy;
 
@@ -23,13 +23,12 @@ public class Battle : MonoBehaviour
     private int result = 0;//0 if combat is ongoing, 1 if player wins, -1 of losses
     public void Start()
     {
-
-        bp = GameObject.FindGameObjectWithTag("BattleScene");
         player = over_player.GetComponent<Stats>();
         enemy = over_enemy.GetComponent<Stats>();
         p_HP = player.GetCHP();
         e_HP = enemy.GetCHP();
         state = BattleState.START;
+        battleScene.SetActive(true);
         StartCoroutine("BattleLoop");
     }
 
@@ -46,7 +45,7 @@ public class Battle : MonoBehaviour
             }
             else if (state == BattleState.ACTION)
             {
-                while ((!Input.GetButtonDown("Fire1")))
+                while ((!Input.GetButtonDown("Fire1")) || (!Input.GetButtonDown("Fire2")))
                 {
                     yield return null;
                 }
