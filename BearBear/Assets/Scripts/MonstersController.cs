@@ -6,6 +6,15 @@ public class MonstersController : MonoBehaviour
 {
     //script that spawns monster, stops monster movement and resume them
 
+    public GameObject[] mobs;
+    int counter;
+
+    void spawnMonster()
+    {
+        mobs[counter] = Instantiate(mob1, new Vector3(0, 0, 0), Quaternion.identity);
+    }
+
+
 
 
 
