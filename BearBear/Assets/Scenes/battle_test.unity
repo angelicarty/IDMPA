@@ -953,6 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3493a6d8451530c46ad6c655f147fcb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 2
   state: 0
   over_player: {fileID: 1897181362}
   over_enemy: {fileID: 1974514239}

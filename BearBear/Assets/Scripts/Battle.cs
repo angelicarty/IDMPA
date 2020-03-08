@@ -7,12 +7,13 @@ using UnityEngine;
 public enum BattleState {START, ACTION, P1, P2, END}
 public class Battle : MonoBehaviour
 {
+    public int delay;//amount of time between stuff happening
     public BattleState state;
     public GameObject over_player;//the continuous player object, not the battle scene one
     public GameObject over_enemy;//the enemy the player collided with to begin combat, determines combatants and their stats
 
 
-    private GameObject bp;
+    private GameObject bp;//I don't remember what this was for
     private Stats player;
     private Stats enemy;
 
@@ -34,9 +35,11 @@ public class Battle : MonoBehaviour
 
     IEnumerator BattleLoop()
     {
+        Debug.Log("BATTLELOOP START");
         //TODO: clean this garbage
         while (state != BattleState.END)
         {
+            Debug.Log("WHILELOOP BEGINNING");
             if (state == BattleState.START)
             {
                 state = BattleState.ACTION;
@@ -60,7 +63,9 @@ public class Battle : MonoBehaviour
             else if (state == BattleState.P1)
             {
                 //TODO: real damage calculations
-                e_HP -= player.GetATK();
+                e_HP = Attack(player.GetATK(), e_HP);
+                Debug.Log("e_HP = " + e_HP);
+                yield return new WaitForSeconds(delay);
                 if (e_HP <= 0)
                 {
                     result = 1;
@@ -68,7 +73,9 @@ public class Battle : MonoBehaviour
                 }
                 else 
                 {
-                    p_HP -= enemy.GetATK();
+                    p_HP = Attack(enemy.GetATK(), p_HP);
+                    Debug.Log("p_HP = " + p_HP);
+                    yield return new WaitForSeconds(delay);
                     if (p_HP <= 0)
                     {
                         result = -1;
@@ -83,7 +90,9 @@ public class Battle : MonoBehaviour
             else if (state == BattleState.P2)
             {
                 //TODO: real damage calculations
-                p_HP -= player.GetATK();
+                p_HP = Attack(enemy.GetATK(), p_HP);
+                Debug.Log("p_HP = " + p_HP);
+                yield return new WaitForSeconds(delay);
                 if (p_HP <= 0)
                 {
                     result = -1;
@@ -91,7 +100,9 @@ public class Battle : MonoBehaviour
                 }
                 else
                 {
-                    e_HP -= enemy.GetATK();
+                    e_HP = Attack(player.GetATK(), e_HP);
+                    Debug.Log("e_HP = " + e_HP);
+                    yield return new WaitForSeconds(delay);
                     if (e_HP <= 0)
                     {
                         result = 1;
@@ -104,56 +115,72 @@ public class Battle : MonoBehaviour
                 }
             }
         }
+        //do shit based on result of battle
+        if (result == 1)
+        {
+            Debug.Log("You win!");
+        }
+        else
+        {
+            Debug.Log("You lose!");
+        }
+        Debug.Log("BATTLELOOP END");
     }
 
-    private bool CombatLoop()
-    {//main combat loop, returns true if player wins, false otherwise
-        bool run = false;
-        while (!run)
-        {
-            //get player action
-            //TODO: determine oponent action
+    //private bool CombatLoop()
+    //{//OLD PLEASE IGNORE
+    //    bool run = false;
+    //    while (!run)
+    //    {
+    //        //get player action
+    //        //TODO: determine oponent action
 
-            //exectute in speed order
-            if (player.GetSPD() >= enemy.GetSPD())
-            {
+    //        //exectute in speed order
+    //        if (player.GetSPD() >= enemy.GetSPD())
+    //        {
 
-            }
-            else 
-            {
+    //        }
+    //        else 
+    //        {
 
-            }
+    //        }
 
-            //check for death
-            if (p_HP <= 0)
-            {
-                return false;
-            }
+    //        //check for death
+    //        if (p_HP <= 0)
+    //        {
+    //            return false;
+    //        }
 
 
-            if (player.GetSPD() >= enemy.GetSPD())
-            {
-                //TODO: real damage calculations
-                p_HP -= enemy.GetATK();
+    //        if (player.GetSPD() >= enemy.GetSPD())
+    //        {
+    //            //TODO: real damage calculations
+    //            p_HP -= enemy.GetATK();
 
-            }
-            else
-            {
-                e_HP -= player.GetATK();
-            }
+    //        }
+    //        else
+    //        {
+    //            e_HP = Attack(player.GetATK(), e_HP);
+    //        }
 
-            //check for death
-            if (p_HP <= 0)
-            {
-                return false;
-            }
-            else if (e_HP <= 0)
-            {
-                return true;
-            }
-        }
+    //        //check for death
+    //        if (p_HP <= 0)
+    //        {
+    //            return false;
+    //        }
+    //        else if (e_HP <= 0)
+    //        {
+    //            return true;
+    //        }
+    //    }
 
-        return true;
+    //    return true;
+    //}
+
+    private int Attack(int offensive_damage, int defensive_health)
+    {//calculates the damage of an attack, outputs resulting health
+        //TODO: an actual formula, defence, lots
+        return defensive_health - offensive_damage;
     }
 
     public BattleState GetState()
