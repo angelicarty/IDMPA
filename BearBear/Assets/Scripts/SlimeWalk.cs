@@ -5,12 +5,13 @@ using System.Collections.Generic;
 public class SlimeWalk : MonoBehaviour
 {
 
-    public Sprite[] slimeWalk = new Sprite[4];
+    public Sprite[] slimeWalk;
     Vector3 slimePosition;
     int direction; //1 = left, 2 = right, 3 = up-left, 4 = down-left, 5 = up-right, 6 = down-right
     bool walks = true;
     float directionCD = 3.0f;
     float directionTimer = 0.0f;
+    int walkSpriteCounter = 0;
 
     private void OnEnable()
     {
@@ -48,7 +49,7 @@ public class SlimeWalk : MonoBehaviour
     {
         while (walks)
         {
-            for (int i = 0; i < slimeWalk.Length; i++)
+            for (int i = walkSpriteCounter; i < slimeWalk.Length; i++)
             {
                 yield return new WaitForSeconds(0.2f);
                 gameObject.GetComponent<SpriteRenderer>().sprite = slimeWalk[i];
@@ -81,45 +82,14 @@ public class SlimeWalk : MonoBehaviour
                     default:
                         break;
                 }
-
                 gameObject.transform.position = slimePosition;
-            }
-            for(int j = slimeWalk.Length; j > 0; j--)
-            {
-                yield return new WaitForSeconds(0.2f);
-                gameObject.GetComponent<SpriteRenderer>().sprite = slimeWalk[j-1];
-                slimePosition = gameObject.transform.position;
-
-                switch (direction)
+                walkSpriteCounter = i;
+                if (!walks)
                 {
-                    case 1: //left
-                        slimePosition.x = gameObject.transform.position.x - (10 * Time.deltaTime);
-                        break;
-                    case 2: //right
-                        slimePosition.x = gameObject.transform.position.x + (10 * Time.deltaTime);
-                        break;
-                    case 3: //up-left
-                        slimePosition.x = gameObject.transform.position.x - (10 * Time.deltaTime);
-                        slimePosition.y = gameObject.transform.position.y + (10 * Time.deltaTime);
-                        break;
-                    case 4: //down-left
-                        slimePosition.x = gameObject.transform.position.x - (10 * Time.deltaTime);
-                        slimePosition.y = gameObject.transform.position.y - (10 * Time.deltaTime);
-                        break;
-                    case 5: //up-right
-                        slimePosition.x = gameObject.transform.position.x + (10 * Time.deltaTime);
-                        slimePosition.y = gameObject.transform.position.y + (10 * Time.deltaTime);
-                        break;
-                    case 6: //down-right
-                        slimePosition.x = gameObject.transform.position.x + (10 * Time.deltaTime);
-                        slimePosition.y = gameObject.transform.position.y - (10 * Time.deltaTime);
-                        break;
-                    default:
-                        break;
+                    yield break;
                 }
-
-                gameObject.transform.position = slimePosition;
             }
+            walkSpriteCounter = 0;
             yield return new WaitForSeconds(0.6f);
         }
     }
