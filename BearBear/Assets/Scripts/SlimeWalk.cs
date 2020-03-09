@@ -9,13 +9,15 @@ public class SlimeWalk : MonoBehaviour
     Vector3 slimePosition;
     int direction; //1 = left, 2 = right, 3 = up-left, 4 = down-left, 5 = up-right, 6 = down-right
     bool walks = true;
-    float directionCD = 3.0f;
+    float directionCD = 4f;
     float directionTimer = 0.0f;
     int walkSpriteCounter = 0;
+    //Vector3 initialPosition;
 
     private void OnEnable()
     {
         slimePosition = gameObject.transform.position;
+        //initialPosition = slimePosition;
         newDirection();
         slimeWalking(); //temp
     }
@@ -95,10 +97,10 @@ public class SlimeWalk : MonoBehaviour
     }
 
 
-    void newDirection()
+    void newDirection() 
     {
         direction = Random.Range(1, 6);
-        Debug.Log(direction);
+        //Debug.Log(direction);
         if (direction == 1 || direction == 3 || direction == 4) //facing left
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
@@ -108,7 +110,18 @@ public class SlimeWalk : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
 
-        //if it's a certain distance past the spawn point, we move it back, change the rng up 
+        //also changes how long more till the next directional change to increase randomness
+        directionCD = Random.Range(3.0f, 5.0f);
 
+        //keep it within range of spawn point
+        /*
+        
+        float dist = Vector3.Distance(other.position, transform.position);
+
+        if(dist > someRange )
+        {
+            direction = moveTowardsSpawnPoint();
+        }
+        */
     }
 }

@@ -5,6 +5,10 @@ using UnityEngine;
 public class MonstersController : MonoBehaviour
 {
     //script that spawns monster, stops monster movement and resume them
+    //every 10 seconds, it'll check if there's a monster occupying every spawn point
+    //if there's an empty spot, spawn a monster there, one monster spawns per 10 seconds
+    //begins the map with fully spawned monsters tho
+
 
     public GameObject[] mobs;
     int counter;
@@ -14,7 +18,7 @@ public class MonstersController : MonoBehaviour
         mobs[counter] = Instantiate(mob1, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
-
+    
 
 
 
