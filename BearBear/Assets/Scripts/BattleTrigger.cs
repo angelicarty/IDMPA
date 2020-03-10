@@ -8,7 +8,8 @@ public class BattleTrigger : MonoBehaviour
     public Battle controller;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collision with something!");
+        Debug.Log("Collision with something!" + other.name);
+        Debug.Log(other.GetComponentInParent<Stats>().GetATK());
         if (other.gameObject.tag.Equals("Player"))
         {
             Debug.Log("Collision with player!");

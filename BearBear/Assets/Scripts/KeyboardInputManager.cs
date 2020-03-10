@@ -10,25 +10,37 @@ public class KeyboardInputManager : MonoBehaviour
     {
         if (characterMoving)
         {
-            if (Input.GetKey("up"))
+            if (Input.GetKeyDown("up"))
             {
                 FindObjectOfType<CharacterMove>().moveUp();
             }
-            else if (Input.GetKey("down"))
+            else if (Input.GetKeyDown("down"))
             {
                 FindObjectOfType<CharacterMove>().moveDown();
             }
-            else if (Input.GetKey("right"))
+            if (Input.GetKeyDown("right"))
             {
                 FindObjectOfType<CharacterMove>().moveRight();
             }
-            else if (Input.GetKey("left"))
+            else if (Input.GetKeyDown("left"))
             {
                 FindObjectOfType<CharacterMove>().moveLeft();
             }
-            else
+            if(Input.GetKeyUp("up"))
             {
-                FindObjectOfType<CharacterMove>().notMoving();
+                FindObjectOfType<CharacterMove>().notMovingUp();
+            }
+            if(Input.GetKeyUp("down"))
+            {
+                FindObjectOfType<CharacterMove>().notMovingDown();
+            }
+            if (Input.GetKeyUp("right"))
+            {
+                FindObjectOfType<CharacterMove>().notMovingRight();
+            }
+            if (Input.GetKeyUp("left"))
+            {
+                FindObjectOfType<CharacterMove>().notMovingLeft();
             }
         }
     }
