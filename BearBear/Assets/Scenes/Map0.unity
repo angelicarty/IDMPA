@@ -1087,6 +1087,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6748344111697090537}
+  - component: {fileID: 6748344111697090535}
   m_Layer: 0
   m_Name: BattleScene
   m_TagString: BattleScene
@@ -1094,6 +1095,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &6748344111697090535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6748344111697090534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b22c479b2610d4479defaf9b28ef331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 7310382382739665815}
+  leftStage: {fileID: 2000946280}
+  rightStage: {fileID: 1903369705}
+  p_display: {fileID: 6748344111437485595}
+  e_display: {fileID: 6748344112042458474}
 --- !u!4 &6748344111697090537
 Transform:
   m_ObjectHideFlags: 0
@@ -1491,7 +1509,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7310382382739665814}
   - component: {fileID: 7310382382739665815}
-  - component: {fileID: 7310382382739665813}
   m_Layer: 0
   m_Name: BattleController
   m_TagString: BattleController
@@ -1499,23 +1516,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &7310382382739665813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7310382382739665808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b22c479b2610d4479defaf9b28ef331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7310382382739665815}
-  leftStage: {fileID: 2000946280}
-  rightStage: {fileID: 1903369705}
-  p_display: {fileID: 6748344111437485595}
-  e_display: {fileID: 6748344112042458474}
 --- !u!4 &7310382382739665814
 Transform:
   m_ObjectHideFlags: 0
