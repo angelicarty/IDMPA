@@ -749,6 +749,11 @@ PrefabInstance:
       propertyPath: actorParent
       value: 
       objectReference: {fileID: 1762227901}
+    - target: {fileID: 7310382384475012639, guid: 887e74b95ca1447498301d6e3de58bf5,
+        type: 3}
+      propertyPath: enemyParent
+      value: 
+      objectReference: {fileID: 1762227901}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 887e74b95ca1447498301d6e3de58bf5, type: 3}
 --- !u!1 &1903369705
