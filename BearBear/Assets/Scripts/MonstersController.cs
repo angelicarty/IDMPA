@@ -33,14 +33,15 @@ public class MonstersController : MonoBehaviour
             currentTime += Time.deltaTime;
         }
 
-        if(currentTime > spawnTime)
+        if (currentTime > spawnTime)
         {
-            if(checkSpawnSpots())
+            if (checkSpawnSpots())
             {
                 spawnMonster();
                 currentTime = 0f;
             }
         }
+
     }
 
     public void goingIntoMobArea()
@@ -48,7 +49,10 @@ public class MonstersController : MonoBehaviour
         InMobArea = true;
         for (int i = 0; i < spawnedMobs.Length; i++)
         {
-            spawnedMobs[i].GetComponent<SlimeWalk>().slimeStopWalking();
+            if(spawnedMobs[i])
+            {
+                spawnedMobs[i].GetComponent<SlimeWalk>().slimeStopWalking();
+            }
         }
     }
 
@@ -57,7 +61,10 @@ public class MonstersController : MonoBehaviour
         InMobArea = false;
         for (int i = 0; i < spawnedMobs.Length; i++)
         {
-            spawnedMobs[i].GetComponent<SlimeWalk>().slimeWalking();
+            if (spawnedMobs[i])
+            {
+                spawnedMobs[i].GetComponent<SlimeWalk>().slimeWalking();
+            }
         }
     }
 
