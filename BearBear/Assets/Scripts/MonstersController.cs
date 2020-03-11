@@ -22,7 +22,8 @@ public class MonstersController : MonoBehaviour
 
     void spawnMonster()
     {
-        spawnedMobs[counter] = Instantiate(mobs[counter], mobsSpawnPoints[counter], Quaternion.identity);
+        int monsterToSpawn = Random.Range(0, mobs.Length - 1);
+        spawnedMobs[counter] = Instantiate(mobs[monsterToSpawn], mobsSpawnPoints[counter], Quaternion.identity);
     }
 
     private void Update()

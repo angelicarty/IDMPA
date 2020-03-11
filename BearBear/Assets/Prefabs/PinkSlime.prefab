@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7829660723968093556}
   - component: {fileID: 7829660723968093515}
   - component: {fileID: 7829660723968093514}
+  - component: {fileID: 3670642289567866890}
   m_Layer: 0
   m_Name: PinkSlime
   m_TagString: Untagged
@@ -52,7 +53,8 @@ MonoBehaviour:
   CHP: 20
   ATK: 20
   SPD: 1
-  battleSprite: {fileID: 21300000, guid: c537a2ae389729f4ea6e6be49a1b4f46, type: 3}
+  battleActor: {fileID: 7087897888609864860, guid: cb713ea388774f24a9e4157ff44a0c02,
+    type: 3}
 --- !u!212 &7829660723968093559
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -123,6 +125,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6fc7a082883580c4ea9c32a0a0b43d23, type: 3}
   - {fileID: 21300000, guid: 1ed680392cdeaa649aeb1431749c35a4, type: 3}
   - {fileID: 21300000, guid: c537a2ae389729f4ea6e6be49a1b4f46, type: 3}
+  walkingSpeed: 10
 --- !u!58 &7829660723968093556
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -173,3 +176,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!58 &3670642289567866890
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7829660723968093553}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.049241796, y: -0.03939396}
+  serializedVersion: 2
+  m_Radius: 0.69
