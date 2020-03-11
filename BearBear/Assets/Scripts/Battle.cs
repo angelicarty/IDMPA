@@ -15,7 +15,6 @@ public class Battle : MonoBehaviour
 
 
     public GameObject battleScene;
-    public GameObject actorParent;
     private Stats player;
     private Stats enemy;
 
@@ -23,7 +22,7 @@ public class Battle : MonoBehaviour
     private int e_HP;
 
     private int result = 0;//0 if combat is ongoing, 1 if player wins, -1 of losses
-    public void Start()
+    public void InitBattle()
     {
         player = over_player.GetComponent<Stats>();
         enemy = over_enemy.GetComponent<Stats>();
@@ -31,7 +30,6 @@ public class Battle : MonoBehaviour
         e_HP = enemy.GetCHP();
         state = BattleState.START;
         battleScene.SetActive(true);
-        actorParent.SetActive(false);//prevents stuff from walking around during the battle
         StartCoroutine("BattleLoop");
     }
 
@@ -124,7 +122,6 @@ public class Battle : MonoBehaviour
             Debug.Log("You win!");
             //TODO: award xp/loot/whatever
             Destroy(over_enemy);
-            actorParent.SetActive(true);
             battleScene.SetActive(false);
             this.gameObject.SetActive(false);
         }
@@ -197,14 +194,14 @@ public class Battle : MonoBehaviour
         return state;
     }
 
-    public GameObject GetPlayerBA()
-    { 
-        return player.battleActor;
+    public Stats GetPlayer()
+    {
+        return player;
     }
 
-    public GameObject GetEnemyBA()
+    public Stats GetEnemy()
     {
-        return enemy.battleActor;
+        return enemy;
     }
 
     public int GetPlayerHP()

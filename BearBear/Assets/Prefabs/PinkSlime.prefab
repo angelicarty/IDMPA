@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7829660723968093559}
   - component: {fileID: 7829660723968093552}
   - component: {fileID: 7829660723968093556}
+  - component: {fileID: 3670642289567866890}
   - component: {fileID: 7829660723968093515}
   - component: {fileID: 7829660723968093514}
-  - component: {fileID: 3670642289567866890}
   m_Layer: 0
   m_Name: PinkSlime
   m_TagString: Untagged
@@ -142,6 +142,22 @@ CircleCollider2D:
   m_Offset: {x: 0.049241796, y: -0.03939396}
   serializedVersion: 2
   m_Radius: 0.5189465
+--- !u!58 &3670642289567866890
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7829660723968093553}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.049241796, y: -0.03939396}
+  serializedVersion: 2
+  m_Radius: 0.69
 --- !u!114 &7829660723968093515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678650301c7f750428e28b7a1b3984c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
 --- !u!50 &7829660723968093514
 Rigidbody2D:
   serializedVersion: 4
@@ -176,19 +191,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &3670642289567866890
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7829660723968093553}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.049241796, y: -0.03939396}
-  serializedVersion: 2
-  m_Radius: 0.69
