@@ -11,7 +11,16 @@ public class CharacterMove : MonoBehaviour
     public Sprite[] movingRightSprites;
     public Sprite[] movingDownSprites;
     public Sprite[] movingUpSprites;
-    //public GameObject followCharacterCamera;
+    public float walkingSpeed;
+    public GameObject followCharacterCamera;
+    public Vector3 cameraCoords;
+
+    private void moveCamera()
+    {
+        cameraCoords.x = playerPosition.x;
+        cameraCoords.y = playerPosition.y;
+        followCharacterCamera.transform.position = cameraCoords;
+    }
 
     public void moveUp()
     {
@@ -81,8 +90,9 @@ public class CharacterMove : MonoBehaviour
         {
             //character position change
             playerPosition = gameObject.transform.position;
-            playerPosition.y = gameObject.transform.position.y + (10 * Time.deltaTime); //prob eventually find a better maths calculation for walking speed 
+            playerPosition.y = gameObject.transform.position.y + (walkingSpeed * Time.deltaTime); //prob eventually find a better maths calculation for walking speed 
             gameObject.transform.position = playerPosition;
+            moveCamera();
             yield return new WaitForSeconds(0.08f);
 
             //temp in comment till frames available
@@ -93,7 +103,7 @@ public class CharacterMove : MonoBehaviour
 
                 //character position change
                 playerPosition = gameObject.transform.position;
-                playerPosition.y = gameObject.transform.position.y + (10 * Time.deltaTime); //prob eventually find a better maths calculation for walking speed 
+                playerPosition.y = gameObject.transform.position.y + (walkingSpeed * Time.deltaTime); //prob eventually find a better maths calculation for walking speed 
                 gameObject.transform.position = playerPosition;
 
                 if (movingLeft || movingRight)
@@ -129,8 +139,9 @@ public class CharacterMove : MonoBehaviour
 
                 //character position change
                 playerPosition = gameObject.transform.position;
-                playerPosition.y = gameObject.transform.position.y - (10 * Time.deltaTime);
+                playerPosition.y = gameObject.transform.position.y - (walkingSpeed * Time.deltaTime);
                 gameObject.transform.position = playerPosition;
+                moveCamera();
 
                 if (movingLeft || movingRight)
                 {
@@ -164,8 +175,9 @@ public class CharacterMove : MonoBehaviour
 
                 //character position change
                 playerPosition = gameObject.transform.position;
-                playerPosition.x = gameObject.transform.position.x + (10 * Time.deltaTime);
+                playerPosition.x = gameObject.transform.position.x + (walkingSpeed * Time.deltaTime);
                 gameObject.transform.position = playerPosition;
+                moveCamera();
 
                 gameObject.GetComponent<SpriteRenderer>().sprite = movingRightSprites[i];
                 if (!movingRight)
@@ -187,8 +199,9 @@ public class CharacterMove : MonoBehaviour
 
                 //character position change
                 playerPosition = gameObject.transform.position;
-                playerPosition.x = gameObject.transform.position.x - (10 * Time.deltaTime);
+                playerPosition.x = gameObject.transform.position.x - (walkingSpeed * Time.deltaTime);
                 gameObject.transform.position = playerPosition;
+                moveCamera();
 
                 gameObject.GetComponent<SpriteRenderer>().flipX = true;
                 gameObject.GetComponent<SpriteRenderer>().sprite = movingRightSprites[i];

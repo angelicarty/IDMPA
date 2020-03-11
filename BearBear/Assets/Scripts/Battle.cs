@@ -15,7 +15,7 @@ public class Battle : MonoBehaviour
 
 
     public GameObject battleScene;
-    public GameObject enemyParent;
+    public GameObject actorParent;
     private Stats player;
     private Stats enemy;
 
@@ -31,7 +31,7 @@ public class Battle : MonoBehaviour
         e_HP = enemy.GetCHP();
         state = BattleState.START;
         battleScene.SetActive(true);
-        enemyParent.SetActive(false);//prevents stuff from walking around during the battle
+        actorParent.SetActive(false);//prevents stuff from walking around during the battle
         StartCoroutine("BattleLoop");
     }
 
@@ -124,7 +124,7 @@ public class Battle : MonoBehaviour
             Debug.Log("You win!");
             //TODO: award xp/loot/whatever
             Destroy(over_enemy);
-            enemyParent.SetActive(true);
+            actorParent.SetActive(true);
             battleScene.SetActive(false);
             this.gameObject.SetActive(false);
         }

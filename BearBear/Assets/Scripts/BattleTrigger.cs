@@ -18,6 +18,7 @@ public class BattleTrigger : MonoBehaviour
             controller.over_player = other.gameObject;
             controller.over_enemy = this.gameObject;
             controller.gameObject.SetActive(true);
+
         }
     }
 }

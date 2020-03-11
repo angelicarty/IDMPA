@@ -52,7 +52,7 @@ MonoBehaviour:
   CHP: 20
   ATK: 20
   SPD: 1
-  battleSprite: {fileID: 21300000, guid: 1fb8e35745c37d34fb2a034a74cc5fb5, type: 3}
+  battleActor: {fileID: 0}
 --- !u!212 &12426466525914544
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7c6806f0d9c69054c919f40e95a532c4, type: 3}
   - {fileID: 21300000, guid: 0aa8a1f4cfe1999499f1d186de32ef99, type: 3}
   - {fileID: 21300000, guid: 1fb8e35745c37d34fb2a034a74cc5fb5, type: 3}
+  walkingSpeed: 10
 --- !u!58 &12426466525914546
 CircleCollider2D:
   m_ObjectHideFlags: 0

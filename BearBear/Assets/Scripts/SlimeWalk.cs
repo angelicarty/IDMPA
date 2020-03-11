@@ -12,6 +12,7 @@ public class SlimeWalk : MonoBehaviour
     float directionCD = 4f;
     float directionTimer = 0.0f;
     int walkSpriteCounter = 0;
+    public float walkingSpeed;
     //Vector3 initialPosition;
 
     private void OnEnable()
@@ -60,26 +61,26 @@ public class SlimeWalk : MonoBehaviour
                 switch(direction)
                 {
                     case 1: //left
-                        slimePosition.x = gameObject.transform.position.x - (10 * Time.deltaTime); 
+                        slimePosition.x = gameObject.transform.position.x - (walkingSpeed * Time.deltaTime); 
                         break;
                     case 2: //right
-                        slimePosition.x = gameObject.transform.position.x + (10 * Time.deltaTime);
+                        slimePosition.x = gameObject.transform.position.x + (walkingSpeed * Time.deltaTime);
                         break;
                     case 3: //up-left
-                        slimePosition.x = gameObject.transform.position.x - (10 * Time.deltaTime);
-                        slimePosition.y = gameObject.transform.position.y + (10 * Time.deltaTime);
+                        slimePosition.x = gameObject.transform.position.x - (walkingSpeed * Time.deltaTime);
+                        slimePosition.y = gameObject.transform.position.y + (walkingSpeed * Time.deltaTime);
                         break;
                     case 4: //down-left
-                        slimePosition.x = gameObject.transform.position.x - (10 * Time.deltaTime);
-                        slimePosition.y = gameObject.transform.position.y - (10 * Time.deltaTime);
+                        slimePosition.x = gameObject.transform.position.x - (walkingSpeed * Time.deltaTime);
+                        slimePosition.y = gameObject.transform.position.y - (walkingSpeed * Time.deltaTime);
                         break;
                     case 5: //up-right
-                        slimePosition.x = gameObject.transform.position.x + (10 * Time.deltaTime);
-                        slimePosition.y = gameObject.transform.position.y + (10 * Time.deltaTime);
+                        slimePosition.x = gameObject.transform.position.x + (walkingSpeed * Time.deltaTime);
+                        slimePosition.y = gameObject.transform.position.y + (walkingSpeed * Time.deltaTime);
                         break;
                     case 6: //down-right
-                        slimePosition.x = gameObject.transform.position.x + (10 * Time.deltaTime);
-                        slimePosition.y = gameObject.transform.position.y - (10 * Time.deltaTime);
+                        slimePosition.x = gameObject.transform.position.x + (walkingSpeed * Time.deltaTime);
+                        slimePosition.y = gameObject.transform.position.y - (walkingSpeed * Time.deltaTime);
                         break;
                     default:
                         break;

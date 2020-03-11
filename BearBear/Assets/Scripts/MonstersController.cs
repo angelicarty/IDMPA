@@ -11,18 +11,70 @@ public class MonstersController : MonoBehaviour
 
 
     public GameObject[] mobs;
+    public GameObject[] spawnedMobs;
     int counter;
+    public Vector3[] mobsSpawnPoints;
+
+    public float spawnTime;
+    float currentTime;
+
+    bool InMobArea = true;  //temp default to true for testing purpose
 
     void spawnMonster()
     {
-        mobs[counter] = Instantiate(mob1, new Vector3(0, 0, 0), Quaternion.identity);
+        spawnedMobs[counter] = Instantiate(mobs[counter], mobsSpawnPoints[counter], Quaternion.identity);
     }
 
-    
+    private void Update()
+    {
+        if (InMobArea)
+        {
+            currentTime += Time.deltaTime;
+        }
+
+        if(currentTime > spawnTime)
+        {
+            if(checkSpawnSpots())
+            {
+                spawnMonster();
+                currentTime = 0f;
+            }
+        }
+    }
+
+    public void goingIntoMobArea()
+    {
+        InMobArea = true;
+        for (int i = 0; i < spawnedMobs.Length; i++)
+        {
+            spawnedMobs[i].GetComponent<SlimeWalk>().slimeStopWalking();
+        }
+    }
+
+    public void goingOutOfMobArea()
+    {
+        InMobArea = false;
+        for (int i = 0; i < spawnedMobs.Length; i++)
+        {
+            spawnedMobs[i].GetComponent<SlimeWalk>().slimeWalking();
+        }
+    }
+
+    private bool checkSpawnSpots()
+    {
+        for(int i = 0; i < mobsSpawnPoints.Length; i++)
+        {
+            if(spawnedMobs[i] == null)
+            {
+                counter = i;
+                return true;
+            }
+        }
+        return false;
+    }
 
 
-
-    //temp - tested and working
+    /*
     public GameObject mob1, mob2;
 
     private void Update()
@@ -37,5 +89,5 @@ public class MonstersController : MonoBehaviour
             mob2.GetComponent<SlimeWalk>().slimeStopWalking();
             mob1.GetComponent<SlimeWalk>().slimeWalking();
         }
-    }
+    }*/
 }
