@@ -14,8 +14,8 @@ public class Stats : MonoBehaviour
     [SerializeField]
     private int SPD;
 
-    //sprite used for battle
-    public Sprite battleSprite;
+    //sprite used for battle, includes animations eventually
+    public GameObject battleActor;
 
     public int GetMHP()
     {

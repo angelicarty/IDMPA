@@ -9,14 +9,15 @@ public class BattleUI : MonoBehaviour
     public Battle controller;
 
     //draws the appropriate sprite for those involved in combat
-    private GameObject p_sprite;
-    private GameObject e_sprite;
+    public GameObject leftStage;
+    public GameObject rightStage;
     //temp health display
     public Text p_display;
     public Text e_display;
     void Start()
     {
-        
+        Instantiate(controller.GetPlayerBA(), leftStage.transform);
+        Instantiate(controller.GetEnemyBA(), rightStage.transform);
     }
 
     void Update()
@@ -25,8 +26,7 @@ public class BattleUI : MonoBehaviour
         e_display.text = "HP: " + controller.GetEnemyHP();
         if (controller.GetState() == BattleState.START)
         {
-            p_sprite.GetComponent<SpriteRenderer>().sprite = controller.GetPlayerSprite();
-            e_sprite.GetComponent<SpriteRenderer>().sprite = controller.GetEnemySprite();
+
         }
 
     }

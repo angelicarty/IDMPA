@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 //This script controls the battle scene and damage calculations and stuff. Its attached object is created when the player collides with an enemy
@@ -14,6 +15,7 @@ public class Battle : MonoBehaviour
 
 
     public GameObject battleScene;
+    public GameObject actorParent;
     private Stats player;
     private Stats enemy;
 
@@ -29,11 +31,13 @@ public class Battle : MonoBehaviour
         e_HP = enemy.GetCHP();
         state = BattleState.START;
         battleScene.SetActive(true);
+        actorParent.SetActive(false);//prevents stuff from walking around during the battle
         StartCoroutine("BattleLoop");
     }
 
     IEnumerator BattleLoop()
     {
+
         Debug.Log("BATTLELOOP START");
         //TODO: clean this garbage
         while (state != BattleState.END)
@@ -45,7 +49,7 @@ public class Battle : MonoBehaviour
             }
             else if (state == BattleState.ACTION)
             {
-                while ((!Input.GetButtonDown("Fire1")) || (!Input.GetButtonDown("Fire2")))
+                while ((!Input.GetButtonDown("Fire1")))
                 {
                     yield return null;
                 }
@@ -118,10 +122,16 @@ public class Battle : MonoBehaviour
         if (result == 1)
         {
             Debug.Log("You win!");
+            //TODO: award xp/loot/whatever
+            Destroy(over_enemy);
+            actorParent.SetActive(true);
+            battleScene.SetActive(false);
+            this.gameObject.SetActive(false);
         }
         else
         {
             Debug.Log("You lose!");
+            SceneManager.LoadScene("TitleMenu");//kicks the player to the title screen, easiest game over thing, though probably shouldn't be done here
         }
         Debug.Log("BATTLELOOP END");
     }
@@ -187,14 +197,14 @@ public class Battle : MonoBehaviour
         return state;
     }
 
-    public Sprite GetPlayerSprite()
+    public GameObject GetPlayerBA()
     { 
-        return player.GetComponent<SpriteRenderer>().sprite;
+        return player.battleActor;
     }
 
-    public Sprite GetEnemySprite()
-    { 
-        return enemy.GetComponent<SpriteRenderer>().sprite;
+    public GameObject GetEnemyBA()
+    {
+        return enemy.battleActor;
     }
 
     public int GetPlayerHP()
