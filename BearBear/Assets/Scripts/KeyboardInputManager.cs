@@ -48,6 +48,10 @@ public class KeyboardInputManager : MonoBehaviour
     public void disableCharacterMovement() //prevents character from moving
     {
         characterMoving = false;
+        FindObjectOfType<CharacterMove>().notMovingUp();
+        FindObjectOfType<CharacterMove>().notMovingDown();
+        FindObjectOfType<CharacterMove>().notMovingRight();
+        FindObjectOfType<CharacterMove>().notMovingLeft();
     }
 
     public void enableCharacterMovement() //reenable character to move

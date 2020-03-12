@@ -13,7 +13,14 @@ public class CharacterMove : MonoBehaviour
     public Sprite[] movingUpSprites;
     public float walkingSpeed;
     public GameObject followCharacterCamera;
-    public Vector3 cameraCoords;
+    Vector3 cameraCoords;
+
+
+    private void OnEnable()
+    {
+        cameraCoords = followCharacterCamera.transform.position;
+        moveCamera();
+    }
 
     private void moveCamera()
     {
@@ -30,6 +37,7 @@ public class CharacterMove : MonoBehaviour
             //GetComponent<SpriteRenderer>().sprite = lookUp;
             movingUp = true;
             StartCoroutine(animateUp());
+            StartCoroutine(walkingUp());
         }
     }
     public void moveDown()
@@ -40,6 +48,7 @@ public class CharacterMove : MonoBehaviour
             //GetComponent<SpriteRenderer>().sprite = lookDown;
             movingDown = true;
             StartCoroutine(animateDown());
+            StartCoroutine(walkingDown());
         }
     }
     public void moveRight()
@@ -50,6 +59,7 @@ public class CharacterMove : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = lookRight;
             movingRight = true;
             StartCoroutine(animateRight());
+            StartCoroutine(walkingRight());
         }
     }
     public void moveLeft()
@@ -60,6 +70,7 @@ public class CharacterMove : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = lookLeft;
             movingLeft = true;
             StartCoroutine(animateLeft());
+            StartCoroutine(walkingLeft());
         }
     }
 
@@ -67,32 +78,32 @@ public class CharacterMove : MonoBehaviour
     {
         movingUp = false;
         StopCoroutine(animateUp());
+        StopCoroutine(walkingUp());
     }
     public void notMovingDown()
     {
         movingDown = false;
         StopCoroutine(animateDown());
+        StopCoroutine(walkingDown());
     }
     public void notMovingLeft()
     {
         movingLeft = false;
         StopCoroutine(animateLeft());
+        StopCoroutine(walkingLeft());
     }
     public void notMovingRight()
     {
         movingRight = false;
         StopCoroutine(animateRight());
+        StopCoroutine(walkingRight());
     }
 
     IEnumerator animateUp()
     {
         while (movingUp)
         {
-            //character position change
-            playerPosition = gameObject.transform.position;
-            playerPosition.y = gameObject.transform.position.y + (walkingSpeed * Time.deltaTime); //prob eventually find a better maths calculation for walking speed 
-            gameObject.transform.position = playerPosition;
-            moveCamera();
+            
             yield return new WaitForSeconds(0.08f);
 
             //temp in comment till frames available
@@ -129,6 +140,19 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
+    IEnumerator walkingUp()
+    {
+        while (movingUp)
+        {
+            //character position change
+            playerPosition = gameObject.transform.position;
+            playerPosition.y = gameObject.transform.position.y + (walkingSpeed * Time.deltaTime); //prob eventually find a better maths calculation for walking speed 
+            gameObject.transform.position = playerPosition;
+            moveCamera();
+            yield return null;
+        }
+    }
+
     IEnumerator animateDown()
     {
         while (movingDown)
@@ -137,11 +161,6 @@ public class CharacterMove : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.08f);
 
-                //character position change
-                playerPosition = gameObject.transform.position;
-                playerPosition.y = gameObject.transform.position.y - (walkingSpeed * Time.deltaTime);
-                gameObject.transform.position = playerPosition;
-                moveCamera();
 
                 if (movingLeft || movingRight)
                 {
@@ -165,6 +184,19 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
+    IEnumerator walkingDown()
+    {
+        while (movingDown)
+        {
+            //character position change
+            playerPosition = gameObject.transform.position;
+            playerPosition.y = gameObject.transform.position.y - (walkingSpeed * Time.deltaTime);
+            gameObject.transform.position = playerPosition;
+            moveCamera();
+            yield return null;
+        }
+    }
+
     IEnumerator animateRight()
     {
         while (movingRight)
@@ -173,11 +205,6 @@ public class CharacterMove : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.08f);
 
-                //character position change
-                playerPosition = gameObject.transform.position;
-                playerPosition.x = gameObject.transform.position.x + (walkingSpeed * Time.deltaTime);
-                gameObject.transform.position = playerPosition;
-                moveCamera();
 
                 gameObject.GetComponent<SpriteRenderer>().sprite = movingRightSprites[i];
                 if (!movingRight)
@@ -189,6 +216,19 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
+    IEnumerator walkingRight()
+    {
+        while (movingRight)
+        {
+            //character position change
+            playerPosition = gameObject.transform.position;
+            playerPosition.x = gameObject.transform.position.x + (walkingSpeed * Time.deltaTime);
+            gameObject.transform.position = playerPosition;
+            moveCamera();
+            yield return null;
+        }
+    }
+
     IEnumerator animateLeft()
     {
         while (movingLeft)
@@ -197,11 +237,7 @@ public class CharacterMove : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.08f);
 
-                //character position change
-                playerPosition = gameObject.transform.position;
-                playerPosition.x = gameObject.transform.position.x - (walkingSpeed * Time.deltaTime);
-                gameObject.transform.position = playerPosition;
-                moveCamera();
+                
 
                 gameObject.GetComponent<SpriteRenderer>().flipX = true;
                 gameObject.GetComponent<SpriteRenderer>().sprite = movingRightSprites[i];
@@ -214,6 +250,18 @@ public class CharacterMove : MonoBehaviour
             }
         }
     }
-
+    
+    IEnumerator walkingLeft()
+    {
+        while (movingLeft)
+        {
+            //character position change
+            playerPosition = gameObject.transform.position;
+            playerPosition.x = gameObject.transform.position.x - (walkingSpeed * Time.deltaTime);
+            gameObject.transform.position = playerPosition;
+            moveCamera();
+            yield return null;
+        }
+    }
 
 }

@@ -42,11 +42,16 @@ public class MonstersController : MonoBehaviour
             }
         }
 
+        if(Input.GetKeyDown("k"))
+        {
+            goingOutOfMobArea();
+        }
+
     }
 
-    public void goingIntoMobArea()
+    public void goingOutOfMobArea()
     {
-        InMobArea = true;
+        InMobArea = false;
         for (int i = 0; i < spawnedMobs.Length; i++)
         {
             if(spawnedMobs[i])
@@ -56,9 +61,9 @@ public class MonstersController : MonoBehaviour
         }
     }
 
-    public void goingOutOfMobArea()
+    public void goingIntoMobArea()
     {
-        InMobArea = false;
+        InMobArea = true;
         for (int i = 0; i < spawnedMobs.Length; i++)
         {
             if (spawnedMobs[i])

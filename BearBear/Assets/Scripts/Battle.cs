@@ -24,6 +24,8 @@ public class Battle : MonoBehaviour
     private int result = 0;//0 if combat is ongoing, 1 if player wins, -1 of losses
     public void InitBattle()
     {
+        FindObjectOfType<KeyboardInputManager>().disableCharacterMovement(); //disable character movement
+        FindObjectOfType<MonstersController>().goingOutOfMobArea(); //pauses monster movements
         player = over_player.GetComponent<Stats>();
         enemy = over_enemy.GetComponent<Stats>();
         p_HP = player.GetCHP();
@@ -124,6 +126,8 @@ public class Battle : MonoBehaviour
             Destroy(over_enemy);
             battleScene.SetActive(false);
             this.gameObject.SetActive(false);
+            FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
+            FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
         }
         else
         {
