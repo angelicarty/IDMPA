@@ -16,12 +16,6 @@ public class CharacterMove : MonoBehaviour
     Vector3 cameraCoords;
 
 
-    private void OnEnable()
-    {
-        cameraCoords = followCharacterCamera.transform.position;
-        moveCamera();
-    }
-
     private void moveCamera()
     {
         cameraCoords.x = playerPosition.x;
