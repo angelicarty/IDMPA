@@ -14,8 +14,10 @@ public class BattleUI : MonoBehaviour
     //temp health display
     public Text p_display;
     public Text e_display;
+
     void OnEnable()
     {
+        Debug.Log("battle scene init thing loaded");
         Instantiate(controller.GetPlayer().battleActor, leftStage.transform);
         Instantiate(controller.GetEnemy().battleActor, rightStage.transform);
     }

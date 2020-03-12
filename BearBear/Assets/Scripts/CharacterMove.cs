@@ -15,14 +15,6 @@ public class CharacterMove : MonoBehaviour
     public GameObject followCharacterCamera;
     Vector3 cameraCoords;
 
-
-    private void moveCamera()
-    {
-        cameraCoords.x = playerPosition.x;
-        cameraCoords.y = playerPosition.y;
-        followCharacterCamera.transform.position = cameraCoords;
-    }
-
     public void moveUp()
     {
         if (!movingDown)
@@ -142,7 +134,7 @@ public class CharacterMove : MonoBehaviour
             playerPosition = gameObject.transform.position;
             playerPosition.y = gameObject.transform.position.y + (walkingSpeed * Time.deltaTime); //prob eventually find a better maths calculation for walking speed 
             gameObject.transform.position = playerPosition;
-            moveCamera();
+
             yield return null;
         }
     }
@@ -186,7 +178,7 @@ public class CharacterMove : MonoBehaviour
             playerPosition = gameObject.transform.position;
             playerPosition.y = gameObject.transform.position.y - (walkingSpeed * Time.deltaTime);
             gameObject.transform.position = playerPosition;
-            moveCamera();
+
             yield return null;
         }
     }
@@ -218,7 +210,7 @@ public class CharacterMove : MonoBehaviour
             playerPosition = gameObject.transform.position;
             playerPosition.x = gameObject.transform.position.x + (walkingSpeed * Time.deltaTime);
             gameObject.transform.position = playerPosition;
-            moveCamera();
+
             yield return null;
         }
     }
@@ -253,7 +245,7 @@ public class CharacterMove : MonoBehaviour
             playerPosition = gameObject.transform.position;
             playerPosition.x = gameObject.transform.position.x - (walkingSpeed * Time.deltaTime);
             gameObject.transform.position = playerPosition;
-            moveCamera();
+
             yield return null;
         }
     }

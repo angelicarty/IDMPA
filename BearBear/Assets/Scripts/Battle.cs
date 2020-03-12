@@ -15,6 +15,7 @@ public class Battle : MonoBehaviour
 
 
     public GameObject battleScene;
+    public Camera overworld_camera;
     private Stats player;
     private Stats enemy;
 
@@ -31,6 +32,7 @@ public class Battle : MonoBehaviour
         p_HP = player.GetCHP();
         e_HP = enemy.GetCHP();
         state = BattleState.START;
+        overworld_camera.gameObject.SetActive(false);
         battleScene.SetActive(true);
         StartCoroutine("BattleLoop");
     }
@@ -125,9 +127,10 @@ public class Battle : MonoBehaviour
             //TODO: award xp/loot/whatever
             Destroy(over_enemy);
             battleScene.SetActive(false);
-            this.gameObject.SetActive(false);
+            overworld_camera.gameObject.SetActive(true);
             FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
             FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
+
         }
         else
         {
