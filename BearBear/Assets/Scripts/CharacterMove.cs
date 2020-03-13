@@ -12,8 +12,21 @@ public class CharacterMove : MonoBehaviour
     public Sprite[] movingDownSprites;
     public Sprite[] movingUpSprites;
     public float walkingSpeed;
-    public GameObject followCharacterCamera;
-    Vector3 cameraCoords;
+
+    //remove jitters upon wall collision
+    //TO DO
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void moveUp()
     {
@@ -89,19 +102,9 @@ public class CharacterMove : MonoBehaviour
     {
         while (movingUp)
         {
-            
-            yield return new WaitForSeconds(0.08f);
-
-            //temp in comment till frames available
-            /*
-            for (int i = 0; i < movingDownSprites.Length; i++)
+            for (int i = 0; i < movingUpSprites.Length; i++)
             {
                 yield return new WaitForSeconds(0.08f);
-
-                //character position change
-                playerPosition = gameObject.transform.position;
-                playerPosition.y = gameObject.transform.position.y + (walkingSpeed * Time.deltaTime); //prob eventually find a better maths calculation for walking speed 
-                gameObject.transform.position = playerPosition;
 
                 if (movingLeft || movingRight)
                 {
@@ -115,13 +118,13 @@ public class CharacterMove : MonoBehaviour
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = movingUpSprites[i];
 
-                    if (!movingDown)
+                    if (!movingUp)
                     {
                         gameObject.GetComponent<SpriteRenderer>().sprite = lookUp;
                         yield break;
                     }
                 }
-            }*/
+            }
 
         }
     }

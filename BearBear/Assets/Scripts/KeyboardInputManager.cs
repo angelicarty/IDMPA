@@ -43,6 +43,11 @@ public class KeyboardInputManager : MonoBehaviour
                 FindObjectOfType<CharacterMove>().notMovingLeft();
             }
         }
+        
+        if (Input.GetKeyDown("space"))
+        {
+            FindObjectOfType<DialogueTrigger>().pleaseWork();
+        }
     }
 
     public void disableCharacterMovement() //prevents character from moving
