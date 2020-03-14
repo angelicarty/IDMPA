@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class BattleUI : MonoBehaviour
 {
     public Battle controller;
-
+    public GameObject actions;
     //draws the appropriate sprite for those involved in combat
     public GameObject leftStage;
     public GameObject rightStage;
@@ -26,9 +26,13 @@ public class BattleUI : MonoBehaviour
     {
         p_display.text = "HP: " + controller.GetPlayerHP();
         e_display.text = "HP: " + controller.GetEnemyHP();
-        if (controller.GetState() == BattleState.START)
+        if (controller.GetState() == BattleState.ACTION)
         {
-
+            actions.SetActive(true);
+        }
+        else
+        {
+            actions.SetActive(false);
         }
 
     }

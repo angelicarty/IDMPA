@@ -51,18 +51,11 @@ public class Battle : MonoBehaviour
             }
             else if (state == BattleState.ACTION)
             {
-                while ((!Input.GetButtonDown("Fire1")))
+                while (state == BattleState.ACTION)
                 {
                     yield return null;
                 }
-                if (player.GetSPD() >= enemy.GetSPD())
-                {
-                    state = BattleState.P1;
-                }
-                else
-                {
-                    state = BattleState.P2;
-                }
+
             }
             
             else if (state == BattleState.P1)
@@ -123,19 +116,15 @@ public class Battle : MonoBehaviour
         //do shit based on result of battle
         if (result == 1)
         {
-            Debug.Log("You win!");
-            //TODO: award xp/loot/whatever
-            Destroy(over_enemy);
-            battleScene.SetActive(false);
-            overworld_camera.gameObject.SetActive(true);
-            FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
-            FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
-
+            EndWin();
+        }
+        else if (result == 2)
+        {
+            EndRun();
         }
         else
         {
-            Debug.Log("You lose!");
-            SceneManager.LoadScene("TitleMenu");//kicks the player to the title screen, easiest game over thing, though probably shouldn't be done here
+            EndLose();
         }
         Debug.Log("BATTLELOOP END");
     }
@@ -190,12 +179,63 @@ public class Battle : MonoBehaviour
     //    return true;
     //}
 
+     
+
     private int Attack(int offensive_damage, int defensive_health)
     {//calculates the damage of an attack, outputs resulting health
         //TODO: an actual formula, defence, lots
         return defensive_health - offensive_damage;
     }
 
+    //PLAYER ACTION CHOICES
+    public void ActionAttack()
+    {
+        if (player.GetSPD() >= enemy.GetSPD())
+        {
+            state = BattleState.P1;
+        }
+        else
+        {
+            state = BattleState.P2;
+        }
+    }
+
+    public void ActionRun()
+    {
+        result = 2;
+        state = BattleState.END;
+    }
+
+
+    //ENDING STUFF
+    private void EndWin()
+    {
+        Debug.Log("You win!");
+        //TODO: award xp/loot/whatever
+        Destroy(over_enemy);
+        battleScene.SetActive(false);
+        overworld_camera.gameObject.SetActive(true);
+        FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
+        FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
+    }
+
+    private void EndLose()
+    {
+        Debug.Log("You lose!");
+        SceneManager.LoadScene("TitleMenu");//kicks the player to the title screen, easiest game over thing, though probably shouldn't be done here
+    }
+
+    private void EndRun()
+    {
+        Debug.Log("You run away!");
+        battleScene.SetActive(false);
+        overworld_camera.gameObject.SetActive(true);
+        FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
+        FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
+    }
+
+
+    //GETTERS AND SETTERS
     public BattleState GetState()
     {
         return state;
