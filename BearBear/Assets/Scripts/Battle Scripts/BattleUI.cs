@@ -17,9 +17,16 @@ public class BattleUI : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log("battle scene init thing loaded");
+        //Debug.Log("battle scene init thing loaded");
         Instantiate(controller.GetPlayer().battleActor, leftStage.transform);
         Instantiate(controller.GetEnemy().battleActor, rightStage.transform);
+    }
+
+    void OnDisable()
+    {
+        //Debug.Log("removing actors");
+        Destroy(leftStage.transform.GetChild(0).gameObject);
+        Destroy(rightStage.transform.GetChild(0).gameObject);
     }
 
     void Update()
@@ -34,6 +41,5 @@ public class BattleUI : MonoBehaviour
         {
             actions.SetActive(false);
         }
-
     }
 }

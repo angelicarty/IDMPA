@@ -23,6 +23,8 @@ public class Battle : MonoBehaviour
     private int e_HP;
 
     private int result = 0;//0 if combat is ongoing, 1 if player wins, -1 of losses
+
+    public bool debug = false;
     public void InitBattle()
     {
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement(); //disable character movement
@@ -40,11 +42,11 @@ public class Battle : MonoBehaviour
     IEnumerator BattleLoop()
     {
 
-        Debug.Log("BATTLELOOP START");
+        if (debug) { Debug.Log("BATTLELOOP START"); }
         //TODO: clean this garbage
         while (state != BattleState.END)
         {
-            Debug.Log("WHILELOOP BEGINNING");
+            if (debug) { Debug.Log("WHILELOOP BEGINNING"); }
             if (state == BattleState.START)
             {
                 state = BattleState.ACTION;
@@ -53,6 +55,7 @@ public class Battle : MonoBehaviour
             {
                 while (state == BattleState.ACTION)
                 {
+                    //waits for the player to push an action button, as defined in the ui stuff
                     yield return null;
                 }
 
@@ -62,7 +65,7 @@ public class Battle : MonoBehaviour
             {
                 //TODO: real damage calculations
                 e_HP = Attack(player.GetATK(), e_HP);
-                Debug.Log("e_HP = " + e_HP);
+                if (debug) { Debug.Log("e_HP = " + e_HP); }
                 yield return new WaitForSeconds(delay);
                 if (e_HP <= 0)
                 {
@@ -72,7 +75,7 @@ public class Battle : MonoBehaviour
                 else 
                 {
                     p_HP = Attack(enemy.GetATK(), p_HP);
-                    Debug.Log("p_HP = " + p_HP);
+                    if (debug) { Debug.Log("p_HP = " + p_HP); }
                     yield return new WaitForSeconds(delay);
                     if (p_HP <= 0)
                     {
@@ -89,7 +92,7 @@ public class Battle : MonoBehaviour
             {
                 //TODO: real damage calculations
                 p_HP = Attack(enemy.GetATK(), p_HP);
-                Debug.Log("p_HP = " + p_HP);
+                if (debug) { Debug.Log("p_HP = " + p_HP); }
                 yield return new WaitForSeconds(delay);
                 if (p_HP <= 0)
                 {
@@ -99,7 +102,7 @@ public class Battle : MonoBehaviour
                 else
                 {
                     e_HP = Attack(player.GetATK(), e_HP);
-                    Debug.Log("e_HP = " + e_HP);
+                    if (debug) { Debug.Log("e_HP = " + e_HP); }
                     yield return new WaitForSeconds(delay);
                     if (e_HP <= 0)
                     {
@@ -114,6 +117,8 @@ public class Battle : MonoBehaviour
             }
         }
         //do shit based on result of battle
+        player.SetCHP(p_HP);
+        enemy.SetCHP(e_HP);
         if (result == 1)
         {
             EndWin();
@@ -126,60 +131,9 @@ public class Battle : MonoBehaviour
         {
             EndLose();
         }
-        Debug.Log("BATTLELOOP END");
+        if (debug) { Debug.Log("BATTLELOOP END"); }
     }
 
-    //private bool CombatLoop()
-    //{//OLD PLEASE IGNORE
-    //    bool run = false;
-    //    while (!run)
-    //    {
-    //        //get player action
-    //        //TODO: determine oponent action
-
-    //        //exectute in speed order
-    //        if (player.GetSPD() >= enemy.GetSPD())
-    //        {
-
-    //        }
-    //        else 
-    //        {
-
-    //        }
-
-    //        //check for death
-    //        if (p_HP <= 0)
-    //        {
-    //            return false;
-    //        }
-
-
-    //        if (player.GetSPD() >= enemy.GetSPD())
-    //        {
-    //            //TODO: real damage calculations
-    //            p_HP -= enemy.GetATK();
-
-    //        }
-    //        else
-    //        {
-    //            e_HP = Attack(player.GetATK(), e_HP);
-    //        }
-
-    //        //check for death
-    //        if (p_HP <= 0)
-    //        {
-    //            return false;
-    //        }
-    //        else if (e_HP <= 0)
-    //        {
-    //            return true;
-    //        }
-    //    }
-
-    //    return true;
-    //}
-
-     
 
     private int Attack(int offensive_damage, int defensive_health)
     {//calculates the damage of an attack, outputs resulting health

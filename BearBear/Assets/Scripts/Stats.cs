@@ -37,4 +37,14 @@ public class Stats : MonoBehaviour
         return SPD;
     }
 
+    public bool SetCHP(int newVal)
+    {
+        //hp can never exceed max
+        if (newVal > MHP)
+        {
+            return false;
+        }
+        CHP = newVal;
+        return true;
+    }
 }
