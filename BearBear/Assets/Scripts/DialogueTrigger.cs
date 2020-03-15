@@ -14,7 +14,6 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            Debug.Log("player enter");
             FindObjectOfType<DialogueManager>().startDialogue(dialogues);
         }
 
@@ -24,7 +23,6 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            Debug.Log("player exit");
             FindObjectOfType<DialogueManager>().clearDialogues();
         }
 
