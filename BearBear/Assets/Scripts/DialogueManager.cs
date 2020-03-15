@@ -7,6 +7,8 @@ public class DialogueManager : MonoBehaviour
 {
     
     public Queue<string> sentences;
+    Dialogue[] AllDialogues;
+    Dialogue currentDialogue;
     string talkerName;
     public GameObject dialogBox;
     public GameObject nameBox;
@@ -15,36 +17,67 @@ public class DialogueManager : MonoBehaviour
     string sentence;
     bool skip;
     bool respondRequired;
+    bool talking;
 
     private void Start()
     {
         sentences = new Queue<string>();
     }
 
-    public void startDialogue(Dialogue dialogue)
+    public void clearDialogues()
     {
+        AllDialogues = null;
+    }
+
+    public void pressedSpace()
+    {
+        if (typing)
+        {
+            skipTyping();
+        }
+        else if(talking)
+        {
+            DisplayNextSentence();
+            
+        }
+        else if(AllDialogues != null)
+        {
+            startDialogue(AllDialogues);
+            DisplayNextSentence();
+        }
+    }
+    public void startDialogue(Dialogue[] dialogues)
+    {
+        AllDialogues = dialogues;
         endChat = false;
-        talkerName = dialogue.talkerName;
-        if(dialogue.triggerOptions)
+
+        currentDialogue = dialogues[Random.Range(0, dialogues.Length)];
+
+        talkerName = currentDialogue.talkerName;
+        if(currentDialogue.triggerOptions)
         {
             respondRequired = true;
         }
         sentences.Clear();
-        FindObjectOfType<KeyboardInputManager>().disableCharacterMovement();
 
-        foreach (string sentence in dialogue.sentences)
+        foreach (string sentence in currentDialogue.sentences)
         {
             sentences.Enqueue(sentence);
         }
-        DisplayNextSentence();
+        talking = true;
     }
+
 
     public void DisplayNextSentence()
     {
+        FindObjectOfType<KeyboardInputManager>().disableCharacterMovement();
         nameBox.GetComponent<UnityEngine.UI.Text>().text = talkerName;
+
+
         if (sentences.Count == 0)
         {
             endChat = true;
+            talking = false;
             endDialogue();
             return;
         }

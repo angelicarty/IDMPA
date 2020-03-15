@@ -46,7 +46,7 @@ public class KeyboardInputManager : MonoBehaviour
         
         if (Input.GetKeyDown("space"))
         {
-            FindObjectOfType<DialogueTrigger>().pleaseWork();
+            FindObjectOfType<DialogueManager>().pressedSpace();
         }
     }
 
