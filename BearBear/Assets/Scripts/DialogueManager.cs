@@ -7,11 +7,14 @@ public class DialogueManager : MonoBehaviour
 {
     
     public Queue<string> sentences;
+    string talkerName;
     public GameObject dialogBox;
+    public GameObject nameBox;
     public bool endChat;
     public bool typing;
     string sentence;
     bool skip;
+    bool respondRequired;
 
     private void Start()
     {
@@ -21,6 +24,11 @@ public class DialogueManager : MonoBehaviour
     public void startDialogue(Dialogue dialogue)
     {
         endChat = false;
+        talkerName = dialogue.talkerName;
+        if(dialogue.triggerOptions)
+        {
+            respondRequired = true;
+        }
         sentences.Clear();
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement();
 
@@ -33,6 +41,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
+        nameBox.GetComponent<UnityEngine.UI.Text>().text = talkerName;
         if (sentences.Count == 0)
         {
             endChat = true;
@@ -71,8 +80,11 @@ public class DialogueManager : MonoBehaviour
     void endDialogue()
     {
         //dialogBox.SetActive(false);
-
-        dialogBox.GetComponent<UnityEngine.UI.Text>().text = "BYE";
+        if(respondRequired)
+        {
+            Debug.Log("trigger the options box here");
+        }
+        dialogBox.GetComponent<UnityEngine.UI.Text>().text = "BYE"; //don't clear text if respondrequired
         FindObjectOfType<KeyboardInputManager>().enableCharacterMovement();
     }
 }
