@@ -189,6 +189,8 @@ public class Battle : MonoBehaviour
     }
 
 
+
+
     //GETTERS AND SETTERS
     public BattleState GetState()
     {

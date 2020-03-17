@@ -15,6 +15,8 @@ public class BattleUI : MonoBehaviour
     public Text p_display;
     public Text e_display;
 
+    public Image[] actionButtons;//goes clockwise from attack
+
     void OnEnable()
     {
         //Debug.Log("battle scene init thing loaded");
@@ -42,4 +44,17 @@ public class BattleUI : MonoBehaviour
             actions.SetActive(false);
         }
     }
+
+    public void highlightButton(int index)
+    {
+        for (int i = 0; i < actionButtons.Length; i++)
+        {
+            actionButtons[i].color = Color.white;
+        }
+        if (index > -1)
+        {
+            actionButtons[index].color = Color.blue;
+        }
+    }
+
 }
