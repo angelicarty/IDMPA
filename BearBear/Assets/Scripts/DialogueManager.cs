@@ -18,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     bool skip;
     bool respondRequired;
     bool talking;
+    bool startingReplies;
 
     private void Start()
     {
@@ -27,10 +28,12 @@ public class DialogueManager : MonoBehaviour
     public void clearDialogues()
     {
         AllDialogues = null;
+        currentDialogue = null;
     }
 
     public void pressedSpace()
     {
+        
         if (typing)
         {
             skipTyping();
@@ -45,6 +48,7 @@ public class DialogueManager : MonoBehaviour
             startDialogue(AllDialogues);
             DisplayNextSentence();
         }
+        
     }
     public void startDialogue(Dialogue[] dialogues)
     {
@@ -67,12 +71,27 @@ public class DialogueManager : MonoBehaviour
         talking = true;
     }
 
+    public void StartRespondDialogue(Dialogue dialogue)
+    {
+        currentDialogue = dialogue;
+        talkerName = currentDialogue.talkerName;
+        sentences.Clear();
+        respondRequired = false;
+        endChat = false;
+
+        foreach (string sentence in currentDialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+        DisplayNextSentence();
+        talking = true;
+    }
+
 
     public void DisplayNextSentence()
     {
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement();
         nameBox.GetComponent<UnityEngine.UI.Text>().text = talkerName;
-
 
         if (sentences.Count == 0)
         {
@@ -113,11 +132,16 @@ public class DialogueManager : MonoBehaviour
     void endDialogue()
     {
         //dialogBox.SetActive(false);
-        if(respondRequired)
+        if (respondRequired)
         {
             Debug.Log("trigger the options box here");
+            FindObjectOfType<RespondOptionsManager>().acceptReplies(currentDialogue.optionreplies);
+            currentDialogue = null;
         }
-        dialogBox.GetComponent<UnityEngine.UI.Text>().text = "BYE"; //don't clear text if respondrequired
-        FindObjectOfType<KeyboardInputManager>().enableCharacterMovement();
+        else
+        {
+            dialogBox.GetComponent<UnityEngine.UI.Text>().text = "BYE"; //don't clear text if respondrequired
+            FindObjectOfType<KeyboardInputManager>().enableCharacterMovement();
+        }
     }
 }

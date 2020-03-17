@@ -238,6 +238,7 @@ MonoBehaviour:
     - A giant bunnie seems to be blocking the road, maybe you should go a different
       way.
     triggerOptions: 0
+    optionreplies: []
 --- !u!61 &48946547
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -583,7 +584,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61097600}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -826,6 +827,7 @@ MonoBehaviour:
     - A giant bunnie seems to be blocking the road, maybe you should go a different
       way.
     triggerOptions: 0
+    optionreplies: []
 --- !u!61 &414831335
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1138,13 +1140,24 @@ MonoBehaviour:
   - talkerName: ????
     sentences:
     - 'this is a tree. testing testing '
-    - 'HEWWO? PLEASE WORK? testing testing testing '
+    - 'THIS IS A DIALOGUE HEWWO? PLEASE WORK? testing testing testing '
     triggerOptions: 0
+    optionreplies: []
   - talkerName: god?
     sentences:
-    - 'HEWWO? PLEASE WORK? testing testing testing '
-    - his will trigger a respond? maybe?
+    - 'HEWWO? TRIGGER RESPONCE OPTION testing testing testing '
+    - this will trigger a respond? maybe?
     triggerOptions: 1
+    optionreplies:
+    - talkerName: pleasework
+      option: woop
+      reply:
+      - hewwo? what's this?
+      - 'hewwo testing testing '
+    - talkerName: idkman
+      option: moop
+      reply:
+      - meep?
 --- !u!61 &574344237
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1923,7 +1936,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038288747}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2759,6 +2772,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respondBox: {fileID: 2050042612}
+  button1: {fileID: 61097600}
+  button2: {fileID: 1038288747}
 --- !u!4 &1638559320
 Transform:
   m_ObjectHideFlags: 0
@@ -3080,7 +3095,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2050042613
 RectTransform:
   m_ObjectHideFlags: 0
