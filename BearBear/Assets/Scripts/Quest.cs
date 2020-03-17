@@ -9,5 +9,6 @@ public class Quest
     public int typeOfQuest;
     public KillQuest killing;
     //public CollectionQuest collecting;
+    public string questStatus;
 }
 
