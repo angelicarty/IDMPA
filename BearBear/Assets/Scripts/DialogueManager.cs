@@ -69,6 +69,10 @@ public class DialogueManager : MonoBehaviour
         {
             respondRequired = true;
         }
+        else
+        {
+            respondRequired = false;
+        }
         sentences.Clear();
 
         foreach (string sentence in currentDialogue.sentences)
@@ -100,6 +104,7 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextSentence()
     {
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement();
+        FindObjectOfType<MonstersController>().goingOutOfMobArea();
         nameBox.GetComponent<UnityEngine.UI.Text>().text = talkerName;
 
         if (sentences.Count == 0)
@@ -152,6 +157,7 @@ public class DialogueManager : MonoBehaviour
         {
             dialogBox.GetComponent<UnityEngine.UI.Text>().text = "BYE"; //don't clear text if respondrequired
             FindObjectOfType<KeyboardInputManager>().enableCharacterMovement();
+            FindObjectOfType<MonstersController>().goingIntoMobArea();
         }
     }
 }
