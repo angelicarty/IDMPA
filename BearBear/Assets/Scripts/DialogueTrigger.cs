@@ -14,7 +14,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            FindObjectOfType<DialogueManager>().startDialogue(dialogues);
+            FindObjectOfType<DialogueManager>().startDialogue(dialogues, gameObject);
         }
 
     }

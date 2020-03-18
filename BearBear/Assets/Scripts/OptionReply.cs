@@ -9,4 +9,5 @@ public class OptionReply
     public string option;
     [TextArea(3,10)]
     public string[] reply;
+    public bool acceptQuest;
 }

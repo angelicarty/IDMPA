@@ -12,12 +12,12 @@ public class QuestManager : MonoBehaviour
         //add it to kill count
     }
 
-    public void pickUpQuest(KillQuest quest)
+    public void pickUpQuest(Quest quest)
     {
 
     }
 
-    public void dropQuest(KillQuest quest)
+    public void dropQuest(Quest quest)
     {
 
     }

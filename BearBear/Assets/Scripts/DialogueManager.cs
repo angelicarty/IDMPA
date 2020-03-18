@@ -20,6 +20,7 @@ public class DialogueManager : MonoBehaviour
     bool talking;
     bool startingReplies;
     bool waitingForReply;
+    GameObject npc;
 
     private void Start()
     {
@@ -50,15 +51,16 @@ public class DialogueManager : MonoBehaviour
         }
         else if(AllDialogues != null)
         {
-            startDialogue(AllDialogues);
+            startDialogue(AllDialogues, npc);
             DisplayNextSentence();
         }
         
     }
-    public void startDialogue(Dialogue[] dialogues)
+    public void startDialogue(Dialogue[] dialogues, GameObject npcRef)
     {
         AllDialogues = dialogues;
         endChat = false;
+        npc = npcRef;
 
         currentDialogue = dialogues[Random.Range(0, dialogues.Length)];
 
@@ -141,8 +143,7 @@ public class DialogueManager : MonoBehaviour
         //dialogBox.SetActive(false);
         if (respondRequired)
         {
-            Debug.Log("trigger the options box here");
-            FindObjectOfType<RespondOptionsManager>().acceptReplies(currentDialogue.optionreplies);
+            FindObjectOfType<RespondOptionsManager>().acceptReplies(currentDialogue.optionreplies, npc);
             currentDialogue = null;
             waitingForReply = true;
             FindObjectOfType<RespondOptionsManager>().isWaiting();

@@ -10,20 +10,31 @@ public class RespondOptionsManager : MonoBehaviour
     List<Dialogue> replies = new List<Dialogue>();
     Dialogue currReply, currReply2;// = new Dialogue();
     bool waitingForReply;
+    bool aQuest,bQuest;
+    GameObject questGiver;
+
     //public Dialogue testing;
     //public Dialogue testing2;
 
     private int selectedAction = -1;
 
-    public void acceptReplies(OptionReply[] OptionReplies)
+    public void acceptReplies(OptionReply[] OptionReplies, GameObject questGiverRef)
     {
         respondBox.SetActive(true);
 
-        Debug.Log(OptionReplies[0].talkerName);
-        Debug.Log(OptionReplies[0].reply[0]);
+        questGiver = questGiverRef;
+        if(OptionReplies[0].acceptQuest) 
+        {
+            aQuest = true;
+        }
+        if(OptionReplies[1].acceptQuest)
+        {
+            bQuest = true;
+        }
         
         button1.GetComponentInChildren<UnityEngine.UI.Text>().text = OptionReplies[0].option; //this works
         button2.GetComponentInChildren<UnityEngine.UI.Text>().text = OptionReplies[1].option; //this works
+
 
 
         currReply = new Dialogue();
@@ -55,17 +66,22 @@ public class RespondOptionsManager : MonoBehaviour
         switch(chosenOPtion)
         {
             case 0:
-                Debug.Log("choosen one");
                 FindObjectOfType<DialogueManager>().StartRespondDialogue(replies[0]);
+                if (aQuest)
+                {
+                    questGiver.GetComponent<QuestTrigger>().triggerQuest();
+                }
                 respondBox.SetActive(false);
                 break;
             case 1:
-                Debug.Log("choosen 2");
                 FindObjectOfType<DialogueManager>().StartRespondDialogue(replies[1]);
+                if(bQuest)
+                {
+                    questGiver.GetComponent<QuestTrigger>().triggerQuest();
+                }
                 respondBox.SetActive(false);
                 break;
             default:
-                Debug.Log("bloop");
                 break;
         }
     }
