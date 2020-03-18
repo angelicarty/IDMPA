@@ -15,4 +15,6 @@ public class PlayerManager : MonoBehaviour
         saver.LoadPlayer();
         battleController.overworld_camera = player.GetComponentInChildren<Camera>();
     }
+
+
 }
