@@ -116,22 +116,28 @@ public class RespondOptionsManager : MonoBehaviour
                 pickAReply(selectedAction);
                 selectedAction = -1;
                 highlightButton(selectedAction);
+                return;
             }
             else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 selectedAction = 0;
                 highlightButton(selectedAction);
+                return;
             }
             else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 selectedAction = 1;
                 highlightButton(selectedAction);
+                return;
             }
-            else
+            else if (selectedAction < 0)
             {
                 selectedAction = 0;
+                highlightButton(selectedAction);
             }
         }
     }
+
+
 
 }

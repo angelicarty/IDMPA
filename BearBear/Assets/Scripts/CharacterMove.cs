@@ -18,35 +18,35 @@ public class CharacterMove : MonoBehaviour
     {
         if (characterMoving)
         {
-            if (Input.GetKeyDown("up"))
+            if (Input.GetKeyDown("up") || Input.GetKeyDown("w"))
             {
                 moveUp();
             }
-            else if (Input.GetKeyDown("down"))
+            else if (Input.GetKeyDown("down") || Input.GetKeyDown("s"))
             {
                 moveDown();
             }
-            if (Input.GetKeyDown("right"))
+            if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
             {
                 moveRight();
             }
-            else if (Input.GetKeyDown("left"))
+            else if (Input.GetKeyDown("left") || Input.GetKeyDown("a"))
             {
                 moveLeft();
             }
-            if (Input.GetKeyUp("up"))
+            if (Input.GetKeyUp("up") || Input.GetKeyUp("w"))
             {
                 notMovingUp();
             }
-            if (Input.GetKeyUp("down"))
+            if (Input.GetKeyUp("down") || Input.GetKeyUp("s"))
             {
                 notMovingDown();
             }
-            if (Input.GetKeyUp("right"))
+            if (Input.GetKeyUp("right") || Input.GetKeyUp("d"))
             {
                 notMovingRight();
             }
-            if (Input.GetKeyUp("left"))
+            if (Input.GetKeyUp("left") || Input.GetKeyUp("a"))
             {
                 notMovingLeft();
             }
