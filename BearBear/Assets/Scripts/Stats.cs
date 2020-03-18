@@ -6,17 +6,19 @@ public class Stats : MonoBehaviour
 {
     //TODO: initialisation, levelup
     [SerializeField]
-    private int MHP;//max health    
+    private int MHP = 0;//max health    
     [SerializeField]
-    private int CHP;//current health
+    private int CHP = 0;//current health
     [SerializeField]
-    private int ATK;
+    private int ATK = 0;
     [SerializeField]
-    private int SPD;
+    private int SPD = 0;
 
     //sprite used for battle, includes animations eventually
     public GameObject battleActor;
 
+
+    //GET
     public int GetMHP()
     {
         return MHP;
@@ -37,6 +39,7 @@ public class Stats : MonoBehaviour
         return SPD;
     }
 
+    //SET
     public bool SetCHP(int newVal)
     {
         //hp can never exceed max
@@ -47,4 +50,21 @@ public class Stats : MonoBehaviour
         CHP = newVal;
         return true;
     }
+
+    //MODIFY, used by file i/o and "level ups" from creature death
+    public void ModMHP(int i)
+    {
+        MHP += i;
+    }
+
+    public void ModATK(int i)
+    {
+        ATK += i;
+    }
+
+    public void ModSPD(int i)
+    {
+        SPD += i;
+    }
+
 }
