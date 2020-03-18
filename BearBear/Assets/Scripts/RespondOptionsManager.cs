@@ -12,7 +12,7 @@ public class RespondOptionsManager : MonoBehaviour
     //public Dialogue testing;
     //public Dialogue testing2;
 
-    private int selectedAction;
+    private int selectedAction = -1;
 
     public void acceptReplies(OptionReply[] OptionReplies)
     {
@@ -63,6 +63,7 @@ public class RespondOptionsManager : MonoBehaviour
     {
         //copied from battleui, highlights the currently selected button
         //TODO: move this to ui class
+        Debug.Log(index);
         for (int i = 0; i < buttonImages.Length; i++)
         {
             buttonImages[i].color = Color.white;
@@ -79,15 +80,7 @@ public class RespondOptionsManager : MonoBehaviour
         {
             if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)) && selectedAction > -1)
             {
-                switch (selectedAction)
-                {
-                    case 0://TODO: trigger "yes"
-
-                        break;
-                    case 1://TODO: trigger "no"
-
-                        break;
-                }
+                pickAReply(selectedAction);
                 selectedAction = -1;
                 highlightButton(selectedAction);
             }

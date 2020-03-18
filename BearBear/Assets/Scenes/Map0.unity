@@ -2985,6 +2985,9 @@ MonoBehaviour:
   respondBox: {fileID: 2050042612}
   button1: {fileID: 61097600}
   button2: {fileID: 1038288747}
+  buttonImages:
+  - {fileID: 61097603}
+  - {fileID: 1038288750}
 --- !u!4 &1638559320
 Transform:
   m_ObjectHideFlags: 0
