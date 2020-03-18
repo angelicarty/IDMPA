@@ -14,10 +14,6 @@ public class CharacterMove : MonoBehaviour
     public float walkingSpeed;
     bool characterMoving = true;
 
-    //remove jitters upon wall collision
-    //TO DO
-
-
     private void Update()
     {
         if (characterMoving)
@@ -99,6 +95,10 @@ public class CharacterMove : MonoBehaviour
     public void disableWalking()
     {
         characterMoving = false;
+        movingDown = false;
+        movingUp = false;
+        movingRight = false;
+        movingLeft = false;
         StopAllCoroutines();
     }
 
