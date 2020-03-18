@@ -19,6 +19,7 @@ public class DialogueManager : MonoBehaviour
     bool respondRequired;
     bool talking;
     bool startingReplies;
+    bool waitingForReply;
 
     private void Start()
     {
@@ -33,8 +34,12 @@ public class DialogueManager : MonoBehaviour
 
     public void pressedSpace()
     {
-        
-        if (typing)
+
+        if(waitingForReply)
+        {
+            //no nothing
+        }
+        else if (typing)
         {
             skipTyping();
         }
@@ -73,6 +78,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartRespondDialogue(Dialogue dialogue)
     {
+        waitingForReply = false;
         currentDialogue = dialogue;
         talkerName = currentDialogue.talkerName;
         sentences.Clear();
@@ -137,6 +143,7 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("trigger the options box here");
             FindObjectOfType<RespondOptionsManager>().acceptReplies(currentDialogue.optionreplies);
             currentDialogue = null;
+            waitingForReply = true;
         }
         else
         {
