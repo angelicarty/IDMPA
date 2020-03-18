@@ -12,6 +12,7 @@ public class RespondOptionsManager : MonoBehaviour
     bool waitingForReply;
     bool aQuest,bQuest;
     GameObject questGiver;
+    public GameObject button1Selected, button2Selected;
 
     //public Dialogue testing;
     //public Dialogue testing2;
@@ -88,17 +89,22 @@ public class RespondOptionsManager : MonoBehaviour
 
     public void highlightButton(int index)
     {
-        //copied from battleui, highlights the currently selected button
-        //TODO: move this to ui class
-        Debug.Log(index);
-        for (int i = 0; i < buttonImages.Length; i++)
-        {
-            buttonImages[i].color = Color.white;
-        }
         if (index > -1)
         {
-            buttonImages[index].color = Color.blue;
+            if (index == 0)
+            {
+                button1Selected.SetActive(true);
+                button2Selected.SetActive(false);
+            }
+            if (index == 1)
+            {
+                button2Selected.SetActive(true);
+                button1Selected.SetActive(false);
+            }
+            //buttonImages[index].color = Color.blue;
         }
+
+        
     }
 
     void Update()
@@ -120,6 +126,10 @@ public class RespondOptionsManager : MonoBehaviour
             {
                 selectedAction = 1;
                 highlightButton(selectedAction);
+            }
+            else
+            {
+                selectedAction = 0;
             }
         }
     }
