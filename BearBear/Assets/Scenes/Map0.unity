@@ -1137,27 +1137,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogues:
-  - talkerName: ????
+  - talkerName: tree
     sentences:
-    - 'this is a tree. testing testing '
-    - 'THIS IS A DIALOGUE HEWWO? PLEASE WORK? testing testing testing '
-    triggerOptions: 0
-    optionreplies: []
-  - talkerName: god?
-    sentences:
-    - 'HEWWO? TRIGGER RESPONCE OPTION testing testing testing '
-    - this will trigger a respond? maybe?
+    - hewwo, can you get me an apple?
     triggerOptions: 1
     optionreplies:
-    - talkerName: pleasework
-      option: woop
+    - talkerName: tree
+      option: Yes
       reply:
-      - hewwo? what's this?
-      - 'hewwo testing testing '
-    - talkerName: idkman
-      option: moop
+      - oh you will? thanks!
+    - talkerName: tree
+      option: No
       reply:
-      - meep?
+      - oh you wont? well that's too bad
 --- !u!61 &574344237
 BoxCollider2D:
   m_ObjectHideFlags: 0

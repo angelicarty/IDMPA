@@ -9,6 +9,7 @@ public class RespondOptionsManager : MonoBehaviour
     public Image[] buttonImages;
     List<Dialogue> replies = new List<Dialogue>();
     Dialogue currReply, currReply2;// = new Dialogue();
+    bool waitingForReply;
     //public Dialogue testing;
     //public Dialogue testing2;
 
@@ -37,6 +38,16 @@ public class RespondOptionsManager : MonoBehaviour
         currReply2.triggerOptions = false;
         replies.Add(currReply2);
         
+    }
+
+    public void isWaiting()
+    {
+        waitingForReply = true;
+    }
+
+    public void isNotWaiting()
+    {
+        waitingForReply = false;
     }
 
     public void pickAReply(int chosenOPtion)
@@ -76,7 +87,7 @@ public class RespondOptionsManager : MonoBehaviour
 
     void Update()
     {
-        if (respondBox.activeSelf)
+        if (waitingForReply)
         {
             if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)) && selectedAction > -1)
             {

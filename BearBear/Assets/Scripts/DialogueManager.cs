@@ -78,7 +78,6 @@ public class DialogueManager : MonoBehaviour
 
     public void StartRespondDialogue(Dialogue dialogue)
     {
-        waitingForReply = false;
         currentDialogue = dialogue;
         talkerName = currentDialogue.talkerName;
         sentences.Clear();
@@ -91,6 +90,8 @@ public class DialogueManager : MonoBehaviour
         }
         DisplayNextSentence();
         talking = true;
+        waitingForReply = false;
+        FindObjectOfType<RespondOptionsManager>().isNotWaiting();
     }
 
 
@@ -144,6 +145,7 @@ public class DialogueManager : MonoBehaviour
             FindObjectOfType<RespondOptionsManager>().acceptReplies(currentDialogue.optionreplies);
             currentDialogue = null;
             waitingForReply = true;
+            FindObjectOfType<RespondOptionsManager>().isWaiting();
         }
         else
         {
