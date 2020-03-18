@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     Dialogue[] AllDialogues;
     Dialogue currentDialogue;
     string talkerName;
+    public GameObject chatBox;
     public GameObject dialogBox;
     public GameObject nameBox;
     public bool endChat;
@@ -18,7 +19,6 @@ public class DialogueManager : MonoBehaviour
     bool skip;
     bool respondRequired;
     bool talking;
-    bool startingReplies;
     bool waitingForReply;
     GameObject npc;
 
@@ -31,6 +31,8 @@ public class DialogueManager : MonoBehaviour
     {
         AllDialogues = null;
         currentDialogue = null;
+        talkerName = null;
+        npc = null;
     }
 
     public void pressedSpace()
@@ -103,6 +105,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
+        dialogBox.SetActive(true);
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement();
         FindObjectOfType<MonstersController>().goingOutOfMobArea();
         nameBox.GetComponent<UnityEngine.UI.Text>().text = talkerName;
@@ -122,14 +125,14 @@ public class DialogueManager : MonoBehaviour
     }
     IEnumerator TypeSentence()
     {
-        dialogBox.GetComponent<UnityEngine.UI.Text>().text = "";
+        chatBox.GetComponent<UnityEngine.UI.Text>().text = "";
         foreach (char letter in sentence.ToCharArray())
         {
             if(skip)
             {
                 yield break;
             }
-            dialogBox.GetComponent<UnityEngine.UI.Text>().text += letter;
+            chatBox.GetComponent<UnityEngine.UI.Text>().text += letter;
             yield return new WaitForSeconds(0.02f);
         }
         typing = false;
@@ -140,12 +143,11 @@ public class DialogueManager : MonoBehaviour
         StopCoroutine(TypeSentence());
         skip = true;
         typing = false;
-        dialogBox.GetComponent<UnityEngine.UI.Text>().text = sentence;
+        chatBox.GetComponent<UnityEngine.UI.Text>().text = sentence;
     }
 
     void endDialogue()
     {
-        //dialogBox.SetActive(false);
         if (respondRequired)
         {
             FindObjectOfType<RespondOptionsManager>().acceptReplies(currentDialogue.optionreplies, npc);
@@ -155,7 +157,9 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            dialogBox.GetComponent<UnityEngine.UI.Text>().text = "BYE"; //don't clear text if respondrequired
+            //chatBox.GetComponent<UnityEngine.UI.Text>().text = "BYE"; //don't clear text if respondrequired
+            //nameBox.GetComponent<UnityEngine.UI.Text>().text = "endchat";
+            dialogBox.SetActive(false);
             FindObjectOfType<KeyboardInputManager>().enableCharacterMovement();
             FindObjectOfType<MonstersController>().goingIntoMobArea();
         }
