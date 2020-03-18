@@ -4,9 +4,28 @@ using UnityEngine;
 
 public class QuestTrigger : MonoBehaviour
 {
+    public KeyCode dropQuestTestingButton;
     public Quest quest;
+    public Dialogue[] questTakenDialogue;
+
     public void triggerQuest()
     {
-        Debug.Log("monster to kill: " + quest.killing.monsterToKill);
+        if (quest.questStatus == "available")
+        {
+            quest.questStatus = "taken";
+            gameObject.GetComponent<DialogueTrigger>().questTaken(questTakenDialogue);
+            FindObjectOfType<QuestManager>().pickUpQuest(quest);
+        }
+    }
+
+    private void Update()
+    {
+        //testing purpose
+        if(Input.GetKeyDown(dropQuestTestingButton))
+        {
+            quest.questStatus = "available";
+            GetComponent<DialogueTrigger>().questDropped();
+            FindObjectOfType<QuestManager>().dropQuest(quest);
+        }
     }
 }

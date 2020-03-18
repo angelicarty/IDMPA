@@ -6,9 +6,13 @@ using UnityEngine;
 [System.Serializable]
 public class Quest
 {
-    public int typeOfQuest;
-    public KillQuest killing;
-    //public CollectionQuest collecting;
+    public GameObject questGiver;
+    public string monsterToKill;
+    public int numberToKill;
+    public int killCount;
+    public string objectToCollect;
+    public int numberToCollect;
+    public int collectionCount;
     public string questStatus;
 }
 
