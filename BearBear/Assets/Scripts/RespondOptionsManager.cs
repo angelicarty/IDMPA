@@ -76,7 +76,7 @@ public class RespondOptionsManager : MonoBehaviour
 
     void Update()
     {
-        if (respondBox.active)
+        if (respondBox.activeSelf)
         {
             if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)) && selectedAction > -1)
             {
