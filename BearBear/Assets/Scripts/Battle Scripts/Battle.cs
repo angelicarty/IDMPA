@@ -167,6 +167,7 @@ public class Battle : MonoBehaviour
     {
         Debug.Log("You win!");
         //TODO: award xp/loot/whatever
+        FindObjectOfType<QuestManager>().killed(over_enemy.name);
         Destroy(over_enemy);
         battleScene.SetActive(false);
         overworld_camera.gameObject.SetActive(true);

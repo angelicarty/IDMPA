@@ -9,20 +9,21 @@ public class QuestManager : MonoBehaviour
 
     public void killed(string monsterName)
     {
+        Debug.Log(monsterName);
         //if monster name is in list of quest
         //add it to kill count
-        if (quests != null)
+        if (quests.Count > 0)
         {
-            if (monsterName.Contains("slime"))
+            for (int i = 0; i < quests.Count; i++)
             {
-                for (int i = 0; i < quests.Count; i++)
+                if(monsterName.ToLower().Contains(quests[i].monsterToKill.ToLower()))
                 {
-                    if(quests[i].monsterToKill.Contains("slime"))
-                    {
-                        quests[i].killCount++;
-                    }
+                    quests[i].killCount++;
+                    Debug.Log(quests[i].monsterToKill);
+                    Debug.Log(quests[i].killCount);
                 }
             }
+            
         }
     }
 

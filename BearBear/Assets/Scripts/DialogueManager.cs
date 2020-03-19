@@ -51,11 +51,16 @@ public class DialogueManager : MonoBehaviour
             DisplayNextSentence();
             
         }
+        else if(AllDialogues.Length < 1)
+        {
+            //no
+        }
         else if(AllDialogues.Length > 0)
         {
             startDialogue(AllDialogues, npc);
             DisplayNextSentence();
         }
+        
         
     }
     public void startDialogue(Dialogue[] dialogues, GameObject npcRef)
