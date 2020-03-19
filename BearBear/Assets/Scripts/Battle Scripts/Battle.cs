@@ -28,6 +28,7 @@ public class Battle : MonoBehaviour
     public void InitBattle()
     {
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement(); //disable character movement
+        FindObjectOfType<KeyboardInputManager>().disableChat(); //prevents opening chat while in battle
         FindObjectOfType<MonstersController>().goingOutOfMobArea(); //pauses monster movements
         player = over_player.GetComponent<Stats>();
         enemy = over_enemy.GetComponent<Stats>();
@@ -170,6 +171,7 @@ public class Battle : MonoBehaviour
         battleScene.SetActive(false);
         overworld_camera.gameObject.SetActive(true);
         FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
+        FindObjectOfType<KeyboardInputManager>().enableChat(); //resume pressing space to  chat 
         FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
     }
 
@@ -185,6 +187,7 @@ public class Battle : MonoBehaviour
         battleScene.SetActive(false);
         overworld_camera.gameObject.SetActive(true);
         FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
+        FindObjectOfType<KeyboardInputManager>().enableChat(); //resume pressing space to  chat 
         FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
     }
 

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class KeyboardInputManager : MonoBehaviour
 {
-    bool characterMovement;
+    bool characterChat = true;
     void Update()
     {
-        if (characterMovement)
+        if (characterChat)
         {
             if (Input.GetKeyDown("space"))
             {
@@ -18,13 +18,21 @@ public class KeyboardInputManager : MonoBehaviour
 
     public void disableCharacterMovement() //prevents character from moving
     {
-        characterMovement = false;
         FindObjectOfType<CharacterMove>().disableWalking();
+    }
+
+    public void disableChat()
+    {
+        characterChat = false;
+    }
+
+    public void enableChat()
+    {
+        characterChat = true;
     }
 
     public void enableCharacterMovement() //reenable character to move
     {
-        characterMovement = true;
         FindObjectOfType<CharacterMove>().enableWalking();
     }
 }
