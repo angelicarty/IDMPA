@@ -55,6 +55,7 @@ MonoBehaviour:
   SPD: 1
   battleActor: {fileID: 8813898828230204433, guid: 7198035621d80444e81f4bbc0e794c90,
     type: 3}
+  name: Orange Slime
 --- !u!212 &2934611773453231928
 SpriteRenderer:
   m_ObjectHideFlags: 0

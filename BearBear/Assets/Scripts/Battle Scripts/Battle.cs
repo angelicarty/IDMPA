@@ -211,13 +211,27 @@ public class Battle : MonoBehaviour
         return enemy;
     }
 
-    public int GetPlayerHP()
-    {
-        return p_HP;
+    public int GetPlayerHP(int i)
+    {//input 0 to get maxph
+        if (i > 0)
+        {
+            return p_HP;
+        }
+        else 
+        {
+            return player.GetMHP();
+        }
     }
 
-    public int GetEnemyHP()
-    {
-        return e_HP;
+    public int GetEnemyHP(int i)
+    {//input 0 to get maxph
+        if (i > 0)
+        {
+            return e_HP;
+        }
+        else
+        {
+            return enemy.GetMHP();
+        }
     }
 }

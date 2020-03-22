@@ -55,6 +55,7 @@ MonoBehaviour:
   SPD: 1
   battleActor: {fileID: 3467868688004830209, guid: 6fade36ee2df7cd4e85ae8139d187aa0,
     type: 3}
+  name: Blue Slime
 --- !u!212 &12426466525914544
 SpriteRenderer:
   m_ObjectHideFlags: 0

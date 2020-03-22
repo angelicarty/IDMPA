@@ -55,6 +55,7 @@ MonoBehaviour:
   SPD: 1
   battleActor: {fileID: 1945281798377793147, guid: 7391f5fa2114af94ebdb38f444ed716f,
     type: 3}
+  name: Green Slime
 --- !u!212 &897987480389205921
 SpriteRenderer:
   m_ObjectHideFlags: 0

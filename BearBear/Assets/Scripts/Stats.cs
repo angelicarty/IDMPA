@@ -16,7 +16,7 @@ public class Stats : MonoBehaviour
 
     //sprite used for battle, includes animations eventually
     public GameObject battleActor;
-
+    public string name;
 
     //GET
     public int GetMHP()
