@@ -26,13 +26,19 @@ public class SaveManager : MonoBehaviour
             using (StreamReader sr = File.OpenText(path))
             {
                 string s;
-                //order: mhp, chp, atk, spd, pos
+                //order: mhp, chp, atk, def, satk, sdef, spd, pos
                 s = sr.ReadLine();
                 player.ModMHP(Int32.Parse(s));
                 s = sr.ReadLine();
                 player.SetCHP(Int32.Parse(s));
                 s = sr.ReadLine();
                 player.ModATK(Int32.Parse(s));
+                s = sr.ReadLine();
+                player.ModDEF(Int32.Parse(s));
+                s = sr.ReadLine();
+                player.ModSATK(Int32.Parse(s));
+                s = sr.ReadLine();
+                player.ModSDEF(Int32.Parse(s));
                 s = sr.ReadLine();
                 player.ModSPD(Int32.Parse(s));
                 s = sr.ReadLine();
@@ -55,6 +61,9 @@ public class SaveManager : MonoBehaviour
             sw.WriteLine(player.GetMHP().ToString());
             sw.WriteLine(player.GetCHP().ToString());
             sw.WriteLine(player.GetATK().ToString());
+            sw.WriteLine(player.GetDEF().ToString());
+            sw.WriteLine(player.GetSATK().ToString());
+            sw.WriteLine(player.GetSDEF().ToString());
             sw.WriteLine(player.GetSPD().ToString());
             sw.WriteLine(player.gameObject.transform.localPosition.ToString());
         }

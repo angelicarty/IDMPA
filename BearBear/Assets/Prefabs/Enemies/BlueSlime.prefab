@@ -52,6 +52,9 @@ MonoBehaviour:
   MHP: 20
   CHP: 20
   ATK: 20
+  DEF: 10
+  sATK: 1
+  sDEF: 1
   SPD: 1
   battleActor: {fileID: 3467868688004830209, guid: 6fade36ee2df7cd4e85ae8139d187aa0,
     type: 3}

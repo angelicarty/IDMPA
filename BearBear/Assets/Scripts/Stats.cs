@@ -12,6 +12,12 @@ public class Stats : MonoBehaviour
     [SerializeField]
     private int ATK = 0;
     [SerializeField]
+    private int DEF = 0;
+    [SerializeField]
+    private int sATK = 0;
+    [SerializeField]
+    private int sDEF = 0;
+    [SerializeField]
     private int SPD = 0;
 
     //sprite used for battle, includes animations eventually
@@ -23,17 +29,26 @@ public class Stats : MonoBehaviour
     {
         return MHP;
     }
-
     public int GetCHP()
     {
         return CHP;
     }
-
     public int GetATK()
     {
         return ATK;
     }
-
+    public int GetDEF()
+    {
+        return DEF;
+    }
+    public int GetSATK()
+    {
+        return sATK;
+    }
+    public int GetSDEF()
+    {
+        return sDEF;
+    }
     public int GetSPD()
     {
         return SPD;
@@ -56,12 +71,22 @@ public class Stats : MonoBehaviour
     {
         MHP += i;
     }
-
     public void ModATK(int i)
     {
         ATK += i;
     }
-
+    public void ModDEF(int i)
+    {
+        DEF += i;
+    }
+    public void ModSATK(int i)
+    {
+        sATK += i;
+    }
+    public void ModSDEF(int i)
+    {
+        sDEF += i;
+    }
     public void ModSPD(int i)
     {
         SPD += i;

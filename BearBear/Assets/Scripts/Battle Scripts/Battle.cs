@@ -25,6 +25,8 @@ public class Battle : MonoBehaviour
     private int result = 0;//0 if combat is ongoing, 1 if player wins, -1 of losses
 
     public bool debug = false;
+
+    private System.Random ran = new System.Random();
     public void InitBattle()
     {
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement(); //disable character movement
@@ -65,7 +67,7 @@ public class Battle : MonoBehaviour
             else if (state == BattleState.P1)
             {
                 //TODO: real damage calculations
-                e_HP = Attack(player.GetATK(), e_HP);
+                e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
                 if (debug) { Debug.Log("e_HP = " + e_HP); }
                 yield return new WaitForSeconds(delay);
                 if (e_HP <= 0)
@@ -75,7 +77,7 @@ public class Battle : MonoBehaviour
                 }
                 else 
                 {
-                    p_HP = Attack(enemy.GetATK(), p_HP);
+                    p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
                     if (debug) { Debug.Log("p_HP = " + p_HP); }
                     yield return new WaitForSeconds(delay);
                     if (p_HP <= 0)
@@ -92,7 +94,7 @@ public class Battle : MonoBehaviour
             else if (state == BattleState.P2)
             {
                 //TODO: real damage calculations
-                p_HP = Attack(enemy.GetATK(), p_HP);
+                p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
                 if (debug) { Debug.Log("p_HP = " + p_HP); }
                 yield return new WaitForSeconds(delay);
                 if (p_HP <= 0)
@@ -102,7 +104,7 @@ public class Battle : MonoBehaviour
                 }
                 else
                 {
-                    e_HP = Attack(player.GetATK(), e_HP);
+                    e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
                     if (debug) { Debug.Log("e_HP = " + e_HP); }
                     yield return new WaitForSeconds(delay);
                     if (e_HP <= 0)
@@ -136,10 +138,12 @@ public class Battle : MonoBehaviour
     }
 
 
-    private int Attack(int offensive_damage, int defensive_health)
+    private int Attack(int o_damage, int d_health, int d_defense)
     {//calculates the damage of an attack, outputs resulting health
         //TODO: an actual formula, defence, lots
-        return defensive_health - offensive_damage;
+        int damage = Mathf.FloorToInt((o_damage / d_defense) * (ran.Next(9, 12)/10));
+        Debug.Log("DAMAGE: " + damage + " RESULTING HEALTH: " + (d_health-damage));
+        return d_health - damage;
     }
 
     //PLAYER ACTION CHOICES

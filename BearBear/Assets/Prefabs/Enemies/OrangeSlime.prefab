@@ -52,7 +52,10 @@ MonoBehaviour:
   MHP: 20
   CHP: 20
   ATK: 20
-  SPD: 1
+  DEF: 3
+  sATK: 1
+  sDEF: 1
+  SPD: 30
   battleActor: {fileID: 8813898828230204433, guid: 7198035621d80444e81f4bbc0e794c90,
     type: 3}
   name: Orange Slime
