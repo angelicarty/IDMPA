@@ -132,42 +132,13 @@ GameObject:
   - component: {fileID: 11439081}
   - component: {fileID: 11439080}
   - component: {fileID: 11439079}
-  - component: {fileID: 11439078}
   m_Layer: 0
-  m_Name: testingDialogueTrigger (1)
+  m_Name: Reply
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &11439078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11439077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81af265b23c826a40bf8296cc0fec5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dropQuestTestingButton: 112
-  quest:
-    questGiver: {fileID: 11439077}
-    monsterToKill: not slime
-    numberToKill: 3
-    killCount: 0
-    objectToCollect: nothing
-    numberToCollect: 0
-    collectionCount: 0
-    questStatus: available
-  questTakenDialogue:
-  - talkerName: quest taken
-    sentences:
-    - quest has been taken
-    triggerOptions: 0
-    optionreplies: []
 --- !u!114 &11439079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,20 +152,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogues:
-  - talkerName: tree
+  - talkerName: Tree
     sentences:
-    - hewwo, can you get me an apple?
+    - Do you like cats?
     triggerOptions: 1
     optionreplies:
-    - talkerName: tree
+    - talkerName: Tree
       option: Yes
       reply:
-      - oh you will? thanks!
-      acceptQuest: 1
-    - talkerName: tree
+      - You do? Well that's good
+      acceptQuest: 0
+    - talkerName: Tree
       option: No
       reply:
-      - oh you wont? well that's too bad
+      - Don't tell me you're a dog person
       acceptQuest: 0
 --- !u!61 &11439080
 BoxCollider2D:
@@ -230,7 +201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11439077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.58, y: -1.57, z: 0}
+  m_LocalPosition: {x: -7.04, y: -1.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2120331306}
@@ -1610,7 +1581,7 @@ GameObject:
   - component: {fileID: 574344236}
   - component: {fileID: 574344239}
   m_Layer: 0
-  m_Name: testingDialogueTrigger
+  m_Name: Quest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1629,7 +1600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogues:
-  - talkerName: tree
+  - talkerName: Tree
     sentences:
     - hewwo, can you get me an apple?
     triggerOptions: 1
@@ -1639,7 +1610,7 @@ MonoBehaviour:
       reply:
       - oh you will? thanks!
       acceptQuest: 1
-    - talkerName: tree
+    - talkerName: Tree
       option: No
       reply:
       - oh you wont? well that's too bad
@@ -1708,7 +1679,7 @@ MonoBehaviour:
     collectionCount: 0
     questStatus: available
   questTakenDialogue:
-  - talkerName: quest taken tree
+  - talkerName: Tree
     sentences:
     - quest has been taken bloop
     triggerOptions: 0

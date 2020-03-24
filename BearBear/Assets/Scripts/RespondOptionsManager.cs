@@ -19,19 +19,24 @@ public class RespondOptionsManager : MonoBehaviour
 
     private int selectedAction = -1;
 
+
+    void resetThis()
+    {
+        replies = null;
+        waitingForReply = false;
+        aQuest = false;
+        bQuest = false;
+        replies = new List<Dialogue>();
+    }
+
     public void acceptReplies(OptionReply[] OptionReplies, GameObject questGiverRef)
     {
         respondBox.SetActive(true);
 
         questGiver = questGiverRef;
-        if(OptionReplies[0].acceptQuest) 
-        {
-            aQuest = true;
-        }
-        if(OptionReplies[1].acceptQuest)
-        {
-            bQuest = true;
-        }
+
+        aQuest = OptionReplies[0].acceptQuest;
+        bQuest = OptionReplies[1].acceptQuest;
         
         button1.GetComponentInChildren<UnityEngine.UI.Text>().text = OptionReplies[0].option; //this works
         button2.GetComponentInChildren<UnityEngine.UI.Text>().text = OptionReplies[1].option; //this works
@@ -73,6 +78,7 @@ public class RespondOptionsManager : MonoBehaviour
                     questGiver.GetComponent<QuestTrigger>().triggerQuest();
                 }
                 respondBox.SetActive(false);
+                resetThis();
                 break;
             case 1:
                 FindObjectOfType<DialogueManager>().StartRespondDialogue(replies[1]);
@@ -81,6 +87,7 @@ public class RespondOptionsManager : MonoBehaviour
                     questGiver.GetComponent<QuestTrigger>().triggerQuest();
                 }
                 respondBox.SetActive(false);
+                resetThis();
                 break;
             default:
                 break;

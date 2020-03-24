@@ -51,7 +51,7 @@ public class DialogueManager : MonoBehaviour
             DisplayNextSentence();
             
         }
-        else if(AllDialogues.Length < 1)
+        else if(AllDialogues == null)
         {
             //no
         }
