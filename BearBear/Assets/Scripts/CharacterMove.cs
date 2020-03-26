@@ -94,6 +94,7 @@ public class CharacterMove : MonoBehaviour
 
     public void disableWalking()
     {
+        GetComponent<SpriteRenderer>().flipX = false;
         characterMoving = false;
         movingDown = false;
         movingUp = false;
@@ -105,6 +106,8 @@ public class CharacterMove : MonoBehaviour
     public void enableWalking()
     {
         characterMoving = true;
+        GetComponent<SpriteRenderer>().sprite = lookDown;
+
     }
 
 
@@ -163,6 +166,7 @@ public class CharacterMove : MonoBehaviour
     public void notMovingLeft()
     {
         movingLeft = false;
+        GetComponent<SpriteRenderer>().flipX = false;
         StopCoroutine(animateLeft());
     }
     public void notMovingRight()
