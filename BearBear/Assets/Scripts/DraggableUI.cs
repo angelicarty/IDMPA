@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class DraggableUI : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
     float offsetX, offsetY;
+    public GameObject thingToMove;
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
@@ -14,15 +15,15 @@ public class DraggableUI : MonoBehaviour, IDragHandler, IBeginDragHandler
 
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
-        transform.position = new Vector3(offsetX + Input.mousePosition.x, offsetY + Input.mousePosition.y, 0);
+        thingToMove.transform.position = new Vector3(offsetX + Input.mousePosition.x, offsetY + Input.mousePosition.y, 0);
 
     }
 
     void startDrag()
     {
         Debug.Log("start");
-        offsetX = transform.position.x - Input.mousePosition.x;
-        offsetY = transform.position.y - Input.mousePosition.y;
+        offsetX = thingToMove.transform.position.x - Input.mousePosition.x;
+        offsetY = thingToMove.transform.position.y - Input.mousePosition.y;
     }
 
 }
