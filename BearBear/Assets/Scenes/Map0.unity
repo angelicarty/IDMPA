@@ -1684,6 +1684,11 @@ MonoBehaviour:
     - quest has been taken bloop
     triggerOptions: 0
     optionreplies: []
+  questCompleteDialogue:
+    talkerName: 
+    sentences: []
+    triggerOptions: 0
+    optionreplies: []
 --- !u!1 &575355492
 GameObject:
   m_ObjectHideFlags: 0
@@ -2588,13 +2593,15 @@ GameObject:
   - component: {fileID: 940944617}
   - component: {fileID: 940944619}
   - component: {fileID: 940944618}
+  - component: {fileID: 940944620}
+  - component: {fileID: 940944621}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &940944617
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2651,6 +2658,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940944616}
   m_CullTransparentMesh: 0
+--- !u!114 &940944620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940944616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d7e4baee256c644950215b54a7c519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &940944621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940944616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d726d0025d9b143a4df02862d97f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &953156478
 GameObject:
   m_ObjectHideFlags: 0
