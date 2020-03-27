@@ -4,7 +4,20 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    public List<Quest> quests = new List<Quest>();
+    List<Quest> completedQuests = new List<Quest>();
+    List<Quest> takenQuests = new List<Quest>();
+    List<Quest> availableQuests = new List<Quest>();
+
+    public void loadQuests()
+    {
+        //put every quest into the right list based on quest status
+    }
+
+    void questComplete(Quest currQuest)
+    {
+        takenQuests.Remove(currQuest);
+        completedQuests.Add(currQuest);
+    }
 
 
     public void killed(string monsterName)
@@ -12,15 +25,13 @@ public class QuestManager : MonoBehaviour
         Debug.Log(monsterName);
         //if monster name is in list of quest
         //add it to kill count
-        if (quests.Count > 0)
+        if (takenQuests.Count > 0)
         {
-            for (int i = 0; i < quests.Count; i++)
+            for (int i = 0; i < takenQuests.Count; i++)
             {
-                if(monsterName.ToLower().Contains(quests[i].monsterToKill.ToLower()))
+                if(monsterName.ToLower().Contains(takenQuests[i].monsterToKill.ToLower()))
                 {
-                    quests[i].killCount++;
-                    Debug.Log(quests[i].monsterToKill);
-                    Debug.Log(quests[i].killCount);
+                    takenQuests[i].killCount++;
                 }
             }
             
@@ -32,6 +43,7 @@ public class QuestManager : MonoBehaviour
         if (currentQuest.numberToKill <= currentQuest.killCount && currentQuest.questStatus.ToLower() == "taken")  //and object to collect
         {
             currentQuest.questStatus = "complete";
+            questComplete(currentQuest);
             return true;
         }
         else
@@ -49,13 +61,15 @@ public class QuestManager : MonoBehaviour
 
     public void pickUpQuest(Quest quest)
     {
-        quests.Add(quest);
+        takenQuests.Add(quest);
+        availableQuests.Remove(quest);
         Debug.Log("added quests: " + quest.monsterToKill);
     }
 
     public void dropQuest(Quest quest)
     {
-        quests.Remove(quest);
+        takenQuests.Remove(quest);
+        availableQuests.Add(quest);
         Debug.Log("removed quests: " + quest.monsterToKill);
     }
 
