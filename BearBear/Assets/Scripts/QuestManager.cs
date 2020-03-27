@@ -27,6 +27,26 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    public bool isQuestComplete(Quest currentQuest)
+    {
+        if (currentQuest.numberToKill <= currentQuest.killCount && currentQuest.questStatus.ToLower() == "taken")  //and object to collect
+        {
+            currentQuest.questStatus = "complete";
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void giveReward(Quest currQuest)
+    {
+        //bloop
+        Debug.Log("reward given");
+    }
+
+
     public void pickUpQuest(Quest quest)
     {
         quests.Add(quest);

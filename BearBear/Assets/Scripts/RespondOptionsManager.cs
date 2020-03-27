@@ -69,10 +69,11 @@ public class RespondOptionsManager : MonoBehaviour
 
     public void pickAReply(int chosenOPtion)
     {
-        switch(chosenOPtion)
+        var dialogueManager = FindObjectOfType<DialogueManager>();
+        switch (chosenOPtion)
         {
             case 0:
-                FindObjectOfType<DialogueManager>().StartRespondDialogue(replies[0]);
+                dialogueManager.StartRespondDialogue(replies[0]);
                 if (aQuest)
                 {
                     questGiver.GetComponent<QuestTrigger>().triggerQuest();
@@ -81,7 +82,7 @@ public class RespondOptionsManager : MonoBehaviour
                 resetThis();
                 break;
             case 1:
-                FindObjectOfType<DialogueManager>().StartRespondDialogue(replies[1]);
+                dialogueManager.StartRespondDialogue(replies[1]);
                 if(bQuest)
                 {
                     questGiver.GetComponent<QuestTrigger>().triggerQuest();

@@ -24,8 +24,11 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
+
+            var dialogueManager = FindObjectOfType<DialogueManager>();
             nonQuestTakenDialogue = dialogues;
-            FindObjectOfType<DialogueManager>().startDialogue(dialogues, gameObject);
+            dialogueManager.startDialogue(dialogues, gameObject);
+            dialogueManager.canTalk();
         }
 
     }
@@ -34,7 +37,9 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            FindObjectOfType<DialogueManager>().clearDialogues();
+            var dialogueManager = FindObjectOfType<DialogueManager>();
+            dialogueManager.cantTalk();
+            dialogueManager.clearDialogues();
         }
 
     }

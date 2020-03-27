@@ -21,6 +21,9 @@ public class DialogueManager : MonoBehaviour
     bool talking;
     bool waitingForReply;
     GameObject npc;
+    bool giveReward;
+    Quest currentQuest;
+    bool canChat;
 
     private void Start()
     {
@@ -33,12 +36,32 @@ public class DialogueManager : MonoBehaviour
         currentDialogue = null;
         talkerName = null;
         npc = null;
+        giveReward = false;
+        respondRequired = false;
+    }
+
+    public void cantTalk()
+    {
+        canChat = false;
+    }
+
+    public void canTalk()
+    {
+        canChat = true;
+    }
+
+    public void rewardGiven()
+    {
+        giveReward = false;
     }
 
     public void pressedSpace()
     {
-
-        if(waitingForReply)
+        if(!canChat)
+        {
+            //no
+        }
+        else if(waitingForReply)
         {
             //no nothing
         }
@@ -51,42 +74,101 @@ public class DialogueManager : MonoBehaviour
             DisplayNextSentence();
             
         }
-        else if(AllDialogues == null)
-        {
-            //no
-        }
         else if(AllDialogues.Length > 0)
         {
             startDialogue(AllDialogues, npc);
             DisplayNextSentence();
+            
         }
         
         
     }
     public void startDialogue(Dialogue[] dialogues, GameObject npcRef)
     {
-        AllDialogues = dialogues;
-        endChat = false;
-        npc = npcRef;
 
-        currentDialogue = dialogues[Random.Range(0, dialogues.Length)];
-
-        talkerName = currentDialogue.talkerName;
-        if(currentDialogue.triggerOptions)
+        var questPresent = npcRef.GetComponent<QuestTrigger>();
+        if (questPresent == null)
         {
-            respondRequired = true;
+            //there's no quest trigger
+
+            AllDialogues = dialogues;
+            currentDialogue = dialogues[Random.Range(0, dialogues.Length)];
+
+            endChat = false;
+            npc = npcRef;
+            talkerName = currentDialogue.talkerName;
+            if (currentDialogue.triggerOptions)
+            {
+                respondRequired = true;
+            }
+            else
+            {
+                respondRequired = false;
+            }
+            sentences.Clear();
+
+            foreach (string sentence in currentDialogue.sentences)
+            {
+                sentences.Enqueue(sentence);
+            }
+            talking = true;
         }
         else
         {
-            respondRequired = false;
-        }
-        sentences.Clear();
+            //there is quest trigger
 
-        foreach (string sentence in currentDialogue.sentences)
-        {
-            sentences.Enqueue(sentence);
+            string questStatus = questPresent.quest.questStatus;
+            currentQuest = questPresent.quest;
+            if (questStatus.ToLower() == "taken")
+            {
+                //if quest conditions are fufilled, 
+                if(FindObjectOfType<QuestManager>().isQuestComplete(questPresent.quest))
+                {
+                    giveReward = true;
+                    AllDialogues = questPresent.questCompleteDialogue;
+                    currentDialogue = AllDialogues[Random.Range(0, dialogues.Length)];
+                }
+                else
+                {
+                    AllDialogues = questPresent.questTakenDialogue;
+                    currentDialogue = AllDialogues[Random.Range(0, dialogues.Length)];
+                }
+
+            }
+            else if (questStatus.ToLower() == "complete")
+            {
+                AllDialogues = questPresent.questCompleteDialogue;
+                currentDialogue = AllDialogues[Random.Range(0, dialogues.Length)];
+            }
+            else //there is a quest trigger but the quest aint taken
+            {
+                AllDialogues = dialogues;
+                currentDialogue = dialogues[Random.Range(0, dialogues.Length)];
+
+                talkerName = currentDialogue.talkerName;
+                if (currentDialogue.triggerOptions)
+                {
+                    respondRequired = true;
+                }
+                else
+                {
+                    respondRequired = false;
+                }
+            }
+
+            endChat = false;
+            npc = npcRef;
+            talkerName = currentDialogue.talkerName;
+            sentences.Clear();
+
+            foreach (string sentence in currentDialogue.sentences)
+            {
+                sentences.Enqueue(sentence);
+            }
+            talking = true;
         }
-        talking = true;
+
+
     }
 
     public void StartRespondDialogue(Dialogue dialogue)
@@ -110,6 +192,13 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
+
+        if (giveReward)
+        {
+            FindObjectOfType<QuestManager>().giveReward(currentQuest);
+            rewardGiven();
+        }
+
         dialogBox.SetActive(true);
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement();
         FindObjectOfType<MonstersController>().goingOutOfMobArea();
@@ -155,15 +244,14 @@ public class DialogueManager : MonoBehaviour
     {
         if (respondRequired)
         {
-            FindObjectOfType<RespondOptionsManager>().acceptReplies(currentDialogue.optionreplies, npc);
+            var respondOptionsManager = FindObjectOfType<RespondOptionsManager>();
+            respondOptionsManager.acceptReplies(currentDialogue.optionreplies, npc);
             currentDialogue = null;
             waitingForReply = true;
-            FindObjectOfType<RespondOptionsManager>().isWaiting();
+            respondOptionsManager.isWaiting();
         }
         else
         {
-            //chatBox.GetComponent<UnityEngine.UI.Text>().text = "BYE"; //don't clear text if respondrequired
-            //nameBox.GetComponent<UnityEngine.UI.Text>().text = "endchat";
             dialogBox.SetActive(false);
             FindObjectOfType<KeyboardInputManager>().enableCharacterMovement();
             FindObjectOfType<MonstersController>().goingIntoMobArea();

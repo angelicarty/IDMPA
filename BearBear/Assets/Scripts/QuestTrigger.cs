@@ -7,6 +7,7 @@ public class QuestTrigger : MonoBehaviour
     public KeyCode dropQuestTestingButton;
     public Quest quest;
     public Dialogue[] questTakenDialogue;
+    public Dialogue[] questCompleteDialogue;
 
     public void triggerQuest()
     {
