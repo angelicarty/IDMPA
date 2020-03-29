@@ -42,13 +42,13 @@ public class SaveManager : MonoBehaviour
                 s = sr.ReadLine();
                 player.ModSPD(Int32.Parse(s));
                 s = sr.ReadLine();
-                string xString = s.Substring(s.IndexOf("(")+1, s.IndexOf(",")-1);
+                /*string xString = s.Substring(s.IndexOf("(")+1, s.IndexOf(",")-1);
                 s = s.Substring(s.IndexOf(","));
                 string tempString = s.Substring(s.IndexOf(",")+1);
                 String yString = tempString.Substring(0, tempString.IndexOf(","));
-/*                Debug.Log((xString) + "||" + (yString));
-                Debug.Log(float.Parse(xString) + "||" + float.Parse(yString));*/
-                player.gameObject.transform.position = new Vector3(float.Parse(xString), float.Parse(yString), 0);
+*//*                Debug.Log((xString) + "||" + (yString));
+                Debug.Log(float.Parse(xString) + "||" + float.Parse(yString));*//*
+                player.gameObject.transform.position = new Vector3(float.Parse(xString), float.Parse(yString), 0);*/
             }
         }
     }
@@ -65,7 +65,7 @@ public class SaveManager : MonoBehaviour
             sw.WriteLine(player.GetSATK().ToString());
             sw.WriteLine(player.GetSDEF().ToString());
             sw.WriteLine(player.GetSPD().ToString());
-            sw.WriteLine(player.gameObject.transform.localPosition.ToString());
+            //sw.WriteLine(player.gameObject.transform.localPosition.ToString());
         }
     }
 
