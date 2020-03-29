@@ -56,8 +56,6 @@ public class BattleUI : MonoBehaviour
 
     public void highlightButton(int index)
     {
-        Debug.Log("Player HP: " + controller.GetPlayerHP(1));
-        Debug.Log("Enemy HP: " + controller.GetEnemyHP(1));
         for (int i = 0; i < actionButtons.Length; i++)
         {
             actionButtons[i].color = Color.white;

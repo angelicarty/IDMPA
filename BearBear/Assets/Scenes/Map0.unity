@@ -5781,6 +5781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7310382382739665814}
   - component: {fileID: 7310382382739665815}
+  - component: {fileID: 7310382382739665809}
   m_Layer: 0
   m_Name: BattleController
   m_TagString: BattleController
@@ -5788,6 +5789,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7310382382739665809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7310382382739665808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77758de1152c7a04680fd2d64e30d2b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value_scale: 3
+  probability_scale: 3
+  probability_cap: 60
 --- !u!4 &7310382382739665814
 Transform:
   m_ObjectHideFlags: 0
@@ -5820,4 +5836,5 @@ MonoBehaviour:
   over_enemy: {fileID: 0}
   battleScene: {fileID: 313142558}
   overworld_camera: {fileID: 0}
+  statGen: {fileID: 7310382382739665809}
   debug: 0

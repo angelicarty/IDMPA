@@ -24,6 +24,7 @@ public class Battle : MonoBehaviour
 
     private int result = 0;//0 if combat is ongoing, 1 if player wins, -1 of losses
 
+    public StatGen statGen;
     public bool debug = false;
 
     private System.Random ran = new System.Random();
@@ -39,6 +40,7 @@ public class Battle : MonoBehaviour
         state = BattleState.START;
         overworld_camera.gameObject.SetActive(false);
         battleScene.SetActive(true);
+        statGen.resetStatGen();
         StartCoroutine("BattleLoop");
     }
 
@@ -66,8 +68,8 @@ public class Battle : MonoBehaviour
             
             else if (state == BattleState.P1)
             {
-                //TODO: real damage calculations
                 e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
+                statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
                 if (debug) { Debug.Log("e_HP = " + e_HP); }
                 yield return new WaitForSeconds(delay);
                 if (e_HP <= 0)
@@ -78,6 +80,7 @@ public class Battle : MonoBehaviour
                 else 
                 {
                     p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
+                    statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                     if (debug) { Debug.Log("p_HP = " + p_HP); }
                     yield return new WaitForSeconds(delay);
                     if (p_HP <= 0)
@@ -95,6 +98,7 @@ public class Battle : MonoBehaviour
             {
                 //TODO: real damage calculations
                 p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
+                statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                 if (debug) { Debug.Log("p_HP = " + p_HP); }
                 yield return new WaitForSeconds(delay);
                 if (p_HP <= 0)
@@ -105,6 +109,7 @@ public class Battle : MonoBehaviour
                 else
                 {
                     e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
+                    statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
                     if (debug) { Debug.Log("e_HP = " + e_HP); }
                     yield return new WaitForSeconds(delay);
                     if (e_HP <= 0)
@@ -141,9 +146,11 @@ public class Battle : MonoBehaviour
     private int Attack(int o_damage, int d_health, int d_defense)
     {//calculates the damage of an attack, outputs resulting health
         //TODO: an actual formula, defence, lots
-        int damage = Mathf.FloorToInt((o_damage / d_defense) * (ran.Next(9, 12)/10));
-        Debug.Log("DAMAGE: " + damage + " RESULTING HEALTH: " + (d_health-damage));
-        return d_health - damage;
+        float moddifier = Random.Range(9, 12) / 10.0f;
+        if (debug) { Debug.Log("MOD: " + moddifier); }
+        float damage = (o_damage / d_defense) * moddifier * 1.0f;
+        if (debug) { Debug.Log("DAMAGE: " + damage + " RESULTING HEALTH: " + (d_health - damage)); }
+        return Mathf.RoundToInt(d_health - damage);
     }
 
     //PLAYER ACTION CHOICES
@@ -156,6 +163,7 @@ public class Battle : MonoBehaviour
         else
         {
             state = BattleState.P2;
+            statGen.addProb((int)Stat.SPD);//SPEED INCREASES IF PLAYER GOES SECOND TODO
         }
     }
 
@@ -178,12 +186,17 @@ public class Battle : MonoBehaviour
         FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
         FindObjectOfType<KeyboardInputManager>().enableChat(); //resume pressing space to  chat 
         FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
+        runStatGen(1);
     }
 
     private void EndLose()
     {
+        runStatGen(0.5f);
         Debug.Log("You lose!");
-        SceneManager.LoadScene("TitleMenu");//kicks the player to the title screen, easiest game over thing, though probably shouldn't be done here
+        //TODO: player death stuff
+        player.SetCHP(player.GetMHP());
+        EndRun();
+        //SceneManager.LoadScene("TitleMenu");//kicks the player to the title screen, easiest game over thing, though probably shouldn't be done here
     }
 
     private void EndRun()
@@ -194,10 +207,28 @@ public class Battle : MonoBehaviour
         FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
         FindObjectOfType<KeyboardInputManager>().enableChat(); //resume pressing space to  chat 
         FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
+
     }
 
 
+    //STAT GEN STUFF
+    private void runStatGen(float mod)
+    {
+        bool[] table = statGen.calcStat();
 
+        if(table[(int)Stat.MHP])
+            player.ModMHP(statGen.value_scale);
+        if (table[(int)Stat.ATK])
+            player.ModATK(Mathf.FloorToInt(statGen.value_scale * mod));
+        if (table[(int)Stat.DEF])
+            player.ModDEF(Mathf.FloorToInt(statGen.value_scale * mod));
+        if (table[(int)Stat.SATK])
+            player.ModSATK(Mathf.FloorToInt(statGen.value_scale * mod));
+        if (table[(int)Stat.SDEF])
+            player.ModSDEF(Mathf.FloorToInt(statGen.value_scale * mod));
+        if (table[(int)Stat.SPD])
+            player.ModSPD(Mathf.FloorToInt(statGen.value_scale * mod));
+    }
 
     //GETTERS AND SETTERS
     public BattleState GetState()
