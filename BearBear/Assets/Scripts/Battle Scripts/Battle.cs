@@ -195,7 +195,7 @@ public class Battle : MonoBehaviour
         Debug.Log("You lose!");
         //TODO: player death stuff
         player.SetCHP(player.GetMHP());
-        EndRun();
+        EndRun();//TDOD: temp until proper death is in
         //SceneManager.LoadScene("TitleMenu");//kicks the player to the title screen, easiest game over thing, though probably shouldn't be done here
     }
 
