@@ -5,12 +5,86 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     List<Quest> completedQuests = new List<Quest>();
-    List<Quest> takenQuests = new List<Quest>();
-    List<Quest> availableQuests = new List<Quest>();
+    public List<Quest> takenQuests = new List<Quest>();
+    Quest currentQuest;
+    public GameObject[] questList;
+    public GameObject questUI;
+    public GameObject nextArrow;
+    public GameObject prevArrow;
+    public GameObject questDescriptionBox;
+    int pageNum;
+
+    public void selectQuest(int num)
+    {
+        currentQuest = takenQuests[num * (pageNum + 1)];
+        Debug.Log(takenQuests[num * (pageNum + 1)].questName);
+
+    }
+
+    public void openQuestLog()
+    {
+        questUI.SetActive(true);
+        pageNum = 0;
+        displayQuestLog();
+    }
+
+    public void closeQuestLog()
+    {
+        questUI.SetActive(false);
+    }
+
+    void displayQuestLog()
+    {
+        for(int i =0; i<questList.Length;i++)
+        {
+            questList[i].SetActive(false);
+        }
+        for(int j=0; j<questList.Length;j++) 
+        {
+            if (j+(pageNum*questList.Length) < takenQuests.Count)
+            {
+                questList[j].SetActive(true);
+                questList[j].GetComponentInChildren<UnityEngine.UI.Text>().text = takenQuests[j + (pageNum * questList.Length)].questName;
+            }
+        }
+        if (takenQuests.Count > (pageNum+1)*questList.Length)
+        {
+            nextArrow.SetActive(true);
+        }
+        else
+        {
+            nextArrow.SetActive(false);
+        }
+        if(pageNum > 0)
+        {
+            prevArrow.SetActive(true);
+        }
+        else if(pageNum <= 0)
+        {
+            prevArrow.SetActive(false);
+        }
+    }
+
+    public void nextPage()
+    {
+        pageNum++;
+        displayQuestLog();
+    }
+
+    public void prevPage()
+    {
+        pageNum--;
+        displayQuestLog();
+    }
+
+    public void dropSelected()
+    {
+        dropQuest();
+    }
 
     public void loadQuests()
     {
-        //put every quest into the right list based on quest status
+        //put quest into the right list based on quest status from file
     }
 
     void questComplete(Quest currQuest)
@@ -62,15 +136,15 @@ public class QuestManager : MonoBehaviour
     public void pickUpQuest(Quest quest)
     {
         takenQuests.Add(quest);
-        availableQuests.Remove(quest);
         Debug.Log("added quests: " + quest.monsterToKill);
     }
 
-    public void dropQuest(Quest quest)
+    public void dropQuest()
     {
-        takenQuests.Remove(quest);
-        availableQuests.Add(quest);
-        Debug.Log("removed quests: " + quest.monsterToKill);
+        takenQuests.Remove(currentQuest);
+        currentQuest.questStatus = "available";
+        currentQuest.questGiver.GetComponent<DialogueTrigger>().questDropped();
+        Debug.Log("removed quests: " + currentQuest.monsterToKill);
     }
 
 }

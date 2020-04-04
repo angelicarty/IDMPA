@@ -17,7 +17,7 @@ public class DialogueTrigger : MonoBehaviour
     public void questDropped()
     {
         dialogues = nonQuestTakenDialogue;
-        FindObjectOfType<DialogueManager>().startDialogue(dialogues, gameObject);
+        //FindObjectOfType<DialogueManager>().startDialogue(dialogues, gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D collider)

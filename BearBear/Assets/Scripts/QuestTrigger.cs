@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class QuestTrigger : MonoBehaviour
 {
-    public KeyCode dropQuestTestingButton;
     public Quest quest;
     public Dialogue[] questTakenDialogue;
     public Dialogue[] questCompleteDialogue;
@@ -19,14 +18,4 @@ public class QuestTrigger : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //testing purpose
-        if(Input.GetKeyDown(dropQuestTestingButton))
-        {
-            quest.questStatus = "available";
-            GetComponent<DialogueTrigger>().questDropped();
-            FindObjectOfType<QuestManager>().dropQuest(quest);
-        }
-    }
 }

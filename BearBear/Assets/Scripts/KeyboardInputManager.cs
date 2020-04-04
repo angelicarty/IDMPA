@@ -5,6 +5,7 @@ using UnityEngine;
 public class KeyboardInputManager : MonoBehaviour
 {
     bool characterChat = true;
+    bool questOpen = false;
     void Update()
     {
         if (characterChat)
@@ -12,6 +13,20 @@ public class KeyboardInputManager : MonoBehaviour
             if (Input.GetKeyDown("space"))
             {
                 FindObjectOfType<DialogueManager>().pressedSpace();
+            }
+
+            if(Input.GetKeyDown("q"))
+            {
+                if (questOpen)
+                {
+                    questOpen = false;
+                    FindObjectOfType<QuestManager>().closeQuestLog();
+                }
+                else
+                {
+                    questOpen = true;
+                    FindObjectOfType<QuestManager>().openQuestLog();
+                }
             }
         }
     }
