@@ -28,6 +28,8 @@ public class SaveManager : MonoBehaviour
                 string s;
                 //order: mhp, chp, atk, def, satk, sdef, spd, pos
                 s = sr.ReadLine();
+                player.name = s;
+                s = sr.ReadLine();
                 player.ModMHP(Int32.Parse(s));
                 s = sr.ReadLine();
                 player.SetCHP(Int32.Parse(s));
@@ -58,6 +60,7 @@ public class SaveManager : MonoBehaviour
         string path = GetPath();
         using (StreamWriter sw = File.CreateText(path))
         {
+            sw.WriteLine(player.name);
             sw.WriteLine(player.GetMHP().ToString());
             sw.WriteLine(player.GetCHP().ToString());
             sw.WriteLine(player.GetATK().ToString());
