@@ -136,6 +136,7 @@ public class CharacterMove : MonoBehaviour
     {
         if (!movingLeft)
         {
+            GetComponent<SpriteRenderer>().flipX = false;
             //character sprite change
             GetComponent<SpriteRenderer>().sprite = lookRight;
             movingRight = true;
@@ -146,8 +147,9 @@ public class CharacterMove : MonoBehaviour
     {
         if (!movingRight)
         {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
             //character sprite change
-            GetComponent<SpriteRenderer>().sprite = lookLeft;
+            GetComponent<SpriteRenderer>().sprite = lookRight;
             movingLeft = true;
             StartCoroutine(animateLeft());
         }
@@ -166,7 +168,6 @@ public class CharacterMove : MonoBehaviour
     public void notMovingLeft()
     {
         movingLeft = false;
-        GetComponent<SpriteRenderer>().flipX = false;
         StopCoroutine(animateLeft());
     }
     public void notMovingRight()
@@ -269,14 +270,10 @@ public class CharacterMove : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.08f);
 
-                
-
-                gameObject.GetComponent<SpriteRenderer>().flipX = true;
                 gameObject.GetComponent<SpriteRenderer>().sprite = movingRightSprites[i];
                 if (!movingLeft)
                 {
-                    gameObject.GetComponent<SpriteRenderer>().flipX = false;
-                    gameObject.GetComponent<SpriteRenderer>().sprite = lookLeft;
+                    gameObject.GetComponent<SpriteRenderer>().sprite = lookRight;
                     yield break;
                 }
             }
