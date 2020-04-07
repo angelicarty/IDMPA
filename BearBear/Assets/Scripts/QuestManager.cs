@@ -124,7 +124,7 @@ public class QuestManager : MonoBehaviour
         {
             for (int i = 0; i < takenQuests.Count; i++)
             {
-                if(monsterName.ToLower().Contains(takenQuests[i].monsterToKill.ToLower()))
+                if(monsterName.ToLower().Contains(takenQuests[i].monsterToKill.ToLower()) && takenQuests[i].killCount < takenQuests[i].numberToKill)
                 {
                     takenQuests[i].killCount++;
                 }
