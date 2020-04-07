@@ -9,6 +9,12 @@ public class Stats : MonoBehaviour
     private int MHP = 0;//max health    
     [SerializeField]
     private int CHP = 0;//current health
+    /* to be implemented AFTER we get skills working
+    [SerializeField]
+    private int MMP = 0; //max MP
+    [SerializeField]
+    private int CMP = 0;//current MP
+    */
     [SerializeField]
     private int ATK = 0;
     [SerializeField]

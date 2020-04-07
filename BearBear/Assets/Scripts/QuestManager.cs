@@ -12,13 +12,38 @@ public class QuestManager : MonoBehaviour
     public GameObject nextArrow;
     public GameObject prevArrow;
     public GameObject questDescriptionBox;
+    public GameObject questDescriptionNameBox;
+    public GameObject questDescriptionDescBox;
     int pageNum;
+    int selectedQuestNum = -1;
+    string questTracker;
+    public GameObject questDescriptionBoxTracker;
 
     public void selectQuest(int num)
     {
-        currentQuest = takenQuests[num * (pageNum + 1)];
-        Debug.Log(takenQuests[num * (pageNum + 1)].questName);
+        if ((num * (pageNum + 1)) == selectedQuestNum)
+        {
+            questDescriptionBox.SetActive(false);
+            selectedQuestNum = -1;
+        }
+        else
+        {
+            questTracker = "";
+            currentQuest = takenQuests[num * (pageNum + 1)];
+            selectedQuestNum = num * (pageNum + 1);
+            questDescriptionBox.SetActive(true);
+            questDescriptionNameBox.GetComponent<UnityEngine.UI.Text>().text = takenQuests[num * (pageNum + 1)].questName;
+            questDescriptionDescBox.GetComponent<UnityEngine.UI.Text>().text = takenQuests[num * (pageNum + 1)].questDescription;
 
+            if(currentQuest.numberToKill != 0)
+            {
+                questTracker += currentQuest.monsterToKill + " : " + currentQuest.killCount + "/" + currentQuest.numberToKill;
+            }
+
+            questDescriptionBoxTracker.GetComponent<UnityEngine.UI.Text>().text = questTracker;
+
+            //and then the inv tracker but that will need to wait till inv is done
+        }
     }
 
     public void openQuestLog()
@@ -30,6 +55,7 @@ public class QuestManager : MonoBehaviour
 
     public void closeQuestLog()
     {
+        questDescriptionBox.SetActive(false);
         questUI.SetActive(false);
     }
 
@@ -75,11 +101,6 @@ public class QuestManager : MonoBehaviour
     {
         pageNum--;
         displayQuestLog();
-    }
-
-    public void dropSelected()
-    {
-        dropQuest();
     }
 
     public void loadQuests()
@@ -143,8 +164,12 @@ public class QuestManager : MonoBehaviour
     {
         takenQuests.Remove(currentQuest);
         currentQuest.questStatus = "available";
+        currentQuest.killCount = 0;
         currentQuest.questGiver.GetComponent<DialogueTrigger>().questDropped();
         Debug.Log("removed quests: " + currentQuest.monsterToKill);
+        displayQuestLog();
+        questDescriptionBox.SetActive(false);
+        selectedQuestNum = -1;
     }
 
 }

@@ -7,6 +7,7 @@ public class DialogueTrigger : MonoBehaviour
 {
     Dialogue[] nonQuestTakenDialogue;
     public Dialogue[] dialogues;
+    bool inTrigger;
 
     public void questTaken(Dialogue[] newDialogue)
     {
@@ -17,14 +18,17 @@ public class DialogueTrigger : MonoBehaviour
     public void questDropped()
     {
         dialogues = nonQuestTakenDialogue;
-        //FindObjectOfType<DialogueManager>().startDialogue(dialogues, gameObject);
+        if(inTrigger)
+        {
+            FindObjectOfType<DialogueManager>().startDialogue(dialogues, gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-
+            inTrigger = true;
             var dialogueManager = FindObjectOfType<DialogueManager>();
             nonQuestTakenDialogue = dialogues;
             dialogueManager.startDialogue(dialogues, gameObject);
@@ -37,6 +41,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
+            inTrigger = false;
             var dialogueManager = FindObjectOfType<DialogueManager>();
             dialogueManager.cantTalk();
             dialogueManager.clearDialogues();
