@@ -1391,6 +1391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item1: {fileID: 2139464688}
+  inventorySlots: []
 --- !u!4 &315179773
 Transform:
   m_ObjectHideFlags: 0
@@ -2394,7 +2395,7 @@ MonoBehaviour:
   questCompleteDialogue:
   - talkerName: '?'
     sentences:
-    - quest is complete bloop here's a reward
+    - quest is complete bloop
     triggerOptions: 0
     optionreplies: []
 --- !u!1 &575355492
