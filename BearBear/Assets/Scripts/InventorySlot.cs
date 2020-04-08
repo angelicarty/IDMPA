@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class InventorySlot
+public class InventorySlot 
 {
-    public bool occupied;
-    public Texture2D icon;
+    public GameObject slot;
+    public bool isEmpty;
+    public GameObject countDisplay;
+    public int count;
 }

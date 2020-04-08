@@ -66,6 +66,8 @@ public class Stats : MonoBehaviour
         //hp can never exceed max
         if (newVal > MHP)
         {
+            //well you can just make it the MPH instead of returning just false
+            CHP = MHP;
             return false;
         }
         CHP = newVal;

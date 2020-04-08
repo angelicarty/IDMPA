@@ -137,7 +137,6 @@ public class QuestManager : MonoBehaviour
     {
         if (currentQuest.numberToKill <= currentQuest.killCount && currentQuest.questStatus.ToLower() == "taken")  //and object to collect
         {
-            currentQuest.questStatus = "complete";
             questComplete(currentQuest);
             return true;
         }
@@ -147,12 +146,21 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void giveReward(Quest currQuest)
+    public bool giveReward(Quest currQuest)
     {
         //bloop
-        Debug.Log("reward given");
+        return FindObjectOfType<InventoryManager>().giveItem(currQuest.itemReward, currQuest.itemRewardCount);
     }
 
+    public void toGiveReward(Quest currQuest)
+    {
+        Debug.Log(currQuest.monsterToKill);
+        if (giveReward(currQuest))
+        {
+            FindObjectOfType<DialogueManager>().rewardGiven();
+            currQuest.questStatus = "complete";
+        }
+    }
 
     public void pickUpQuest(Quest quest)
     {

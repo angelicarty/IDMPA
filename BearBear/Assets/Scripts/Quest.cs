@@ -16,5 +16,10 @@ public class Quest
     public int numberToCollect;
     public int collectionCount;
     public string questStatus;
+
+    public GameObject itemReward;
+    public int itemRewardCount;
+    public Stat[] statReward;
+    public int[] statRewardCount;
 }
 

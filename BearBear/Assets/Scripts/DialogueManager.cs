@@ -85,7 +85,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void startDialogue(Dialogue[] dialogues, GameObject npcRef)
     {
-
+        giveReward = false;
         var questPresent = npcRef.GetComponent<QuestTrigger>();
         if (questPresent == null)
         {
@@ -193,12 +193,6 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextSentence()
     {
 
-        if (giveReward)
-        {
-            FindObjectOfType<QuestManager>().giveReward(currentQuest);
-            rewardGiven();
-        }
-
         dialogBox.SetActive(true);
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement();
         FindObjectOfType<MonstersController>().goingOutOfMobArea();
@@ -242,6 +236,11 @@ public class DialogueManager : MonoBehaviour
 
     void endDialogue()
     {
+        if (giveReward)
+        {
+            Debug.Log("current quest : " + currentQuest.monsterToKill);
+            FindObjectOfType<QuestManager>().toGiveReward(currentQuest);
+        }
         if (respondRequired)
         {
             var respondOptionsManager = FindObjectOfType<RespondOptionsManager>();
@@ -256,5 +255,11 @@ public class DialogueManager : MonoBehaviour
             FindObjectOfType<KeyboardInputManager>().enableCharacterMovement();
             FindObjectOfType<MonstersController>().goingIntoMobArea();
         }
+    }
+
+
+    public void addedItem(Dialogue dialogue)
+    {
+        currentDialogue = dialogue;
     }
 }
