@@ -6,6 +6,7 @@ public class KeyboardInputManager : MonoBehaviour
 {
     bool characterChat = true;
     bool questOpen = false;
+    bool inventoryOpen = false;
     void Update()
     {
         if (characterChat)
@@ -26,6 +27,20 @@ public class KeyboardInputManager : MonoBehaviour
                 {
                     questOpen = true;
                     FindObjectOfType<QuestManager>().openQuestLog();
+                }
+            }
+
+            if (Input.GetKeyDown("i"))
+            {
+                if(inventoryOpen)
+                {
+                    inventoryOpen = false;
+                    FindObjectOfType<InventoryManager>().closeInventory();
+                }
+                else
+                {
+                    inventoryOpen = true;
+                    FindObjectOfType<InventoryManager>().openInventory();
                 }
             }
         }

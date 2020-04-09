@@ -16,6 +16,7 @@ public class InventoryManager : MonoBehaviour
     string itemName;
     int itemCount;
     string sentence;
+    public GameObject inventoryPanel;
 
     // Update is called once per frame
     void Update()
@@ -30,7 +31,16 @@ public class InventoryManager : MonoBehaviour
             addItem(apple2, 1);
         }
     }
+    
+    public void openInventory()
+    {
+        inventoryPanel.SetActive(true);
+    }
 
+    public void closeInventory()
+    {
+        inventoryPanel.SetActive(false);
+    }
 
     public bool giveItem(GameObject item, int count)
     {

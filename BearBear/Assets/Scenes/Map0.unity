@@ -3612,7 +3612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &707920373
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10203,6 +10203,11 @@ PrefabInstance:
       propertyPath: playerStat
       value: 
       objectReference: {fileID: 317185813}
+    - target: {fileID: 6809110346480237054, guid: 937666c7755055841b37a46c4ddcbae5,
+        type: 3}
+      propertyPath: inventoryPanel
+      value: 
+      objectReference: {fileID: 707920372}
     - target: {fileID: 6809110346480237055, guid: 937666c7755055841b37a46c4ddcbae5,
         type: 3}
       propertyPath: m_LocalPosition.x
