@@ -128,6 +128,7 @@ public class InventoryManager : MonoBehaviour
         FindObjectOfType<DialogueManager>().addedItem(itemAddedDialogue);
     }
 
+
     public void eatApple()
     {
         eatStuff();
