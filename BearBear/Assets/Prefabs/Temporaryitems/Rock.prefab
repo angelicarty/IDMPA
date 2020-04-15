@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 7335266869444238972}
   - component: {fileID: 7335266869444238851}
   - component: {fileID: 7335266869444238850}
+  - component: {fileID: 665158300633051992}
   - component: {fileID: 3664821549970007327}
-  - component: {fileID: 1333846980379504841}
   m_Layer: 5
-  m_Name: Apple
+  m_Name: Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8c66209381c054e44a2ed24638875dcf, type: 3}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -130,6 +130,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &665158300633051992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335266869444238848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910db1250a6cae443a04ef161f4d884a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  used: 0
+  health: 10
 --- !u!114 &3664821549970007327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,17 +156,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aad957ea3f612a479e800ac527cdf29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1333846980379504841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7335266869444238848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c886898e74d3fbe489e376884ba198c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  used: 0
-  health: 10

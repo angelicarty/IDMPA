@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3670642289567866890}
   - component: {fileID: 7829660723968093515}
   - component: {fileID: 7829660723968093514}
+  - component: {fileID: -6270288040934069956}
   m_Layer: 0
   m_Name: PinkSlime
   m_TagString: Untagged
@@ -195,3 +196,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &-6270288040934069956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7829660723968093553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe5e5e2b6d776744b118065dfccdac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drop: {fileID: 7335266869444238848, guid: e66610922a2a2e444a089f32f000a6b4, type: 3}

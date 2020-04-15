@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 897987480389205917}
   - component: {fileID: 897987480389205916}
   - component: {fileID: -5176270365111440510}
+  - component: {fileID: 8664704352518522299}
   m_Layer: 0
   m_Name: MisterSlime
   m_TagString: Untagged
@@ -195,3 +196,16 @@ CircleCollider2D:
   m_Offset: {x: 0.049241796, y: -0.03939396}
   serializedVersion: 2
   m_Radius: 0.69
+--- !u!114 &8664704352518522299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897987480389205927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe5e5e2b6d776744b118065dfccdac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drop: {fileID: 7335266869444238848, guid: e66610922a2a2e444a089f32f000a6b4, type: 3}

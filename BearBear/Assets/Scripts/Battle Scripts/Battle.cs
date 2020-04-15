@@ -25,6 +25,7 @@ public class Battle : MonoBehaviour
     private int result = 0;//0 if combat is ongoing, 1 if player wins, -1 of losses
 
     public StatGen statGen;
+    public InventoryManager inv;
     public bool debug = false;
 
     private System.Random ran = new System.Random();
@@ -178,7 +179,8 @@ public class Battle : MonoBehaviour
     private void EndWin()
     {
         Debug.Log("You win!");
-        //TODO: award xp/loot/whatever
+
+        Loot();
         FindObjectOfType<QuestManager>().killed(over_enemy.name);
         Destroy(over_enemy);
         battleScene.SetActive(false);
@@ -210,6 +212,16 @@ public class Battle : MonoBehaviour
 
     }
 
+    //AWARDING LOOT
+    private void Loot()
+    {
+        Debug.Log("Awarding loot");
+        if (!inv.giveItem(over_enemy.GetComponent<MobDropContainer>().drop, 1))
+        { 
+        //TODO: do something with the item? discard it?
+        }
+
+    }
 
     //STAT GEN STUFF
     private void runStatGen(float mod)
