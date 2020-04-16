@@ -128,30 +128,26 @@ public class InventoryManager : MonoBehaviour
         FindObjectOfType<DialogueManager>().addedItem(itemAddedDialogue);
     }
 
-
-    public void eatApple()
-    {
-        eatStuff();
-        int currentHP = playerStat.GetCHP();
-        currentHP += 20;
-        playerStat.SetCHP(currentHP);
+    public void MoveCanvas(Canvas target)
+    {//moves the inventory ui to a new canvas, for combat/overworld transition 
+        inventoryPanel.transform.SetParent(target.transform, false);
     }
 
-    public void eatBigApple()
-    {
-        eatStuff();
-        int currentHP = playerStat.GetCHP();
-        currentHP += 100;
-        playerStat.SetCHP(currentHP);
-    }
-
-
-    void eatStuff()
+    public void EatItem(GameObject item)
     {
         string slotname = EventSystem.current.currentSelectedGameObject.transform.parent.name;
         int num;
         int.TryParse(slotname, out num);
         invSlots[num - 1].count -= 1;
         invSlots[num - 1].countDisplay.GetComponent<UnityEngine.UI.Text>().text = invSlots[num - 1].count.ToString();
+        try
+        {//in combat
+            GameObject test = GameObject.FindGameObjectWithTag("BattleScene");//breaks if out of combat
+            GameObject.FindGameObjectWithTag("BattleController").GetComponent<Battle>().ActionSelectItem(item);
+        }
+        catch (System.Exception e)
+        {//out of combat
+            playerStat.SetCHP(playerStat.GetCHP() + item.GetComponent<Edible>().Use());
+        }
     }
 }

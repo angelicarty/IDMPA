@@ -1,16 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class selfClick : MonoBehaviour
 {
-    public void clickedApple()
+    public void Clicked()
     {
-        FindObjectOfType<InventoryManager>().eatApple();
-    }
-
-    public void clickedBigApple()
-    {
-        FindObjectOfType<InventoryManager>().eatBigApple();
+        try
+        {
+            Edible food = gameObject.GetComponent<Edible>();//checks if the item is edible
+            FindObjectOfType<InventoryManager>().EatItem(gameObject);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("item not edible");
+        }
     }
 }

@@ -30,8 +30,11 @@ public class ActionButtons : MonoBehaviour
     }
 
     public void Item()
-    { 
-    //todo
+    {
+        if (controller.GetState().Equals(BattleState.ACTION))
+        {
+            controller.ActionItem();
+        }
     }
 
     //for key controls

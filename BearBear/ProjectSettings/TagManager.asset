@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BattleScene
   - BattleController
+  - MainCanvas
   layers:
   - Default
   - TransparentFX

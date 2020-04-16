@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 
 //This script controls the battle scene and damage calculations and stuff. Its attached object is created when the player collides with an enemy
-public enum BattleState {START, ACTION, P1, P2, END}
+public enum BattleState {START, ACTION, BAG, P1, P2, END}
+public enum ActionType {ATTACK, ITEM, SPECIAL }
 public class Battle : MonoBehaviour
 {
     public int delay;//amount of time between stuff happening
     public BattleState state;
+    private ActionType action;
     public GameObject over_player;//the continuous player object, not the battle scene one
     public GameObject over_enemy;//the enemy the player collided with to begin combat, determines combatants and their stats
 
@@ -26,11 +28,13 @@ public class Battle : MonoBehaviour
 
     public StatGen statGen;
     public InventoryManager inv;
+    private GameObject used_item;//when player uses an item, it gets stored here
     public bool debug = false;
 
     private System.Random ran = new System.Random();
     public void InitBattle()
     {
+        inv.closeInventory();
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement(); //disable character movement
         FindObjectOfType<KeyboardInputManager>().disableChat(); //prevents opening chat while in battle
         FindObjectOfType<MonstersController>().goingOutOfMobArea(); //pauses monster movements
@@ -41,6 +45,7 @@ public class Battle : MonoBehaviour
         state = BattleState.START;
         overworld_camera.gameObject.SetActive(false);
         battleScene.SetActive(true);
+        inv.MoveCanvas(battleScene.GetComponentInChildren<Canvas>());
         statGen.resetStatGen();
         StartCoroutine("BattleLoop");
     }
@@ -57,9 +62,9 @@ public class Battle : MonoBehaviour
             {
                 state = BattleState.ACTION;
             }
-            else if (state == BattleState.ACTION)
+            else if (state == BattleState.ACTION || state == BattleState.BAG)
             {
-                while (state == BattleState.ACTION)
+                while (state == BattleState.ACTION || state == BattleState.BAG)
                 {
                     //waits for the player to push an action button, as defined in the ui stuff
                     yield return null;
@@ -67,65 +72,125 @@ public class Battle : MonoBehaviour
 
             }
             
-            else if (state == BattleState.P1)
+            else if (state == BattleState.P1)//PLAYER GOES FIRST
             {
-                e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
-                statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
-                if (debug) { Debug.Log("e_HP = " + e_HP); }
-                yield return new WaitForSeconds(delay);
-                if (e_HP <= 0)
+                switch (action)
                 {
-                    result = 1;
-                    state = BattleState.END;
-                }
-                else 
-                {
-                    p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
-                    statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
-                    if (debug) { Debug.Log("p_HP = " + p_HP); }
-                    yield return new WaitForSeconds(delay);
-                    if (p_HP <= 0)
-                    {
-                        result = -1;
-                        state = BattleState.END;
-                    }
-                    else
-                    {
-                        state = BattleState.ACTION;
-                    }
-                }
+                    case ActionType.ATTACK:
+                        e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
+                        statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
+                        if (debug) { Debug.Log("e_HP = " + e_HP); }
+                        yield return new WaitForSeconds(delay);
+                        if (e_HP <= 0)
+                        {
+                            result = 1;
+                            state = BattleState.END;
+                        }
+                        else
+                        {
+                            p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
+                            statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
+                            if (debug) { Debug.Log("p_HP = " + p_HP); }
+                            yield return new WaitForSeconds(delay);
+                            if (p_HP <= 0)
+                            {
+                                result = -1;
+                                state = BattleState.END;
+                            }
+                            else
+                            {
+                                state = BattleState.ACTION;
+                            }
+                        }
+                        break;
+
+                    case ActionType.ITEM:
+                        //heal
+                        Heal(used_item.GetComponent<Edible>().Use());
+                        yield return new WaitForSeconds(delay);
+                        //enemy attack
+                        p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
+                        statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
+                        if (debug) { Debug.Log("p_HP = " + p_HP); }
+                        yield return new WaitForSeconds(delay);
+                        if (p_HP <= 0)
+                        {
+                            result = -1;
+                            state = BattleState.END;
+                        }
+                        else
+                        {
+                            state = BattleState.ACTION;
+                        }
+                        break;
+
+                    case ActionType.SPECIAL:
+                        //TODO: special stuff
+                        break;
+                }//switch end
+
             }
-            else if (state == BattleState.P2)
+            else if (state == BattleState.P2)//PLAYER GOES SECOND
             {
-                //TODO: real damage calculations
-                p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
-                statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
-                if (debug) { Debug.Log("p_HP = " + p_HP); }
-                yield return new WaitForSeconds(delay);
-                if (p_HP <= 0)
+                switch (action)
                 {
-                    result = -1;
-                    state = BattleState.END;
-                }
-                else
-                {
-                    e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
-                    statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
-                    if (debug) { Debug.Log("e_HP = " + e_HP); }
-                    yield return new WaitForSeconds(delay);
-                    if (e_HP <= 0)
-                    {
-                        result = 1;
-                        state = BattleState.END;
-                    }
-                    else 
-                    {
-                        state = BattleState.ACTION;
-                    }
-                }
+                    case ActionType.ATTACK:
+                        p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
+                        statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
+                        if (debug) { Debug.Log("p_HP = " + p_HP); }
+                        yield return new WaitForSeconds(delay);
+                        if (p_HP <= 0)
+                        {
+                            result = -1;
+                            state = BattleState.END;
+                        }
+                        else
+                        {
+                            e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
+                            statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
+                            if (debug) { Debug.Log("e_HP = " + e_HP); }
+                            yield return new WaitForSeconds(delay);
+                            if (e_HP <= 0)
+                            {
+                                result = 1;
+                                state = BattleState.END;
+                            }
+                            else
+                            {
+                                state = BattleState.ACTION;
+                            }
+                        }
+                        break;
+
+                    case ActionType.ITEM:
+                        //enemy attack
+                        p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
+                        statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
+                        if (debug) { Debug.Log("p_HP = " + p_HP); }
+                        yield return new WaitForSeconds(delay);
+                        if (p_HP <= 0)
+                        {
+                            result = -1;
+                            state = BattleState.END;
+                        }
+                        else
+                        {
+                            state = BattleState.ACTION;
+                        }
+                        //heal
+                        Heal(used_item.GetComponent<Edible>().Use());
+                        yield return new WaitForSeconds(delay);
+                        break;
+
+                    case ActionType.SPECIAL:
+                        //TODO: special stuff
+                        break;
+
+                }//switch end
             }
         }
         //do shit based on result of battle
+        inv.MoveCanvas(GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>());
         player.SetCHP(p_HP);
         enemy.SetCHP(e_HP);
         if (result == 1)
@@ -154,9 +219,21 @@ public class Battle : MonoBehaviour
         return Mathf.RoundToInt(d_health - damage);
     }
 
+    private void Heal(int health)
+    {
+        Debug.Log("healing: " + p_HP + " goes to " + (p_HP + health));
+        p_HP += health;
+        if (p_HP > player.GetMHP())
+        {
+            p_HP = player.GetMHP();
+        }
+
+    }
+
     //PLAYER ACTION CHOICES
     public void ActionAttack()
     {
+        action = ActionType.ATTACK;
         if (player.GetSPD() >= enemy.GetSPD())
         {
             state = BattleState.P1;
@@ -174,6 +251,34 @@ public class Battle : MonoBehaviour
         state = BattleState.END;
     }
 
+    public void ActionItem()
+    {
+        used_item = null;
+        inv.openInventory();
+        state = BattleState.BAG;
+
+
+
+    }
+
+    public void ActionSelectItem(GameObject item)
+    {
+        if (state == BattleState.BAG)
+        {
+            inv.closeInventory();
+            action = ActionType.ITEM;
+            used_item = item;
+            if (player.GetSPD() >= enemy.GetSPD())
+            {
+                state = BattleState.P1;
+            }
+            else
+            {
+                state = BattleState.P2;
+                statGen.addProb((int)Stat.SPD);//SPEED INCREASES IF PLAYER GOES SECOND TODO
+            }
+        }
+    }
 
     //ENDING STUFF
     private void EndWin()
@@ -281,4 +386,5 @@ public class Battle : MonoBehaviour
             return enemy.GetMHP();
         }
     }
+
 }
