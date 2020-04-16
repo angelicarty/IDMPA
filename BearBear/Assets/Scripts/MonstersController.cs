@@ -20,6 +20,18 @@ public class MonstersController : MonoBehaviour
 
     bool InMobArea = true;  //temp default to true for testing purpose
 
+    private void OnEnable()
+    {
+        //populate with mobs the moment the map loads (?)
+        for(int i = 0; i < spawnedMobs.Length; i++)
+        {
+            counter = i;
+            spawnMonster();
+        }
+        //and then freeze time till player comes into the map
+        //goingOutOfMobArea();
+    }
+
     void spawnMonster()
     {
         int monsterToSpawn = Random.Range(0, mobs.Length - 1);
