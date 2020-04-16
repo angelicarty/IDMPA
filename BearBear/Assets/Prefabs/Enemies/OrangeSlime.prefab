@@ -57,7 +57,7 @@ MonoBehaviour:
   sATK: 1
   sDEF: 1
   SPD: 30
-  battleActor: {fileID: 8813898828230204433, guid: 7198035621d80444e81f4bbc0e794c90,
+  battleActor: {fileID: 603619666846524555, guid: bcc31ba2cacfd7d4b8b1722f623dff70,
     type: 3}
   name: Orange Slime
 --- !u!212 &2934611773453231928

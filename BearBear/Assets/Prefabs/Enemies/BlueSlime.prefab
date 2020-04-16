@@ -57,7 +57,7 @@ MonoBehaviour:
   sATK: 1
   sDEF: 1
   SPD: 1
-  battleActor: {fileID: 3467868688004830209, guid: 6fade36ee2df7cd4e85ae8139d187aa0,
+  battleActor: {fileID: 5828847231799831617, guid: 87df18fb3c7c23349bc5e676f89ddfa2,
     type: 3}
   name: Blue Slime
 --- !u!212 &12426466525914544

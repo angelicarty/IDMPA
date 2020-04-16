@@ -57,7 +57,7 @@ MonoBehaviour:
   sATK: 1
   sDEF: 1
   SPD: 1
-  battleActor: {fileID: 7087897888609864860, guid: cb713ea388774f24a9e4157ff44a0c02,
+  battleActor: {fileID: 2002197338074385634, guid: 4f399fea746840b4f868b7ff9a0ef1b0,
     type: 3}
   name: Pink Slime
 --- !u!212 &7829660723968093559

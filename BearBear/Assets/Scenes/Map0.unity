@@ -4250,6 +4250,12 @@ PrefabInstance:
       propertyPath: name
       value: BearBear
       objectReference: {fileID: 0}
+    - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
+        type: 3}
+      propertyPath: battleActor
+      value: 
+      objectReference: {fileID: 5761743709407009622, guid: 8c143ae7f17ef2344803383faa521e45,
+        type: 3}
     - target: {fileID: 6703824103144776172, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: m_Name
@@ -9916,7 +9922,7 @@ Canvas:
   m_GameObject: {fileID: 6748344112272248730}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 313142560}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
