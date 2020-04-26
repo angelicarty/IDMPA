@@ -140,6 +140,16 @@ public class InventoryManager : MonoBehaviour
         int.TryParse(slotname, out num);
         invSlots[num - 1].count -= 1;
         invSlots[num - 1].countDisplay.GetComponent<UnityEngine.UI.Text>().text = invSlots[num - 1].count.ToString();
+        if(invSlots[num - 1].count < 2)
+        {
+            invSlots[num - 1].countDisplay.SetActive(false);
+        }
+        if(invSlots[num -1].count < 1)
+        {
+            invSlots[num - 1].isEmpty = true;
+            Destroy(invSlots[num - 1].slot.transform.GetChild(0).gameObject);
+
+        }
         try
         {//in combat
             GameObject test = GameObject.FindGameObjectWithTag("BattleScene");//breaks if out of combat
