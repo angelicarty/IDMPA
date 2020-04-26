@@ -2823,8 +2823,12 @@ MonoBehaviour:
     itemReward: {fileID: 3547253407065860030, guid: 7fa6a32e3afcae44f89b448ecab33f94,
       type: 3}
     itemRewardCount: 10
-    statReward: 0100000000000000
-    statRewardCount: 0a00000014000000
+    str: 0
+    atk: 10
+    def: 0
+    satk: 0
+    sdef: 0
+    spd: 0
   questTakenDialogue:
   - talkerName: Tree
     sentences:
@@ -9494,6 +9498,11 @@ PrefabInstance:
       propertyPath: questDescriptionBoxTracker
       value: 
       objectReference: {fileID: 279866634}
+    - target: {fileID: 2520611091532901246, guid: 296fc1bb3ba6e3f429f7afbcc3184b15,
+        type: 3}
+      propertyPath: playerStat
+      value: 
+      objectReference: {fileID: 317185813}
     - target: {fileID: 2520611091532901247, guid: 296fc1bb3ba6e3f429f7afbcc3184b15,
         type: 3}
       propertyPath: m_Name

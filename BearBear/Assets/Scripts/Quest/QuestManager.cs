@@ -18,6 +18,7 @@ public class QuestManager : MonoBehaviour
     int selectedQuestNum = -1;
     string questTracker;
     public GameObject questDescriptionBoxTracker;
+    public Stats playerStat;
 
     public void selectQuest(int num)
     {
@@ -137,7 +138,6 @@ public class QuestManager : MonoBehaviour
     {
         if (currentQuest.numberToKill <= currentQuest.killCount && currentQuest.questStatus.ToLower() == "taken")  //and object to collect
         {
-            questComplete(currentQuest);
             return true;
         }
         else
@@ -148,8 +148,19 @@ public class QuestManager : MonoBehaviour
 
     public bool giveReward(Quest currQuest)
     {
-        //bloop
-        return FindObjectOfType<InventoryManager>().giveItem(currQuest.itemReward, currQuest.itemRewardCount);
+        if(FindObjectOfType<InventoryManager>().giveItem(currQuest.itemReward, currQuest.itemRewardCount))
+        {
+            //give stat reward, if giving item reward can be done
+            playerStat.ModMHP(currQuest.maxHP);
+            playerStat.ModATK(currQuest.atk);
+            playerStat.ModDEF(currQuest.def);
+            playerStat.ModSATK(currQuest.satk);
+            playerStat.ModSDEF(currQuest.sdef);
+            playerStat.ModSPD(currQuest.spd);
+            return true;
+        }
+        return false;
+
     }
 
     public void toGiveReward(Quest currQuest)
@@ -159,6 +170,7 @@ public class QuestManager : MonoBehaviour
         {
             FindObjectOfType<DialogueManager>().rewardGiven();
             currQuest.questStatus = "complete";
+            questComplete(currentQuest);
         }
     }
 

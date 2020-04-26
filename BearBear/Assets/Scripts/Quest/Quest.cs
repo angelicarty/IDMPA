@@ -19,7 +19,12 @@ public class Quest
 
     public GameObject itemReward;
     public int itemRewardCount;
-    public Stat[] statReward;
-    public int[] statRewardCount;
+    //stats reward
+    public int maxHP;
+    public int atk;
+    public int def;
+    public int satk;
+    public int sdef;
+    public int spd;
 }
 
