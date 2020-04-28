@@ -106,7 +106,7 @@ public class Battle : MonoBehaviour
 
                     case ActionType.ITEM:
                         //heal
-                        Heal(used_item.GetComponent<Edible>().Use());
+                        Heal(used_item.GetComponent<ItemProperties>().Use());
                         yield return new WaitForSeconds(delay);
                         //enemy attack
                         p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
@@ -178,7 +178,7 @@ public class Battle : MonoBehaviour
                             state = BattleState.ACTION;
                         }
                         //heal
-                        Heal(used_item.GetComponent<Edible>().Use());
+                        Heal(used_item.GetComponent<ItemProperties>().Use());
                         yield return new WaitForSeconds(delay);
                         break;
 
@@ -323,7 +323,7 @@ public class Battle : MonoBehaviour
         Debug.Log("Awarding loot");
         if (!inv.giveItem(over_enemy.GetComponent<MobDropContainer>().drop, 1))
         { 
-        //TODO: do something with the item? discard it?
+        //discards the item
         }
 
     }

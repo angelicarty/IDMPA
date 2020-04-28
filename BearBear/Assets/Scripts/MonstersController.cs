@@ -12,6 +12,7 @@ public class MonstersController : MonoBehaviour
 
     public GameObject[] mobs;
     public GameObject[] spawnedMobs;
+    public LootTable[] lootTable;//weird 2d array, first index is for type of monster, second is a list of potential drops TODO this in a better way
     int counter;
     public Vector3[] mobsSpawnPoints;
 
@@ -36,6 +37,7 @@ public class MonstersController : MonoBehaviour
     {
         int monsterToSpawn = Random.Range(0, mobs.Length - 1);
         spawnedMobs[counter] = Instantiate(mobs[monsterToSpawn], mobsSpawnPoints[counter], Quaternion.identity);
+        spawnedMobs[counter].GetComponent<MobDropContainer>().drop = lootTable[monsterToSpawn].loot[Random.Range(0, lootTable[monsterToSpawn].loot.Length)];
     }
 
     private void Update()
@@ -115,4 +117,11 @@ public class MonstersController : MonoBehaviour
             mob1.GetComponent<SlimeWalk>().slimeWalking();
         }
     }*/
+}
+
+[System.Serializable]
+public class LootTable
+{
+    public string mobName;
+    public GameObject[] loot;
 }

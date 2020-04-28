@@ -9,7 +9,7 @@ public class selfClick : MonoBehaviour
     {
         try
         {
-            Edible food = gameObject.GetComponent<Edible>();//checks if the item is edible
+            ItemProperties food = gameObject.GetComponent<ItemProperties>();//checks if the item is edible
             FindObjectOfType<InventoryManager>().EatItem(gameObject);
         }
         catch (Exception e)
