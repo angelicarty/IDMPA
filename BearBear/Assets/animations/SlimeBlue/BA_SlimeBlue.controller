@@ -99,7 +99,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e0897338771bbfd4a835caf51b10f871, type: 2}
+  m_Motion: {fileID: 7400000, guid: d2089a602208458498cc00c1384b6fab, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -136,7 +136,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BA_SlimeOrange
+  m_Name: BA_SlimeBlue
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Attacking
@@ -218,7 +218,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 647c0a9ab74045b40881225bafdfa641, type: 2}
+  m_Motion: {fileID: 7400000, guid: 83e25a56d7d2bed40a3b0f36a27bbdc8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -245,7 +245,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6e8dad6f5a11f1d46943c832cfc62059, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2476a62c02b87c34faa028fb492436c3, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -293,7 +293,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7e47176f382706942a6a59eb19885f7e, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3318f7f8b6d717747b253cf3bbd50a59, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
