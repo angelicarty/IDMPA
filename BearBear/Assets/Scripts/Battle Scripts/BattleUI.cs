@@ -12,8 +12,8 @@ public class BattleUI : MonoBehaviour
     public GameObject leftStage;
     public GameObject rightStage;
     //health bar display stuff
-    public RectTransform p_display;
-    public RectTransform e_display;
+    public UpdateHealth p_display;
+    public UpdateHealth e_display;
     //name displays
     public Text p_name;
     public Text e_name;
@@ -46,8 +46,6 @@ public class BattleUI : MonoBehaviour
 
     void Update()
     {
-        p_display.localScale = new Vector3(calcBarLength(controller.GetPlayerHP(0), controller.GetPlayerHP(1)), 1, 1);
-        e_display.localScale = new Vector3(calcBarLength(controller.GetEnemyHP(0), controller.GetEnemyHP(1)), 1, 1);
         if (controller.GetState() == BattleState.ACTION)
         {
 
@@ -92,12 +90,18 @@ public class BattleUI : MonoBehaviour
     {
         //p_anim.SetTrigger("Attacking");
         e_anim.SetTrigger("Defending");
+
+        e_display.scale = calcBarLength(controller.GetEnemyHP(0), controller.GetEnemyHP(1));
+        e_display.StartCoroutine("UpdateHealthBar");
+    
     }
 
     public void PlayerDefending()
     {
         //p_anim.SetTrigger("Defending");
         e_anim.SetTrigger("Attacking");
+        p_display.scale = calcBarLength(controller.GetPlayerHP(0), controller.GetPlayerHP(1));
+        p_display.StartCoroutine("UpdateHealthBar");
     }
 
     public void PlayerDeath()

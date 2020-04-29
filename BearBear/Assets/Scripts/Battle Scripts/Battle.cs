@@ -79,9 +79,9 @@ public class Battle : MonoBehaviour
                 switch (action)
                 {
                     case ActionType.ATTACK:
-                        battleUI.PlayerAttacking();
-                        yield return new WaitForSeconds(delay);
+
                         e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
+                        battleUI.PlayerAttacking();
                         statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
                         if (debug) { Debug.Log("e_HP = " + e_HP); }
                         yield return new WaitForSeconds(delay);
@@ -93,9 +93,9 @@ public class Battle : MonoBehaviour
                         }
                         else
                         {
-                            battleUI.PlayerDefending();
-                            yield return new WaitForSeconds(delay);
                             p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
+                            battleUI.PlayerDefending();
+
                             statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                             if (debug) { Debug.Log("p_HP = " + p_HP); }
                             yield return new WaitForSeconds(delay);
@@ -144,9 +144,9 @@ public class Battle : MonoBehaviour
                 switch (action)
                 {
                     case ActionType.ATTACK:
-                        battleUI.PlayerDefending();
-                        yield return new WaitForSeconds(delay);
+
                         p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
+                        battleUI.PlayerDefending();
                         statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                         if (debug) { Debug.Log("p_HP = " + p_HP); }
                         yield return new WaitForSeconds(delay);
@@ -158,9 +158,8 @@ public class Battle : MonoBehaviour
                         }
                         else
                         {
-                            battleUI.PlayerAttacking();
-                            yield return new WaitForSeconds(delay);
                             e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
+                            battleUI.PlayerAttacking();
                             statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
                             if (debug) { Debug.Log("e_HP = " + e_HP); }
                             yield return new WaitForSeconds(delay);
