@@ -17,6 +17,7 @@ public class Battle : MonoBehaviour
 
 
     public GameObject battleScene;
+    private BattleUI battleUI;
     public Camera overworld_camera;
     private Stats player;
     private Stats enemy;
@@ -47,6 +48,7 @@ public class Battle : MonoBehaviour
         battleScene.SetActive(true);
         inv.MoveCanvas(battleScene.GetComponentInChildren<Canvas>());
         statGen.resetStatGen();
+        battleUI = battleScene.GetComponent<BattleUI>();
         StartCoroutine("BattleLoop");
     }
 
@@ -77,23 +79,29 @@ public class Battle : MonoBehaviour
                 switch (action)
                 {
                     case ActionType.ATTACK:
+                        battleUI.PlayerAttacking();
+                        yield return new WaitForSeconds(delay);
                         e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
                         statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
                         if (debug) { Debug.Log("e_HP = " + e_HP); }
                         yield return new WaitForSeconds(delay);
                         if (e_HP <= 0)
                         {
+                            battleUI.EnemyDeath();
                             result = 1;
                             state = BattleState.END;
                         }
                         else
                         {
+                            battleUI.PlayerDefending();
+                            yield return new WaitForSeconds(delay);
                             p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
                             statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                             if (debug) { Debug.Log("p_HP = " + p_HP); }
                             yield return new WaitForSeconds(delay);
                             if (p_HP <= 0)
                             {
+                                battleUI.PlayerDeath();
                                 result = -1;
                                 state = BattleState.END;
                             }
@@ -115,6 +123,7 @@ public class Battle : MonoBehaviour
                         yield return new WaitForSeconds(delay);
                         if (p_HP <= 0)
                         {
+                            battleUI.PlayerDeath();
                             result = -1;
                             state = BattleState.END;
                         }
@@ -135,23 +144,29 @@ public class Battle : MonoBehaviour
                 switch (action)
                 {
                     case ActionType.ATTACK:
+                        battleUI.PlayerDefending();
+                        yield return new WaitForSeconds(delay);
                         p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
                         statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                         if (debug) { Debug.Log("p_HP = " + p_HP); }
                         yield return new WaitForSeconds(delay);
                         if (p_HP <= 0)
                         {
+                            battleUI.PlayerDeath();
                             result = -1;
                             state = BattleState.END;
                         }
                         else
                         {
+                            battleUI.PlayerAttacking();
+                            yield return new WaitForSeconds(delay);
                             e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
                             statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
                             if (debug) { Debug.Log("e_HP = " + e_HP); }
                             yield return new WaitForSeconds(delay);
                             if (e_HP <= 0)
                             {
+                                battleUI.EnemyDeath();
                                 result = 1;
                                 state = BattleState.END;
                             }
@@ -170,6 +185,7 @@ public class Battle : MonoBehaviour
                         yield return new WaitForSeconds(delay);
                         if (p_HP <= 0)
                         {
+                            battleUI.PlayerDeath();
                             result = -1;
                             state = BattleState.END;
                         }
@@ -189,6 +205,7 @@ public class Battle : MonoBehaviour
                 }//switch end
             }
         }
+        yield return new WaitForSeconds(delay * 5);
         //do shit based on result of battle
         inv.MoveCanvas(GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>());
         player.SetCHP(p_HP);

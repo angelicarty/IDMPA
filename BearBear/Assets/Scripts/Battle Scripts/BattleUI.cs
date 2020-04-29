@@ -20,11 +20,18 @@ public class BattleUI : MonoBehaviour
 
     public Image[] actionButtons;//goes clockwise from attack
 
+    private GameObject p_actor;
+    private GameObject e_actor;
+    private Animator p_anim;
+    private Animator e_anim;
+
     void OnEnable()
     {
         //Debug.Log("battle scene init thing loaded");
-        Instantiate(controller.GetPlayer().battleActor, leftStage.transform);
-        Instantiate(controller.GetEnemy().battleActor, rightStage.transform);
+        p_actor = Instantiate(controller.GetPlayer().battleActor, leftStage.transform);
+        e_actor = Instantiate(controller.GetEnemy().battleActor, rightStage.transform);
+        //p_anim = p_actor.GetComponent<Animator>();
+        e_anim = e_actor.GetComponent<Animator>();
         p_name.text = controller.GetPlayer().name;
         e_name.text = controller.GetEnemy().name;
 
@@ -80,4 +87,25 @@ public class BattleUI : MonoBehaviour
         return value;
     }
 
+    //TODO: set up the timing for these
+    public void PlayerAttacking()
+    {
+        //p_anim.SetTrigger("Attacking");
+        e_anim.SetTrigger("Defending");
+    }
+
+    public void PlayerDefending()
+    {
+        //p_anim.SetTrigger("Defending");
+        e_anim.SetTrigger("Attacking");
+    }
+
+    public void PlayerDeath()
+    {
+        //p_anim.SetBool("Death", true);
+    }
+    public void EnemyDeath()
+    {
+        e_anim.SetBool("Dead", true);
+    }
 }

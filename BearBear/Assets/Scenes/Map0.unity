@@ -1651,10 +1651,10 @@ GameObject:
   m_Layer: 0
   m_Name: BattleScene
   m_TagString: BattleScene
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!20 &313142560
 Camera:
   m_ObjectHideFlags: 0
@@ -10976,7 +10976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3493a6d8451530c46ad6c655f147fcb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 2
+  delay: 1
   state: 0
   over_player: {fileID: 0}
   over_enemy: {fileID: 0}
