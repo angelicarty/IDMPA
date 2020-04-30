@@ -165,7 +165,6 @@ public class QuestManager : MonoBehaviour
 
     public void toGiveReward(Quest currQuest)
     {
-        Debug.Log(currQuest.monsterToKill);
         if (giveReward(currQuest))
         {
             FindObjectOfType<DialogueManager>().rewardGiven();

@@ -3089,7 +3089,12 @@ MonoBehaviour:
     - quest is complete bloop
     triggerOptions: 0
     optionreplies: []
-  invFullDialogue: []
+  invFullDialogue:
+  - talkerName: Tree
+    sentences:
+    - Your bag is full, come back to me again, when you have space.
+    triggerOptions: 0
+    optionreplies: []
 --- !u!1 &574469296
 GameObject:
   m_ObjectHideFlags: 0
@@ -4484,6 +4489,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5761743709407009622, guid: 8c143ae7f17ef2344803383faa521e45,
         type: 3}
+    - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
+        type: 3}
+      propertyPath: MHP
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
+        type: 3}
+      propertyPath: CHP
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
+        type: 3}
+      propertyPath: ATK
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
+        type: 3}
+      propertyPath: DEF
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
+        type: 3}
+      propertyPath: sATK
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
+        type: 3}
+      propertyPath: sDEF
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
+        type: 3}
+      propertyPath: SPD
+      value: 999
+      objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776172, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: m_Name

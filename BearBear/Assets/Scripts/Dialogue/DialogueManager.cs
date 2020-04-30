@@ -57,7 +57,6 @@ public class DialogueManager : MonoBehaviour
 
     public void pressedSpace()
     {
-        Debug.Log("give reward: " + giveReward);
         if(!canChat)
         {
             //no
@@ -239,7 +238,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (giveReward)
         {
-            Debug.Log("current quest : " + currentQuest.monsterToKill);
             FindObjectOfType<QuestManager>().toGiveReward(currentQuest);
         }
         if (respondRequired)
