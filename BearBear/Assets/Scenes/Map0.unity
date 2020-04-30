@@ -1221,6 +1221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 1
+  reset: 0
 --- !u!1 &229694812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2498,6 +2499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 1
+  reset: 0
 --- !u!1 &480962282
 GameObject:
   m_ObjectHideFlags: 0
@@ -4492,37 +4494,37 @@ PrefabInstance:
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: MHP
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: CHP
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: ATK
-      value: 999
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: DEF
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: sATK
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: sDEF
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: SPD
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776172, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}

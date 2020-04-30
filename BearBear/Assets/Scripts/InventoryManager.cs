@@ -21,7 +21,7 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("w"))
+        if(Input.GetKeyDown("="))
         {
             for(int i =0; i < invSlots.Length; i++)
             {
@@ -63,11 +63,11 @@ public class InventoryManager : MonoBehaviour
 
     public bool giveItem(GameObject item, int count)
     {
-        Debug.Log("giving: " + item.name);
         if (item == null)
         {
             return true;
         }
+        Debug.Log("giving: " + item.name);
         if(addItem(item, count))
         {
             //item received

@@ -27,6 +27,8 @@ public class BattleUI : MonoBehaviour
 
     void OnEnable()
     {
+        UpdateHealthBar(true);
+        UpdateHealthBar(false);
         //Debug.Log("battle scene init thing loaded");
         p_actor = Instantiate(controller.GetPlayer().battleActor, leftStage.transform);
         e_actor = Instantiate(controller.GetEnemy().battleActor, rightStage.transform);
@@ -35,6 +37,7 @@ public class BattleUI : MonoBehaviour
         p_name.text = controller.GetPlayer().name;
         e_name.text = controller.GetEnemy().name;
 
+
     }
 
     void OnDisable()
@@ -42,6 +45,7 @@ public class BattleUI : MonoBehaviour
         //Debug.Log("removing actors");
         Destroy(leftStage.transform.GetChild(0).gameObject);
         Destroy(rightStage.transform.GetChild(0).gameObject);
+
     }
 
     void Update()
@@ -90,18 +94,14 @@ public class BattleUI : MonoBehaviour
     {
         //p_anim.SetTrigger("Attacking");
         e_anim.SetTrigger("Defending");
-
-        e_display.scale = calcBarLength(controller.GetEnemyHP(0), controller.GetEnemyHP(1));
-        e_display.StartCoroutine("UpdateHealthBar");
-    
+        UpdateHealthBar(false);
     }
 
     public void PlayerDefending()
     {
         //p_anim.SetTrigger("Defending");
         e_anim.SetTrigger("Attacking");
-        p_display.scale = calcBarLength(controller.GetPlayerHP(0), controller.GetPlayerHP(1));
-        p_display.StartCoroutine("UpdateHealthBar");
+        UpdateHealthBar(false);
     }
 
     public void PlayerDeath()
@@ -111,5 +111,19 @@ public class BattleUI : MonoBehaviour
     public void EnemyDeath()
     {
         e_anim.SetBool("Dead", true);
+    }
+
+    private void UpdateHealthBar(bool reset)
+    {
+        if (reset)
+        {
+            p_display.reset = true;
+            e_display.reset = true;
+        }
+        p_display.scale = calcBarLength(controller.GetPlayerHP(0), controller.GetPlayerHP(1));
+        e_display.scale = calcBarLength(controller.GetEnemyHP(0), controller.GetEnemyHP(1));
+
+        p_display.StartCoroutine("UpdateHealthBar");
+        e_display.StartCoroutine("UpdateHealthBar");
     }
 }

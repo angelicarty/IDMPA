@@ -204,7 +204,7 @@ public class Battle : MonoBehaviour
                 }//switch end
             }
         }
-        yield return new WaitForSeconds(delay * 5);
+        yield return new WaitForSeconds(delay * 2);
         //do shit based on result of battle
         inv.MoveCanvas(GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>());
         player.SetCHP(p_HP);
