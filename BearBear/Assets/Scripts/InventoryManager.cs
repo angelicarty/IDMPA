@@ -24,11 +24,11 @@ public class InventoryManager : MonoBehaviour
         
         if(Input.GetKeyDown("k"))
         {
-            addItem(apple,10);
+            giveItem(apple,10);
         }
         if(Input.GetKeyDown("j"))
         {
-            addItem(apple2, 1);
+            giveItem(apple2, 1);
         }
     }
     
@@ -122,6 +122,7 @@ public class InventoryManager : MonoBehaviour
         }
         return false;
     }
+
 
     void itemAddedPrompt()
     {

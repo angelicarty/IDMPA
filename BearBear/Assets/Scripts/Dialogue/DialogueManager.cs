@@ -74,7 +74,7 @@ public class DialogueManager : MonoBehaviour
             DisplayNextSentence();
             
         }
-        else if(AllDialogues.Length > 0)
+        else if(AllDialogues != null)
         {
             startDialogue(AllDialogues, npc);
             DisplayNextSentence();
@@ -261,5 +261,18 @@ public class DialogueManager : MonoBehaviour
     public void addedItem(Dialogue dialogue)
     {
         currentDialogue = dialogue;
+        canChat = true;
+        giveReward = false;
+        endChat = false;
+        talkerName = currentDialogue.talkerName;
+        sentences.Clear();
+
+        foreach (string sentence in currentDialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+        talking = true;
+
+        DisplayNextSentence();
     }
 }
