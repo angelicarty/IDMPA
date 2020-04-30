@@ -7,6 +7,7 @@ public class QuestTrigger : MonoBehaviour
     public Quest quest;
     public Dialogue[] questTakenDialogue;
     public Dialogue[] questCompleteDialogue;
+    public Dialogue[] invFullDialogue;
 
     public void triggerQuest()
     {
@@ -17,5 +18,8 @@ public class QuestTrigger : MonoBehaviour
             FindObjectOfType<QuestManager>().pickUpQuest(quest);
         }
     }
-
+    public void invIsFull()
+    {
+        FindObjectOfType<DialogueManager>().startDialogue(invFullDialogue, gameObject);
+    }
 }

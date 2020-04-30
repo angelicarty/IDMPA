@@ -148,7 +148,7 @@ public class QuestManager : MonoBehaviour
 
     public bool giveReward(Quest currQuest)
     {
-        if(FindObjectOfType<InventoryManager>().giveItem(currQuest.itemReward, currQuest.itemRewardCount))
+        if(FindObjectOfType<InventoryManager>().questGiveItem(currQuest.itemReward, currQuest.itemRewardCount))
         {
             //give stat reward, if giving item reward can be done
             playerStat.ModMHP(currQuest.maxHP);
@@ -171,6 +171,10 @@ public class QuestManager : MonoBehaviour
             FindObjectOfType<DialogueManager>().rewardGiven();
             currQuest.questStatus = "complete";
             questComplete(currentQuest);
+        }
+        else
+        {
+            currentQuest.questGiver.gameObject.GetComponent<QuestTrigger>().invIsFull();
         }
     }
 

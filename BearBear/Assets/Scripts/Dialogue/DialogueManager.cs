@@ -57,6 +57,7 @@ public class DialogueManager : MonoBehaviour
 
     public void pressedSpace()
     {
+        Debug.Log("give reward: " + giveReward);
         if(!canChat)
         {
             //no
@@ -260,6 +261,7 @@ public class DialogueManager : MonoBehaviour
 
     public void addedItem(Dialogue dialogue)
     {
+        clearDialogues();
         currentDialogue = dialogue;
         canChat = true;
         giveReward = false;
@@ -272,7 +274,7 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(sentence);
         }
         talking = true;
-
         DisplayNextSentence();
     }
+
 }

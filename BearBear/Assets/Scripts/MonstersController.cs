@@ -24,7 +24,7 @@ public class MonstersController : MonoBehaviour
     private void OnEnable()
     {
         //populate with mobs the moment the map loads (?)
-        for(int i = 0; i < spawnedMobs.Length; i++)
+        for (int i = 0; i < spawnedMobs.Length; i++)
         {
             counter = i;
             spawnMonster();
@@ -44,7 +44,10 @@ public class MonstersController : MonoBehaviour
     {
         if (InMobArea)
         {
-            currentTime += Time.deltaTime;
+            if (checkSpawnSpots())
+            {
+                currentTime += Time.deltaTime;
+            }
         }
 
         if (currentTime > spawnTime)
@@ -56,33 +59,36 @@ public class MonstersController : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown("k"))
-        {
-            goingOutOfMobArea();
-        }
-
     }
+
 
     public void goingOutOfMobArea()
     {
         InMobArea = false;
         for (int i = 0; i < spawnedMobs.Length; i++)
         {
-            if(spawnedMobs[i])
+            if (spawnedMobs[i])
             {
                 spawnedMobs[i].GetComponent<SlimeWalk>().slimeStopWalking();
             }
         }
-    }
+    } 
 
     public void goingIntoMobArea()
     {
-        InMobArea = true;
-        for (int i = 0; i < spawnedMobs.Length; i++)
+        if (InMobArea)
         {
-            if (spawnedMobs[i])
+            //nada
+        }
+        else
+        {
+            InMobArea = true;
+            for (int i = 0; i < spawnedMobs.Length; i++)
             {
-                spawnedMobs[i].GetComponent<SlimeWalk>().slimeWalking();
+                if (spawnedMobs[i])
+                {
+                    spawnedMobs[i].GetComponent<SlimeWalk>().slimeWalking();
+                }
             }
         }
     }

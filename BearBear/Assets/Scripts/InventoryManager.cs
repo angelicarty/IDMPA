@@ -21,7 +21,13 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown("w"))
+        {
+            for(int i =0; i < invSlots.Length; i++)
+            {
+                invSlots[i].isEmpty = false;
+            }
+        }
         if(Input.GetKeyDown("k"))
         {
             giveItem(apple,10);
@@ -42,8 +48,26 @@ public class InventoryManager : MonoBehaviour
         inventoryPanel.SetActive(false);
     }
 
+    public bool questGiveItem(GameObject item, int count)
+    {
+        if (addItem(item, count))
+        {
+            //item received
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public bool giveItem(GameObject item, int count)
     {
+        Debug.Log("giving: " + item.name);
+        if (item == null)
+        {
+            return true;
+        }
         if(addItem(item, count))
         {
             //item received
@@ -53,7 +77,7 @@ public class InventoryManager : MonoBehaviour
         else
         {
             //item not recieved due to inv being full
-            sentence = "Your bag is full, maybe empty it up before talking to them again";
+            sentence = "Your bag is full, maybe empty it up before trying again";
             itemAddedDialogue.sentences[0] = sentence;
             FindObjectOfType<DialogueManager>().addedItem(itemAddedDialogue);
             return false;
@@ -62,8 +86,6 @@ public class InventoryManager : MonoBehaviour
 
     bool addItem(GameObject item, int count)
     {
-        if (item == null)
-        { return false; }
         firstEmptyPosition = -1;
         itemAdded = false;
         for(int i = 0; i<invSlots.Length;i++)
@@ -126,6 +148,7 @@ public class InventoryManager : MonoBehaviour
 
     void itemAddedPrompt()
     {
+        FindObjectOfType<MonstersController>().goingOutOfMobArea();
         sentence = "You obtained " + itemCount + " " + itemName;
         itemAddedDialogue.sentences[0] = sentence;
         FindObjectOfType<DialogueManager>().addedItem(itemAddedDialogue);

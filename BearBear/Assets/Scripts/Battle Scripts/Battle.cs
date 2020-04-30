@@ -308,7 +308,7 @@ public class Battle : MonoBehaviour
         overworld_camera.gameObject.SetActive(true);
         FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
         FindObjectOfType<KeyboardInputManager>().enableChat(); //resume pressing space to  chat 
-        FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
+        //FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
         runStatGen(1);
     }
 

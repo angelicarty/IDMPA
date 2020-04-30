@@ -15,6 +15,8 @@ public class DialogueTrigger : MonoBehaviour
         FindObjectOfType<DialogueManager>().startDialogue(dialogues, gameObject);
     }
 
+
+
     public void questDropped()
     {
         dialogues = nonQuestTakenDialogue;
