@@ -131,7 +131,7 @@ public class InventoryManager : MonoBehaviour
                     invSlots[firstEmptyPosition].countDisplay.SetActive(true);
                 }
                 itemAdded = true;
-                itemName = item.name;
+                itemName = item.GetComponent<ItemProperties>().name;
                 itemCount = count;
                 firstEmptyPosition = -1;
                 return true;

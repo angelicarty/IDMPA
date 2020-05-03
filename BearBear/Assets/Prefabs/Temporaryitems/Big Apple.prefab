@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4258a4f7766ba3546bba838c1212f2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Big Apple
   health: 100
   used: 0
   isEdible: 1
