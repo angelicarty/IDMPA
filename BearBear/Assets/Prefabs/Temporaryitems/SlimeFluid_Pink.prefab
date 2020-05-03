@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3664821549970007327}
   - component: {fileID: 1333846980379504841}
   m_Layer: 5
-  m_Name: SlimeFluid_Green
+  m_Name: SlimeFluid_Pink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4c82bf9c38e49fd4b94ee2dd8827db25, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6dfcaeffc11647408b1faecdf35782e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

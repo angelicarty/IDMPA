@@ -113,6 +113,10 @@ public class BattleUI : MonoBehaviour
         e_anim.SetBool("Dead", true);
     }
 
+    public void PlayerHeal()
+    {
+        UpdateHealthBar(false);
+    }
     private void UpdateHealthBar(bool reset)
     {
         if (reset)

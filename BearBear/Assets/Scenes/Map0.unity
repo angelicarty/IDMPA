@@ -4504,7 +4504,7 @@ PrefabInstance:
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: ATK
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}

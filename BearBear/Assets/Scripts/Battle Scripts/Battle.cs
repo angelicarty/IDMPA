@@ -237,13 +237,14 @@ public class Battle : MonoBehaviour
 
     private void Heal(int health)
     {
+
         Debug.Log("healing: " + p_HP + " goes to " + (p_HP + health));
         p_HP += health;
         if (p_HP > player.GetMHP())
         {
             p_HP = player.GetMHP();
         }
-
+        battleUI.PlayerHeal();
     }
 
     //PLAYER ACTION CHOICES
