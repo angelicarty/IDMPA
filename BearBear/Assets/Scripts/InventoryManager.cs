@@ -7,8 +7,8 @@ public class InventoryManager : MonoBehaviour
 {
 
     public InventorySlot[] invSlots;
-    public GameObject apple;
-    public GameObject apple2;
+    int gold;
+    public GameObject goldCount;
     public Stats playerStat;
     public Dialogue itemAddedDialogue;
     int firstEmptyPosition = -1;
@@ -30,11 +30,40 @@ public class InventoryManager : MonoBehaviour
         }
         if(Input.GetKeyDown("k"))
         {
-            giveItem(apple,10);
+            addGold(10);
         }
         if(Input.GetKeyDown("j"))
         {
-            giveItem(apple2, 1);
+            minusGold(2);
+        }
+    }
+
+    public int purchaseItem(GameObject item, int count, int costPerObject)
+    {
+        if(gold > (count * costPerObject))
+        {
+            if(giveItem(item, count))
+            {
+                minusGold(count * costPerObject);
+                return 0; //no problem
+            }
+            return -1; //no space
+        }
+        return -2; //no money
+    }
+
+    public void addGold(int muns)
+    {
+        gold += muns;
+        goldCount.GetComponent<UnityEngine.UI.Text>().text = gold.ToString();
+    }
+
+    public void minusGold(int muns)
+    {
+        if(gold > muns)
+        {
+            gold -= muns;
+            goldCount.GetComponent<UnityEngine.UI.Text>().text = gold.ToString();
         }
     }
     
@@ -79,7 +108,7 @@ public class InventoryManager : MonoBehaviour
             //item not recieved due to inv being full
             sentence = "Your bag is full, maybe empty it up before trying again";
             itemAddedDialogue.sentences[0] = sentence;
-            FindObjectOfType<DialogueManager>().addedItem(itemAddedDialogue);
+            FindObjectOfType<DialogueManager>().dialoguePrompt(itemAddedDialogue);
             return false;
         }
     }
@@ -151,7 +180,7 @@ public class InventoryManager : MonoBehaviour
         FindObjectOfType<MonstersController>().goingOutOfMobArea();
         sentence = "You obtained " + itemCount + " " + itemName;
         itemAddedDialogue.sentences[0] = sentence;
-        FindObjectOfType<DialogueManager>().addedItem(itemAddedDialogue);
+        FindObjectOfType<DialogueManager>().dialoguePrompt(itemAddedDialogue);
     }
 
     public void MoveCanvas(Canvas target)

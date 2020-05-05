@@ -8,38 +8,51 @@ public class RespondOptionsManager : MonoBehaviour
     public GameObject respondBox, button1, button2;
     public Image[] buttonImages;
     List<Dialogue> replies = new List<Dialogue>();
-    Dialogue currReply, currReply2;// = new Dialogue();
+    Dialogue currReply, currReply2;
     bool waitingForReply;
-    bool aQuest,bQuest;
+    bool option1,option2;
     GameObject questGiver;
     public GameObject button1Selected, button2Selected;
 
-    //public Dialogue testing;
-    //public Dialogue testing2;
-
     private int selectedAction = -1;
+    bool quest;
 
 
     void resetThis()
     {
         replies = null;
         waitingForReply = false;
-        aQuest = false;
-        bQuest = false;
+        option1 = false;
+        option2 = false;
         replies = new List<Dialogue>();
+        quest = false;
     }
+    //below this line is shop stuff
+
+    public void triggerShopReplies()
+    {
+
+        respondBox.SetActive(true);
+        waitingForReply = true;
+        button1.GetComponentInChildren<UnityEngine.UI.Text>().text = "buy stuff";
+        button2.GetComponentInChildren<UnityEngine.UI.Text>().text = "sell stuff";
+    }
+
+
+    //below this line is mostly quest stuff
 
     public void acceptReplies(OptionReply[] OptionReplies, GameObject questGiverRef)
     {
+        quest = true;
         respondBox.SetActive(true);
 
         questGiver = questGiverRef;
 
-        aQuest = OptionReplies[0].acceptQuest;
-        bQuest = OptionReplies[1].acceptQuest;
+        option1 = OptionReplies[0].acceptQuest;
+        option2 = OptionReplies[1].acceptQuest;
         
-        button1.GetComponentInChildren<UnityEngine.UI.Text>().text = OptionReplies[0].option; //this works
-        button2.GetComponentInChildren<UnityEngine.UI.Text>().text = OptionReplies[1].option; //this works
+        button1.GetComponentInChildren<UnityEngine.UI.Text>().text = OptionReplies[0].option; 
+        button2.GetComponentInChildren<UnityEngine.UI.Text>().text = OptionReplies[1].option; 
 
 
 
@@ -69,24 +82,44 @@ public class RespondOptionsManager : MonoBehaviour
 
     public void pickAReply(int chosenOPtion)
     {
-        var dialogueManager = FindObjectOfType<DialogueManager>();
+        if (quest)
+        {
+            var dialogueManager = FindObjectOfType<DialogueManager>();
+            switch (chosenOPtion)
+            {
+                case 0:
+                    dialogueManager.StartRespondDialogue(replies[0]);
+                    if (option1)
+                    {
+                        questGiver.GetComponent<QuestTrigger>().triggerQuest();
+                    }
+                    respondBox.SetActive(false);
+                    resetThis();
+                    break;
+                case 1:
+                    dialogueManager.StartRespondDialogue(replies[1]);
+                    if (option2)
+                    {
+                        questGiver.GetComponent<QuestTrigger>().triggerQuest();
+                    }
+                    respondBox.SetActive(false);
+                    resetThis();
+                    break;
+                default:
+                    break;
+            }
+        }
+        //else, is shop
+        var shopManager = FindObjectOfType<ShopManager>().GetComponent<ShopManager>();
         switch (chosenOPtion)
         {
             case 0:
-                dialogueManager.StartRespondDialogue(replies[0]);
-                if (aQuest)
-                {
-                    questGiver.GetComponent<QuestTrigger>().triggerQuest();
-                }
+                shopManager.triggerBuyItem();
                 respondBox.SetActive(false);
                 resetThis();
                 break;
             case 1:
-                dialogueManager.StartRespondDialogue(replies[1]);
-                if(bQuest)
-                {
-                    questGiver.GetComponent<QuestTrigger>().triggerQuest();
-                }
+                shopManager.triggerSellItem();
                 respondBox.SetActive(false);
                 resetThis();
                 break;
@@ -109,11 +142,12 @@ public class RespondOptionsManager : MonoBehaviour
                 button2Selected.SetActive(true);
                 button1Selected.SetActive(false);
             }
-            //buttonImages[index].color = Color.blue;
         }
 
         
     }
+
+
 
     void Update()
     {

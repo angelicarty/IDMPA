@@ -257,7 +257,7 @@ public class DialogueManager : MonoBehaviour
     }
 
 
-    public void addedItem(Dialogue dialogue)
+    public void dialoguePrompt(Dialogue dialogue)
     {
         clearDialogues();
         currentDialogue = dialogue;
