@@ -6,13 +6,14 @@ using UnityEngine.EventSystems;
 public class DialogueTrigger : MonoBehaviour
 {
     Dialogue[] nonQuestTakenDialogue;
+    public Sprite speakerSprite;
     public Dialogue[] dialogues;
     bool inTrigger;
 
     public void questTaken(Dialogue[] newDialogue)
     {
         dialogues = newDialogue;
-        FindObjectOfType<DialogueManager>().startDialogue(dialogues, gameObject);
+        FindObjectOfType<DialogueManager>().startDialogue(dialogues, gameObject, speakerSprite);
     }
 
 
@@ -22,7 +23,7 @@ public class DialogueTrigger : MonoBehaviour
         dialogues = nonQuestTakenDialogue;
         if(inTrigger)
         {
-            FindObjectOfType<DialogueManager>().startDialogue(dialogues, gameObject);
+            FindObjectOfType<DialogueManager>().startDialogue(dialogues, gameObject,speakerSprite);
         }
     }
 
@@ -33,7 +34,7 @@ public class DialogueTrigger : MonoBehaviour
             inTrigger = true;
             var dialogueManager = FindObjectOfType<DialogueManager>();
             nonQuestTakenDialogue = dialogues;
-            dialogueManager.startDialogue(dialogues, gameObject);
+            dialogueManager.startDialogue(dialogues, gameObject,speakerSprite);
             dialogueManager.canTalk();
         }
 

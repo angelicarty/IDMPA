@@ -10,6 +10,7 @@ public class ShopTrigger : MonoBehaviour
     public Dialogue noSpaceDialogue;
     public Dialogue goodbyeDialogue;
     public GameObject[] itemsForSale;
+    public Texture2D shopkeeper;
 
     void OnTriggerEnter2D(Collider2D collider)
     {

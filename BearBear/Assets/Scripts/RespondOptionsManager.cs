@@ -109,22 +109,25 @@ public class RespondOptionsManager : MonoBehaviour
                     break;
             }
         }
-        //else, is shop
-        var shopManager = FindObjectOfType<ShopManager>().GetComponent<ShopManager>();
-        switch (chosenOPtion)
+        else
         {
-            case 0:
-                shopManager.triggerBuyItem();
-                respondBox.SetActive(false);
-                resetThis();
-                break;
-            case 1:
-                shopManager.triggerSellItem();
-                respondBox.SetActive(false);
-                resetThis();
-                break;
-            default:
-                break;
+            //else, is shop
+            var shopManager = FindObjectOfType<ShopManager>().GetComponent<ShopManager>();
+            switch (chosenOPtion)
+            {
+                case 0:
+                    shopManager.triggerBuyItem();
+                    respondBox.SetActive(false);
+                    resetThis();
+                    break;
+                case 1:
+                    shopManager.triggerSellItem();
+                    respondBox.SetActive(false);
+                    resetThis();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

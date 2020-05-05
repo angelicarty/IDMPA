@@ -5,6 +5,7 @@ using UnityEngine;
 public class QuestTrigger : MonoBehaviour
 {
     public Quest quest;
+    public Sprite speakerSprite;
     public Dialogue[] questTakenDialogue;
     public Dialogue[] questCompleteDialogue;
     public Dialogue[] invFullDialogue;
@@ -20,6 +21,6 @@ public class QuestTrigger : MonoBehaviour
     }
     public void invIsFull()
     {
-        FindObjectOfType<DialogueManager>().startDialogue(invFullDialogue, gameObject);
+        FindObjectOfType<DialogueManager>().startDialogue(invFullDialogue, gameObject, speakerSprite);
     }
 }

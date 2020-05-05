@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    
+    public GameObject blur;
     public Queue<string> sentences;
     Dialogue[] AllDialogues;
     Dialogue currentDialogue;
@@ -13,6 +14,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject chatBox;
     public GameObject dialogBox;
     public GameObject nameBox;
+    public GameObject speakerSpriteBox;
     public bool endChat;
     public bool typing;
     string sentence;
@@ -24,6 +26,7 @@ public class DialogueManager : MonoBehaviour
     bool giveReward;
     Quest currentQuest;
     bool canChat;
+    Sprite speakerSprite;
 
     private void Start()
     {
@@ -76,16 +79,18 @@ public class DialogueManager : MonoBehaviour
         }
         else if(AllDialogues != null)
         {
-            startDialogue(AllDialogues, npc);
+            startDialogue(AllDialogues, npc, speakerSprite);
             DisplayNextSentence();
             
         }
         
         
     }
-    public void startDialogue(Dialogue[] dialogues, GameObject npcRef)
+    public void startDialogue(Dialogue[] dialogues, GameObject npcRef,Sprite speaker)
     {
         giveReward = false;
+        speakerSprite = speaker;
+        speakerSpriteBox.GetComponent<Image>().sprite = speakerSprite;
         var questPresent = npcRef.GetComponent<QuestTrigger>();
         if (questPresent == null)
         {
@@ -192,7 +197,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-
+        blur.SetActive(true);
         dialogBox.SetActive(true);
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement();
         FindObjectOfType<MonstersController>().goingOutOfMobArea();
@@ -251,6 +256,7 @@ public class DialogueManager : MonoBehaviour
         else
         {
             dialogBox.SetActive(false);
+            blur.SetActive(false);
             FindObjectOfType<KeyboardInputManager>().enableCharacterMovement();
             FindObjectOfType<MonstersController>().goingIntoMobArea();
         }
