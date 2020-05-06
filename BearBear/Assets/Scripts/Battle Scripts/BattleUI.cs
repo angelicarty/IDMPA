@@ -32,7 +32,7 @@ public class BattleUI : MonoBehaviour
         //Debug.Log("battle scene init thing loaded");
         p_actor = Instantiate(controller.GetPlayer().battleActor, leftStage.transform);
         e_actor = Instantiate(controller.GetEnemy().battleActor, rightStage.transform);
-        //p_anim = p_actor.GetComponent<Animator>();
+        p_anim = p_actor.GetComponent<Animator>();
         e_anim = e_actor.GetComponent<Animator>();
         p_name.text = controller.GetPlayer().name;
         e_name.text = controller.GetEnemy().name;
@@ -92,21 +92,21 @@ public class BattleUI : MonoBehaviour
     //TODO: set up the timing for these
     public void PlayerAttacking()
     {
-        //p_anim.SetTrigger("Attacking");
+        p_anim.SetTrigger("Attacking");
         e_anim.SetTrigger("Defending");
         UpdateHealthBar(false);
     }
 
     public void PlayerDefending()
     {
-        //p_anim.SetTrigger("Defending");
+        p_anim.SetTrigger("Defending");
         e_anim.SetTrigger("Attacking");
         UpdateHealthBar(false);
     }
 
     public void PlayerDeath()
     {
-        //p_anim.SetBool("Death", true);
+        p_anim.SetBool("Dead", true);
     }
     public void EnemyDeath()
     {
@@ -130,4 +130,6 @@ public class BattleUI : MonoBehaviour
         p_display.StartCoroutine("UpdateHealthBar");
         e_display.StartCoroutine("UpdateHealthBar");
     }
+
+
 }
