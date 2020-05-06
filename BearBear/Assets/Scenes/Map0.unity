@@ -2288,7 +2288,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 72f89d45d75647a469a752523622c574, type: 3}
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4364,37 +4364,37 @@ PrefabInstance:
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: MHP
-      value: 0
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: CHP
-      value: 0
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: ATK
-      value: 0
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: DEF
-      value: 0
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: sATK
-      value: 0
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: sDEF
-      value: 0
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: SPD
-      value: 0
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776172, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
@@ -9975,6 +9975,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1838972468396134129, guid: cff8b76e4cd40674ba7bc279f8929fe5,
         type: 3}
+      propertyPath: blur
+      value: 
+      objectReference: {fileID: 1463463161}
+    - target: {fileID: 1838972468396134129, guid: cff8b76e4cd40674ba7bc279f8929fe5,
+        type: 3}
       propertyPath: chatBox
       value: 
       objectReference: {fileID: 1615669999}
@@ -9995,9 +10000,9 @@ PrefabInstance:
       objectReference: {fileID: 452806586}
     - target: {fileID: 1838972468396134129, guid: cff8b76e4cd40674ba7bc279f8929fe5,
         type: 3}
-      propertyPath: blur
+      propertyPath: empty
       value: 
-      objectReference: {fileID: 1463463161}
+      objectReference: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 1838972468396134130, guid: cff8b76e4cd40674ba7bc279f8929fe5,
         type: 3}
       propertyPath: m_LocalPosition.x

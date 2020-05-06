@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
 {
     public GameObject blur;
     public Queue<string> sentences;
+    public Dialogue invFullDialogue;
     Dialogue[] AllDialogues;
     Dialogue currentDialogue;
     string talkerName;
@@ -27,6 +28,7 @@ public class DialogueManager : MonoBehaviour
     Quest currentQuest;
     bool canChat;
     Sprite speakerSprite;
+    public Sprite empty;
 
     private void Start()
     {
@@ -41,6 +43,7 @@ public class DialogueManager : MonoBehaviour
         npc = null;
         giveReward = false;
         respondRequired = false;
+        speakerSpriteBox.GetComponent<Image>().sprite = empty;
     }
 
     public void cantTalk()
@@ -129,9 +132,16 @@ public class DialogueManager : MonoBehaviour
                 //if quest conditions are fufilled, 
                 if(FindObjectOfType<QuestManager>().isQuestComplete(questPresent.quest))
                 {
-                    giveReward = true;
-                    AllDialogues = questPresent.questCompleteDialogue;
-                    currentDialogue = AllDialogues[Random.Range(0, dialogues.Length)];
+                    if (FindObjectOfType<InventoryManager>().isInvFull()) //if inventory is full
+                    {
+                        currentDialogue = invFullDialogue;
+                    }
+                    else
+                    {
+                        giveReward = true;
+                        AllDialogues = questPresent.questCompleteDialogue;
+                        currentDialogue = AllDialogues[Random.Range(0, dialogues.Length)];
+                    }
                 }
                 else
                 {

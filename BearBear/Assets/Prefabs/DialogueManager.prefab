@@ -43,6 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3369d1d9bc8aca84ba8a4d92abcb6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blur: {fileID: 0}
+  invFullDialogue:
+    talkerName: ???
+    sentences:
+    - Your inventory is full.
+    triggerOptions: 0
+    optionreplies: []
   chatBox: {fileID: 0}
   dialogBox: {fileID: 0}
   nameBox: {fileID: 0}

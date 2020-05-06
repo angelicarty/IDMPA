@@ -66,6 +66,18 @@ public class InventoryManager : MonoBehaviour
             goldCount.GetComponent<UnityEngine.UI.Text>().text = gold.ToString();
         }
     }
+
+    public bool isInvFull()
+    {
+        for (int i = 0; i < invSlots.Length; i++)
+        {
+            if(invSlots[i].isEmpty)
+            {
+                return false; //at least one empty spot
+            }
+        }
+        return true;
+    }
     
     public void openInventory()
     {
@@ -106,7 +118,7 @@ public class InventoryManager : MonoBehaviour
         else
         {
             //item not recieved due to inv being full
-            sentence = "Your bag is full, maybe empty it up before trying again";
+            sentence = "Oh no, your bag is full.";
             itemAddedDialogue.sentences[0] = sentence;
             FindObjectOfType<DialogueManager>().dialoguePrompt(itemAddedDialogue);
             return false;
