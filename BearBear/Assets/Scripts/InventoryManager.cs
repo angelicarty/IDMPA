@@ -150,7 +150,7 @@ public class InventoryManager : MonoBehaviour
                         {
                             invSlots[i].countDisplay.SetActive(true);
                         }
-                        itemName = item.name;
+                        itemName = item.GetComponent<ItemProperties>().name;
                         itemCount = count;
                         itemAdded = true;
                         return true;
