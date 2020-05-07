@@ -65,23 +65,32 @@ public class DialogueManager : MonoBehaviour
     {
         if(!canChat)
         {
+            Debug.Log("1");
             //no
         }
         else if(waitingForReply)
         {
+
+            Debug.Log("2");
             //no nothing
         }
         else if (typing)
         {
+
+            Debug.Log("3");
             skipTyping();
         }
         else if(talking)
         {
+
+            Debug.Log("4");
             DisplayNextSentence();
             
         }
         else if(AllDialogues != null)
         {
+
+            Debug.Log("5");
             startDialogue(AllDialogues, npc, speakerSprite);
             DisplayNextSentence();
             

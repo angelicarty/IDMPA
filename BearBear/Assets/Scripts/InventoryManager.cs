@@ -106,7 +106,11 @@ public class InventoryManager : MonoBehaviour
     {
         if (item == null)
         {
+
+            FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
+            //FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
             return true;
+
         }
         Debug.Log("giving: " + item.name);
         if(addItem(item, count))
