@@ -7,14 +7,23 @@ public class selfClick : MonoBehaviour
 {
     public void Clicked()
     {
-        try
+        var shop = FindObjectOfType<ShopManager>();
+        bool inShop = shop.isPlayerInShop();
+        if (inShop)
         {
-            ItemProperties food = gameObject.GetComponent<ItemProperties>();//checks if the item is edible
-            FindObjectOfType<InventoryManager>().EatItem(gameObject);
+            shop.sellThis(gameObject);
         }
-        catch (Exception e)
+        else
         {
-            Debug.LogError("item not edible");
+            try
+            {
+                ItemProperties food = gameObject.GetComponent<ItemProperties>();//checks if the item is edible
+                FindObjectOfType<InventoryManager>().EatItem(gameObject);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("item not edible");
+            }
         }
     }
 }

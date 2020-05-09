@@ -158,4 +158,4 @@ MonoBehaviour:
   health: 20
   used: 0
   isEdible: 1
-  value: 0
+  value: 10

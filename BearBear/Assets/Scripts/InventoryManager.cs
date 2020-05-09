@@ -17,6 +17,7 @@ public class InventoryManager : MonoBehaviour
     int itemCount;
     string sentence;
     public GameObject inventoryPanel;
+    public GameObject testingItem;
 
     // Update is called once per frame
     void Update()
@@ -27,6 +28,10 @@ public class InventoryManager : MonoBehaviour
             {
                 invSlots[i].isEmpty = false;
             }
+        }
+        if(Input.GetKeyDown("m"))
+        {
+            giveItem(testingItem, 6);
         }
         if(Input.GetKeyDown("k"))
         {
@@ -99,6 +104,39 @@ public class InventoryManager : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+
+    public int getCount(GameObject item)
+    {
+        for (int i = 0; i < invSlots.Length; i++)
+        {
+            if(invSlots[i].slot.transform.GetChild(0).gameObject == item)
+            {
+                Debug.Log(invSlots[i].count);
+                return invSlots[i].count;
+            }
+        }
+        return 0;
+    }
+
+    public void removeItem(GameObject item,int count)
+    {
+        for (int i = 0; i < invSlots.Length; i++)
+        {
+            if (invSlots[i].slot.transform.GetChild(0).gameObject == item)
+            {
+                Debug.Log(invSlots[i].count);
+                if(count < invSlots[i].count)
+                {
+                    invSlots[i].count -= count;
+                }
+                else
+                {
+                    Destroy(invSlots[i].slot.transform.GetChild(0).gameObject);
+                }
+            }
         }
     }
 

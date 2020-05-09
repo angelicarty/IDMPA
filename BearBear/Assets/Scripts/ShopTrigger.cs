@@ -10,13 +10,14 @@ public class ShopTrigger : MonoBehaviour
     public Dialogue noSpaceDialogue;
     public Dialogue goodbyeDialogue;
     public GameObject[] itemsForSale;
-    public Texture2D shopkeeper;
+    public Sprite shopkeeper;
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            FindObjectOfType<ShopManager>().triggerShop(welcomeDialogue, noMoneyDialogue, noSpaceDialogue,goodbyeDialogue, itemsForSale);
+            FindObjectOfType<ShopManager>().triggerShop(welcomeDialogue, noMoneyDialogue, noSpaceDialogue,goodbyeDialogue, itemsForSale, shopkeeper);
+            FindObjectOfType<KeyboardInputManager>().shopDialogueToggleShop();
         }
 
     }
@@ -25,7 +26,11 @@ public class ShopTrigger : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            FindObjectOfType<ShopManager>().resetShop();
+            var shopManager = FindObjectOfType<ShopManager>();
+            shopManager.resetShop();
+            shopManager.outFromShop();
+            FindObjectOfType<KeyboardInputManager>().shopDialogueToggleDialogue();
+
         }
     }
 }

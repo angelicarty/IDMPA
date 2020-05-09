@@ -65,32 +65,23 @@ public class DialogueManager : MonoBehaviour
     {
         if(!canChat)
         {
-            Debug.Log("1");
             //no
         }
         else if(waitingForReply)
         {
-
-            Debug.Log("2");
             //no nothing
         }
         else if (typing)
         {
-
-            Debug.Log("3");
             skipTyping();
         }
         else if(talking)
         {
-
-            Debug.Log("4");
             DisplayNextSentence();
             
         }
         else if(AllDialogues != null)
         {
-
-            Debug.Log("5");
             startDialogue(AllDialogues, npc, speakerSprite);
             DisplayNextSentence();
             
@@ -278,6 +269,7 @@ public class DialogueManager : MonoBehaviour
             blur.SetActive(false);
             FindObjectOfType<KeyboardInputManager>().enableCharacterMovement();
             FindObjectOfType<MonstersController>().goingIntoMobArea();
+            FindObjectOfType<ShopManager>().closeShop();
         }
     }
 
@@ -290,6 +282,26 @@ public class DialogueManager : MonoBehaviour
         giveReward = false;
         endChat = false;
         talkerName = currentDialogue.talkerName;
+        sentences.Clear();
+
+        foreach (string sentence in currentDialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+        talking = true;
+        DisplayNextSentence();
+    }
+
+    public void dialoguePrompt(Dialogue dialogue, Sprite speaker)
+    {
+        clearDialogues();
+        currentDialogue = dialogue;
+        canChat = true;
+        giveReward = false;
+        endChat = false;
+        talkerName = currentDialogue.talkerName;
+        speakerSprite = speaker;
+        speakerSpriteBox.GetComponent<Image>().sprite = speakerSprite;
         sentences.Clear();
 
         foreach (string sentence in currentDialogue.sentences)
