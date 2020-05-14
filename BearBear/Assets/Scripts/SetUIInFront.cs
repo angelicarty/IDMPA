@@ -8,6 +8,9 @@ public class SetUIInFront : MonoBehaviour, IPointerDownHandler
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-        transform.SetAsLastSibling();
+        var childCount = transform.parent.childCount;
+        transform.SetSiblingIndex(childCount - 2);
     }
+
 }
+

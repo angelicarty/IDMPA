@@ -21,7 +21,6 @@ public class DraggableUI : MonoBehaviour, IDragHandler, IBeginDragHandler
 
     void startDrag()
     {
-        Debug.Log("start");
         offsetX = thingToMove.transform.position.x - Input.mousePosition.x;
         offsetY = thingToMove.transform.position.y - Input.mousePosition.y;
     }

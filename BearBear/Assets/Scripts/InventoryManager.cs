@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -19,16 +20,41 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject testingItem;
 
+    public GameObject itemDescBox;
+    public GameObject itemDescText;
+    public GameObject itemNameText;
+
+    float offsetX, offsetY;
+
+    bool isMousedOverItem;
+
+    public void isMousedOver(string thisName, string desc)
+    {
+        isMousedOverItem = true;
+        offsetX = -(itemDescBox.GetComponent<RectTransform>().sizeDelta.x + 10) / 2;
+        offsetY = -(itemDescBox.GetComponent<RectTransform>().sizeDelta.y + 10) / 2;
+        itemDescText.GetComponent<Text>().text = desc;
+        itemNameText.GetComponent<Text>().text = thisName;
+        mouseOverItem();
+    }
+
+    void mouseOverItem()
+    {
+        itemDescBox.SetActive(true);
+        itemDescBox.transform.position = new Vector3(offsetX + Input.mousePosition.x, offsetY + Input.mousePosition.y, 0);
+    }
+
+    public void isNotMousedOver()
+    {
+        isMousedOverItem = false;
+        itemDescBox.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("="))
-        {
-            for(int i =0; i < invSlots.Length; i++)
-            {
-                invSlots[i].isEmpty = false;
-            }
-        }
+        
+
         if(Input.GetKeyDown("m"))
         {
             giveItem(testingItem, 6);
@@ -40,6 +66,14 @@ public class InventoryManager : MonoBehaviour
         if(Input.GetKeyDown("j"))
         {
             minusGold(2);
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if(isMousedOverItem)
+        {
+            mouseOverItem();
         }
     }
 
@@ -134,6 +168,7 @@ public class InventoryManager : MonoBehaviour
                 }
                 else
                 {
+                    isNotMousedOver();
                     Destroy(invSlots[i].slot.transform.GetChild(0).gameObject);
                 }
             }
@@ -258,6 +293,7 @@ public class InventoryManager : MonoBehaviour
             if (invSlots[num - 1].count < 1)
             {
                 invSlots[num - 1].isEmpty = true;
+                isNotMousedOver();
                 Destroy(invSlots[num - 1].slot.transform.GetChild(0).gameObject);
 
             }

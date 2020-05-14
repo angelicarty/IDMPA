@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7335266869444238850}
   - component: {fileID: 3664821549970007327}
   - component: {fileID: 1333846980379504841}
+  - component: {fileID: -7550402141923929562}
   m_Layer: 5
   m_Name: SlimeFluid_Green
   m_TagString: Untagged
@@ -154,8 +155,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4258a4f7766ba3546bba838c1212f2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Green Slime Juice
+  name: Green Slime Fluid
   health: 0
   used: 0
   isEdible: 0
   value: 100
+  itemDescription: A puddle of green slime fluid.
+--- !u!114 &-7550402141923929562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335266869444238848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11cdad9cef2fdd4689197ce54f8d20a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
