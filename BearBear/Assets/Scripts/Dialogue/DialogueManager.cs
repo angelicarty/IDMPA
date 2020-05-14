@@ -269,7 +269,6 @@ public class DialogueManager : MonoBehaviour
             blur.SetActive(false);
             FindObjectOfType<KeyboardInputManager>().enableCharacterMovement();
             FindObjectOfType<MonstersController>().goingIntoMobArea();
-            FindObjectOfType<ShopManager>().closeShop();
         }
     }
 
@@ -292,14 +291,14 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
     }
 
-    public void dialoguePrompt(Dialogue dialogue, Sprite speaker)
+    public void dialoguePromptWithSprite(Dialogue dialogue, Sprite speaker)
     {
         clearDialogues();
         currentDialogue = dialogue;
         canChat = true;
         giveReward = false;
         endChat = false;
-        talkerName = currentDialogue.talkerName;
+        talkerName = dialogue.talkerName;
         speakerSprite = speaker;
         speakerSpriteBox.GetComponent<Image>().sprite = speakerSprite;
         sentences.Clear();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
@@ -16,19 +17,30 @@ public class ShopManager : MonoBehaviour
     Dialogue noSpaceDialogue;
     Dialogue goodbyeDialogue;
     GameObject[] itemsForSale;
+
     public Dialogue howMany;
     public Dialogue cantSell;
+
     bool inShop = false;
+
     public GameObject counter;
     int buySellCount;
-    GameObject itemBeingSold;
+    public GameObject counterText;
+
     DialogueManager dialogueManager;
     RespondOptionsManager respondOptionsManager;
     InventoryManager inventoryManager;
+    KeyboardInputManager keyboardInputManager;
+
     bool sellbuy;
     public Dialogue sellWhat;
     public Dialogue buyWhat;
+    public Dialogue changeYourMind;
+    public Dialogue youGotNothing;
+    public Dialogue hereIsYourChange;
+
     Sprite shopKeeper;
+    GameObject itemToSell;
 
     public void pressedSpace()
     {
@@ -41,6 +53,10 @@ public class ShopManager : MonoBehaviour
         {
             openShop();
         }
+        else
+        {
+            dialogueManager.pressedSpace();
+        }
     }
 
     private void Start()
@@ -48,6 +64,7 @@ public class ShopManager : MonoBehaviour
         dialogueManager = FindObjectOfType<DialogueManager>();
         respondOptionsManager = FindObjectOfType<RespondOptionsManager>();
         inventoryManager = FindObjectOfType<InventoryManager>();
+        keyboardInputManager = FindObjectOfType<KeyboardInputManager>();
     }
 
     public void triggerShop(Dialogue welcomeDia,Dialogue noMuns,Dialogue noSpace,Dialogue bye ,GameObject[] items, Sprite sKeeper)
@@ -60,12 +77,16 @@ public class ShopManager : MonoBehaviour
         inShop = true;
         howMany.talkerName = welcomeDia.talkerName;
         cantSell.talkerName = welcomeDia.talkerName;
+        changeYourMind.talkerName = welcomeDia.talkerName;
+        youGotNothing.talkerName = welcomeDia.talkerName;
+        sellWhat.talkerName = welcomeDia.talkerName;
+        hereIsYourChange.talkerName = welcomeDia.talkerName;
         shopKeeper = sKeeper;
     }
 
     public void openShop()
     {
-        dialogueManager.dialoguePrompt(welcomeDialogue, shopKeeper);
+        dialogueManager.dialoguePromptWithSprite(welcomeDialogue, shopKeeper);
         respondOptionsManager.triggerShopReplies();
         sellbuy = true;
     }
@@ -86,7 +107,19 @@ public class ShopManager : MonoBehaviour
 
     public void triggerSellItem()
     {
-        Debug.Log("sell item");
+        keyboardInputManager.disableCharacterMovement();
+        sellbuy = true;
+        if (inventoryManager.isInvEmpty())
+        {
+            dialogueManager.dialoguePromptWithSprite(youGotNothing, shopKeeper);
+        }
+        else
+        {
+
+
+            inventoryManager.openInventory();
+            dialogueManager.dialoguePromptWithSprite(sellWhat, shopKeeper);
+        }
     }
 
     public void triggerBuyItem()
@@ -101,50 +134,67 @@ public class ShopManager : MonoBehaviour
 
     public void sellThis(GameObject item)
     {
+        itemToSell = item;
         var itemProperties = item.GetComponent<ItemProperties>();
         if (itemProperties.value > 0) //item has value
         {
             if (inventoryManager.getCount(item) > 1) //if more than one item
             {
                 //prompt how many to sell
-                dialogueManager.dialoguePrompt(howMany);
-                itemBeingSold = item;
-                //counter.setActive(true);
+                dialogueManager.dialoguePromptWithSprite(howMany, shopKeeper);
+                counter.SetActive(true);
             }
             else
             {
                 //sell the one
                 sold(item, itemProperties.value, 1);
+                sellbuy = false;
             }
         }
         else //item that has no value can't be sold
         {
-            dialogueManager.dialoguePrompt(cantSell);
+            dialogueManager.dialoguePromptWithSprite(cantSell, shopKeeper);
         }
     }
 
     public void plusCounter()
     {
         buySellCount++;
-        int count = inventoryManager.getCount(itemBeingSold);
+        int count = inventoryManager.getCount(itemToSell);
         if (buySellCount > count)
         {
             buySellCount = count;
         }
+        counterText.GetComponent<Text>().text = buySellCount.ToString();
     }
 
     public void minusCounter()
     {
         buySellCount--;
-        if (buySellCount < 1)
+        if (buySellCount < 0)
         {
-            buySellCount = 1;
+            buySellCount = 0;
         }
+        counterText.GetComponent<Text>().text = buySellCount.ToString();
     }
+    
 
-    public void sellThisMany(GameObject item)
+    public void sellThisMany()
     {
-        sold(item, item.GetComponent<ItemProperties>().value, buySellCount);
+        counter.SetActive(false);
+        if (buySellCount > 0)
+        {
+            sold(itemToSell, itemToSell.GetComponent<ItemProperties>().value, buySellCount);
+            dialogueManager.dialoguePromptWithSprite(hereIsYourChange, shopKeeper);
+            sellbuy = false;
+        }
+        else
+        {
+            dialogueManager.dialoguePromptWithSprite(changeYourMind, shopKeeper);
+            closeShop();
+            sellbuy = false;
+        }
+
     }
 
     public void sold(GameObject item, int value, int count)
@@ -157,16 +207,9 @@ public class ShopManager : MonoBehaviour
     public void closeShop()
     {
         sellbuy = false;
+        dialogueManager.dialoguePromptWithSprite(goodbyeDialogue, shopKeeper);
+        keyboardInputManager.enableCharacterMovement();
     }
-    /*
-    private void Update()
-    {
-        if(Input.GetKeyDown("l"))
-        {
-            Debug.Log("pressed l");
-            FindObjectOfType<RespondOptionsManager>().triggerShopReplies();
-        }
-    }
-    */
+
 
 }

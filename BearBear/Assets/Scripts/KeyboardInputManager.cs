@@ -21,7 +21,6 @@ public class KeyboardInputManager : MonoBehaviour
                 else
                 {
                     FindObjectOfType<ShopManager>().pressedSpace();
-                    FindObjectOfType<DialogueManager>().pressedSpace();
                 }
             }
 

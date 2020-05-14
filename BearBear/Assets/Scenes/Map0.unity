@@ -1312,7 +1312,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 190313027}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 892852957}
+        m_MethodName: plusCounter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &190313027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,7 +1440,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 211875358}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 892852957}
+        m_MethodName: minusCounter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &211875358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5008,7 +5030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &798841961
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5573,23 +5595,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   howMany:
     talkerName: 
-    sentences: []
+    sentences:
+    - How many are you selling?
     triggerOptions: 0
     optionreplies: []
   cantSell:
     talkerName: 
-    sentences: []
+    sentences:
+    - You can sell this item
     triggerOptions: 0
     optionreplies: []
-  counter: {fileID: 0}
+  counter: {fileID: 88099258}
+  counterText: {fileID: 1851266384}
   sellWhat:
     talkerName: 
-    sentences: []
+    sentences:
+    - What do you wanna sell?
     triggerOptions: 0
     optionreplies: []
   buyWhat:
     talkerName: 
-    sentences: []
+    sentences:
+    - What do you wanna buy?
+    triggerOptions: 0
+    optionreplies: []
+  changeYourMind:
+    talkerName: 
+    sentences:
+    - Oh you changed your mind
+    triggerOptions: 0
+    optionreplies: []
+  youGotNothing:
+    talkerName: 
+    sentences:
+    - You got nothing to sell right now.
     triggerOptions: 0
     optionreplies: []
 --- !u!4 &892852958
@@ -10679,7 +10718,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1851266387}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 892852957}
+        m_MethodName: sellThisMany
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1851266387
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -165,6 +165,7 @@ public class InventoryManager : MonoBehaviour
                 if(count < invSlots[i].count)
                 {
                     invSlots[i].count -= count;
+                    invSlots[i].countDisplay.GetComponent<Text>().text = invSlots[i].count.ToString();
                 }
                 else
                 {
@@ -307,5 +308,17 @@ public class InventoryManager : MonoBehaviour
                 playerStat.SetCHP(playerStat.GetCHP() + item.GetComponent<ItemProperties>().Use());
             }
         }
+    }
+
+    public bool isInvEmpty()
+    {
+        for(int i=0; i < invSlots.Length; i++)
+        {
+            if(invSlots[i].isEmpty == false)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
