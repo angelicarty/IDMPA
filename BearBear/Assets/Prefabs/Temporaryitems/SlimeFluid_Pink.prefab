@@ -159,9 +159,11 @@ MonoBehaviour:
   health: 0
   used: 0
   isEdible: 0
-  value: 100
-  itemDescription: A puddle of pink slime fluid. You don't wanna know where it comes
-    from.
+  value: 10
+  itemDescription: 'A puddle of pink slime fluid. You don''t wanna know where it
+    comes from.
+
+    Value: 10'
 --- !u!114 &-5947285196942497987
 MonoBehaviour:
   m_ObjectHideFlags: 0

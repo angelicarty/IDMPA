@@ -159,8 +159,10 @@ MonoBehaviour:
   health: 0
   used: 0
   isEdible: 0
-  value: 100
-  itemDescription: A puddle of blue slime fluid.
+  value: 10
+  itemDescription: 'A puddle of blue slime fluid.
+
+    Value : 10'
 --- !u!114 &2924937335593520926
 MonoBehaviour:
   m_ObjectHideFlags: 0
