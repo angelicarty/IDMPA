@@ -13,5 +13,10 @@ public class SetUIInFront : MonoBehaviour, IPointerDownHandler
         //transform.SetSiblingIndex(childCount - 2);
     }
 
+    public void OnEnable()
+    {
+        transform.SetAsLastSibling();
+    }
+
 }
 

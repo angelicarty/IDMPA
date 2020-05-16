@@ -8,6 +8,7 @@ public class KeyboardInputManager : MonoBehaviour
     bool questOpen = false;
     bool inventoryOpen = false;
     bool shopDialogue = false;
+    bool characterStats = false;
     void Update()
     {
         if (characterChat)
@@ -51,7 +52,36 @@ public class KeyboardInputManager : MonoBehaviour
                     FindObjectOfType<InventoryManager>().openInventory();
                 }
             }
+
+            if (Input.GetKeyDown("y"))
+            {
+                if (characterStats)
+                {
+                    characterStats = false;
+                    FindObjectOfType<CharacterStats>().hideStats();
+                }
+                else
+                {
+                    characterStats = true;
+                    FindObjectOfType<CharacterStats>().displayStats();
+                }
+            }
+
+            if(Input.GetKeyDown("escape"))
+            {
+                hideAllUi();
+            }
         }
+    }
+
+    public void hideAllUi()
+    {
+        characterStats = false;
+        FindObjectOfType<CharacterStats>().hideStats();
+        inventoryOpen = false;
+        FindObjectOfType<InventoryManager>().closeInventory();
+        questOpen = false;
+        FindObjectOfType<QuestManager>().closeQuestLog();
     }
 
     public void shopDialogueToggleShop()
