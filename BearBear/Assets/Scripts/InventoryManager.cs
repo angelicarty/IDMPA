@@ -174,6 +174,9 @@ public class InventoryManager : MonoBehaviour
                 {
                     isNotMousedOver();
                     Destroy(invSlots[i].slot.transform.GetChild(0).gameObject);
+                    invSlots[i].count = 0;
+                    invSlots[i].countDisplay.SetActive(false);
+                    invSlots[i].isEmpty = true;
                 }
             }
         }

@@ -19,7 +19,6 @@ public class ShopTrigger : MonoBehaviour
             FindObjectOfType<ShopManager>().triggerShop(welcomeDialogue, noMoneyDialogue, noSpaceDialogue,goodbyeDialogue, itemsForSale, shopkeeper);
             FindObjectOfType<KeyboardInputManager>().shopDialogueToggleShop();
         }
-
     }
 
     private void OnTriggerExit2D(Collider2D collider)
@@ -27,7 +26,6 @@ public class ShopTrigger : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             var shopManager = FindObjectOfType<ShopManager>();
-            shopManager.resetShop();
             shopManager.outFromShop();
             FindObjectOfType<KeyboardInputManager>().shopDialogueToggleDialogue();
 

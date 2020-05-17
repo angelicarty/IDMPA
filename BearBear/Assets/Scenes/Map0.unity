@@ -6361,20 +6361,21 @@ MonoBehaviour:
     triggerOptions: 0
     optionreplies: []
   changeYourMind:
-    talkerName: 
+    talkerName: Shopkeeper
     sentences:
     - Oh you changed your mind
     triggerOptions: 0
     optionreplies: []
   youGotNothing:
-    talkerName: 
+    talkerName: shopkeeper
     sentences:
     - You got nothing to sell right now.
     triggerOptions: 0
     optionreplies: []
   hereIsYourChange:
-    talkerName: 
-    sentences: []
+    talkerName: shopkeeper
+    sentences:
+    - Here's your change
     triggerOptions: 0
     optionreplies: []
 --- !u!4 &892852958
@@ -7505,7 +7506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   welcomeDialogue:
-    talkerName: shopkeeper
+    talkerName: Bloop
     sentences:
     - Welcome
     triggerOptions: 0
@@ -7517,16 +7518,21 @@ MonoBehaviour:
     triggerOptions: 0
     optionreplies: []
   noSpaceDialogue:
-    talkerName: 
-    sentences: []
+    talkerName: shopkeeper
+    sentences:
+    - You don't have any inventory space
     triggerOptions: 0
     optionreplies: []
   goodbyeDialogue:
-    talkerName: 
-    sentences: []
+    talkerName: shopkeeper
+    sentences:
+    - See you soon
     triggerOptions: 0
     optionreplies: []
-  itemsForSale: []
+  itemsForSale:
+  - {fileID: 3547253407065860030, guid: 7fa6a32e3afcae44f89b448ecab33f94, type: 3}
+  - {fileID: 7335266869444238848, guid: e66610922a2a2e444a089f32f000a6b4, type: 3}
+  - {fileID: 7335266869444238848, guid: e66610922a2a2e444a089f32f000a6b4, type: 3}
   shopkeeper: {fileID: 21300000, guid: 72f89d45d75647a469a752523622c574, type: 3}
 --- !u!61 &1016420788
 BoxCollider2D:
@@ -14824,7 +14830,7 @@ PrefabInstance:
         type: 3}
       propertyPath: testingItem
       value: 
-      objectReference: {fileID: 7335266869444238848, guid: e66610922a2a2e444a089f32f000a6b4,
+      objectReference: {fileID: 7335266869444238848, guid: be6699cf01024c445b7e7ec180e83381,
         type: 3}
     - target: {fileID: 6809110346480237054, guid: 937666c7755055841b37a46c4ddcbae5,
         type: 3}

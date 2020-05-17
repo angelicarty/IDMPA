@@ -298,6 +298,7 @@ public class DialogueManager : MonoBehaviour
         canChat = true;
         giveReward = false;
         endChat = false;
+        Debug.Log(dialogue.talkerName);
         talkerName = dialogue.talkerName;
         speakerSprite = speaker;
         speakerSpriteBox.GetComponent<Image>().sprite = speakerSprite;
