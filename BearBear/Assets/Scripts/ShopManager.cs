@@ -25,6 +25,8 @@ public class ShopManager : MonoBehaviour
     bool pleaseEndConvo = false;
     bool boughtSold = false;
 
+    public GameObject shopUI;
+    public GameObject[] shopSlot;
     public GameObject counter;
     int buySellCount;
     public GameObject counterText;
@@ -46,8 +48,6 @@ public class ShopManager : MonoBehaviour
 
     public void pressedSpace()
     {
-        Debug.Log("in shop: " + inShop);
-        Debug.Log("waiting: " + waiting);
         if(pleaseEndConvo && inShop && !waiting)
         {
             dialogueManager.pressedSpace();
@@ -139,7 +139,6 @@ public class ShopManager : MonoBehaviour
 
     public void outFromShop()
     {
-        Debug.Log("boughts/sold: " + boughtSold);
         if(boughtSold)
         {
             dialogueManager.dialoguePromptWithSprite(goodbyeDialogue, shopKeeper);
