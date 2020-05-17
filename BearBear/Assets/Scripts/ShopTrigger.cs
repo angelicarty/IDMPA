@@ -9,6 +9,7 @@ public class ShopTrigger : MonoBehaviour
     public Dialogue noMoneyDialogue;
     public Dialogue noSpaceDialogue;
     public Dialogue goodbyeDialogue;
+    public Dialogue buyingDialogue;
     public GameObject[] itemsForSale;
     public Sprite shopkeeper;
 
@@ -16,7 +17,7 @@ public class ShopTrigger : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            FindObjectOfType<ShopManager>().triggerShop(welcomeDialogue, noMoneyDialogue, noSpaceDialogue,goodbyeDialogue, itemsForSale, shopkeeper);
+            FindObjectOfType<ShopManager>().triggerShop(welcomeDialogue, noMoneyDialogue, noSpaceDialogue,goodbyeDialogue,buyingDialogue , itemsForSale, shopkeeper);
             FindObjectOfType<KeyboardInputManager>().shopDialogueToggleShop();
         }
     }

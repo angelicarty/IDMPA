@@ -81,9 +81,9 @@ public class InventoryManager : MonoBehaviour
 
     public int purchaseItem(GameObject item, int count, int costPerObject)
     {
-        if(gold > (count * costPerObject))
+        if(gold >= (count * costPerObject))
         {
-            if(giveItem(item, count))
+            if(addItem(item, count))
             {
                 minusGold(count * costPerObject);
                 return 0; //no problem

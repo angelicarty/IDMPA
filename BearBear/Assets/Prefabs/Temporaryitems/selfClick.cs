@@ -8,8 +8,11 @@ public class selfClick : MonoBehaviour
     public void Clicked()
     {
         var shop = FindObjectOfType<ShopManager>();
-        bool inShop = shop.isPlayerInShop();
-        if (inShop)
+        if (shop.isBuyingItem())
+        {
+            shop.buyThis(gameObject);
+        }
+        else if (shop.isSellingItem())
         {
             shop.sellThis(gameObject);
         }

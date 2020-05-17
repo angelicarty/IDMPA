@@ -16,6 +16,4 @@ public class MouseOverItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         FindObjectOfType<InventoryManager>().isNotMousedOver();
     }
 
-
-
 }

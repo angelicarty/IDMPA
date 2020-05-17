@@ -249,7 +249,7 @@ public class DialogueManager : MonoBehaviour
         chatBox.GetComponent<UnityEngine.UI.Text>().text = sentence;
     }
 
-    void endDialogue()
+    public void endDialogue()
     {
         if (giveReward)
         {
@@ -293,23 +293,36 @@ public class DialogueManager : MonoBehaviour
 
     public void dialoguePromptWithSprite(Dialogue dialogue, Sprite speaker)
     {
-        clearDialogues();
-        currentDialogue = dialogue;
-        canChat = true;
-        giveReward = false;
-        endChat = false;
-        Debug.Log(dialogue.talkerName);
-        talkerName = dialogue.talkerName;
-        speakerSprite = speaker;
-        speakerSpriteBox.GetComponent<Image>().sprite = speakerSprite;
-        sentences.Clear();
-
-        foreach (string sentence in currentDialogue.sentences)
+        if (typing)
         {
-            sentences.Enqueue(sentence);
+            if (dialogue.talkerName == currentDialogue.talkerName)
+            {
+                for (int i = 0; i < dialogue.sentences.Length; i++)
+                {
+                    currentDialogue.sentences[currentDialogue.sentences.Length] = dialogue.sentences[0];
+                }
+            }
         }
-        talking = true;
-        DisplayNextSentence();
+        else
+        {
+            clearDialogues();
+            currentDialogue = dialogue;
+            canChat = true;
+            giveReward = false;
+            endChat = false;
+            Debug.Log(dialogue.talkerName);
+            talkerName = dialogue.talkerName;
+            speakerSprite = speaker;
+            speakerSpriteBox.GetComponent<Image>().sprite = speakerSprite;
+            sentences.Clear();
+
+            foreach (string sentence in currentDialogue.sentences)
+            {
+                sentences.Enqueue(sentence);
+            }
+            talking = true;
+            DisplayNextSentence();
+        }
     }
 
 }

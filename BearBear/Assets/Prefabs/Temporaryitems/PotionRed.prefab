@@ -157,10 +157,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Red Potion
   health: 100
+  mana: 0
   used: 0
   isEdible: 1
   value: 100
-  itemDescription: A vial of red liquid, capable of restoring injuries when imbibed.
+  itemDescription: 'A vial of red liquid, capable of restoring injuries when imbibed.
+
+    Value:
+    100'
 --- !u!114 &179976857746398830
 MonoBehaviour:
   m_ObjectHideFlags: 0

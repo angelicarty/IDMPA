@@ -161,8 +161,10 @@ MonoBehaviour:
   used: 0
   isEdible: 1
   value: 100
-  itemDescription: A vial of blue liquid, which invigorates the drinker, restoring
+  itemDescription: 'A vial of blue liquid, which invigorates the drinker, restoring
     their mana.
+
+    Value: 100'
 --- !u!114 &179976857746398830
 MonoBehaviour:
   m_ObjectHideFlags: 0

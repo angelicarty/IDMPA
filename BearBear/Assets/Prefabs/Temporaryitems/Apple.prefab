@@ -157,10 +157,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Apple
   health: 20
+  mana: 0
   used: 0
   isEdible: 1
   value: 10
-  itemDescription: An Apple. Recovers 20 health upon consumption.
+  itemDescription: 'An Apple. Recovers 20 health upon consumption.
+
+    Value: 10'
 --- !u!114 &-43090806226466874
 MonoBehaviour:
   m_ObjectHideFlags: 0

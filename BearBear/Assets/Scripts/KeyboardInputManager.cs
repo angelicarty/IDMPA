@@ -7,7 +7,7 @@ public class KeyboardInputManager : MonoBehaviour
     bool characterChat = true;
     bool questOpen = false;
     bool inventoryOpen = false;
-    bool shopDialogue = false;
+    public bool shopDialogue = false;
     bool characterStats = false;
     void Update()
     {
@@ -15,14 +15,7 @@ public class KeyboardInputManager : MonoBehaviour
         {
             if (Input.GetKeyDown("space"))
             {
-                if (!shopDialogue)
-                {
-                    FindObjectOfType<DialogueManager>().pressedSpace();
-                }
-                else
-                {
-                    FindObjectOfType<ShopManager>().pressedSpace();
-                }
+                pressedSpace();
             }
 
             if(Input.GetKeyDown("q"))
@@ -71,6 +64,18 @@ public class KeyboardInputManager : MonoBehaviour
             {
                 hideAllUi();
             }
+        }
+    }
+
+    public void pressedSpace()
+    {
+        if (!shopDialogue)
+        {
+            FindObjectOfType<DialogueManager>().pressedSpace();
+        }
+        else
+        {
+            FindObjectOfType<ShopManager>().pressedSpace();
         }
     }
 
