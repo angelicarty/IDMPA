@@ -9,6 +9,7 @@ public class KeyboardInputManager : MonoBehaviour
     bool inventoryOpen = false;
     public bool shopDialogue = false;
     bool characterStats = false;
+    bool equipment = false;
     void Update()
     {
         if (characterChat)
@@ -60,7 +61,21 @@ public class KeyboardInputManager : MonoBehaviour
                 }
             }
 
-            if(Input.GetKeyDown("escape"))
+            if (Input.GetKeyDown("e"))
+            {
+                if (equipment)
+                {
+                    equipment = false;
+                    FindObjectOfType<EquipmentManager>().hide();
+                }
+                else
+                {
+                    equipment = true;
+                    FindObjectOfType<EquipmentManager>().show();
+                }
+            }
+
+            if (Input.GetKeyDown("escape"))
             {
                 hideAllUi();
             }

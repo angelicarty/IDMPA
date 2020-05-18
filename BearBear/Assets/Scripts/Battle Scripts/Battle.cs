@@ -119,9 +119,17 @@ public class Battle : MonoBehaviour
                         break;
 
                     case ActionType.ITEM:
-                        //heal
-                        Heal(used_item.GetComponent<ItemProperties>().Use());
-                        yield return new WaitForSeconds(delay);
+                        //use item
+                        ItemProperties used_item_prop = used_item.GetComponent<ItemProperties>();
+                        if (used_item_prop.isEdible)
+                        {
+                            Heal(used_item_prop.Eat());
+                            yield return new WaitForSeconds(delay);
+                        }
+                        else if (used_item_prop.isEquipment)
+                        { 
+                            //TODO: equip the item
+                        }
                         //enemy attack
                         p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
                         statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
@@ -198,9 +206,17 @@ public class Battle : MonoBehaviour
                         {
                             state = BattleState.ACTION;
                         }
-                        //heal
-                        Heal(used_item.GetComponent<ItemProperties>().Use());
-                        yield return new WaitForSeconds(delay);
+                        //use item
+                        ItemProperties used_item_prop = used_item.GetComponent<ItemProperties>();
+                        if (used_item_prop.isEdible)//heal
+                        {
+                            Heal(used_item_prop.Eat());
+                            yield return new WaitForSeconds(delay);
+                        }
+                        else if (used_item_prop.isEquipment)//equip
+                        {
+                            //TODO: equip the item
+                        }
                         break;
 
                     case ActionType.SPECIAL:
