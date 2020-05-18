@@ -18,15 +18,7 @@ public class selfClick : MonoBehaviour
         }
         else
         {
-            try
-            {
-                ItemProperties food = gameObject.GetComponent<ItemProperties>();//checks if the item is edible
-                FindObjectOfType<InventoryManager>().UseItem(gameObject);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("item not edible");
-            }
+            FindObjectOfType<InventoryManager>().UseItem(gameObject);
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EquipmentManager : MonoBehaviour
 {
     public GameObject equipmentUI;
-    public GameObject slot_weapon;
+    public GameObject slot_hand;
     public GameObject slot_hat;
     public GameObject slot_neck;
 

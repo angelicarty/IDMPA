@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,7 +20,7 @@ public class InventoryManager : MonoBehaviour
     string sentence;
     public GameObject inventoryPanel;
     public GameObject testingItem;
-
+    public EquipmentManager equipmentManager;
     public GameObject itemDescBox;
     public GameObject itemDescText;
     public GameObject itemNameText;
@@ -327,15 +328,42 @@ public class InventoryManager : MonoBehaviour
                 Destroy(invSlots[num - 1].slot.transform.GetChild(0).gameObject);
 
             }
-            try
-            {//in combat
-                GameObject test = GameObject.FindGameObjectWithTag("BattleScene");//breaks if out of combat
-                GameObject.FindGameObjectWithTag("BattleController").GetComponent<Battle>().ActionSelectItem(item);
+
+            switch (item.GetComponent<EquipmentProperties>().type)
+            {
+                case EquipType.HAND:
+                    //places old item in ;inventory
+                    Debug.Log("hand");
+                    try
+                    {
+                        addItem(equipmentManager.slot_hand.GetComponentInChildren<ItemProperties>().gameObject, 1);
+                        Destroy(equipmentManager.slot_hand.GetComponentInChildren<ItemProperties>().gameObject);
+                    }catch (Exception e2){}
+                    //equips new item
+                    Instantiate(item, equipmentManager.slot_hand.transform, false).transform.SetAsLastSibling();
+                    break;
+                case EquipType.HEAD:
+                    //places old item in ;inventory
+                    try 
+                    { 
+                        addItem(equipmentManager.slot_hat.GetComponentInChildren<ItemProperties>().gameObject, 1);
+                        Destroy(equipmentManager.slot_hat.GetComponentInChildren<ItemProperties>().gameObject);
+                    }catch (Exception e2) { }
+                    //equips new item
+                    Instantiate(item, equipmentManager.slot_hat.transform, false).transform.SetAsLastSibling();
+                    break;
+                case EquipType.NECK:
+                    //places old item in ;inventory
+                    Debug.Log("neck");
+                    try { 
+                        addItem(equipmentManager.slot_neck.GetComponentInChildren<ItemProperties>().gameObject, 1);
+                        Destroy(equipmentManager.slot_neck.GetComponentInChildren<ItemProperties>().gameObject);
+                    }catch (Exception e2) { Debug.Log("no existing item"); }
+                    //equips new item
+                    Instantiate(item, equipmentManager.slot_neck.transform, false).transform.SetAsLastSibling();
+                    break;
             }
-            catch (System.Exception e)
-            {//out of combat
-                //TODO: equip item
-            }
+            
             //equip it in the appropriate slot
         }
     }
