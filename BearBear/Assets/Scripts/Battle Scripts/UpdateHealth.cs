@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UpdateHealth : MonoBehaviour
 {
-    public float scale = 1;//target scale
+    public float scale = 0;//target scale
     private float speed = 4f;
     public bool reset = false;
     private float duration = 1f;
@@ -15,7 +15,7 @@ public class UpdateHealth : MonoBehaviour
     {
         if (reset)
         {
-            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            gameObject.transform.localScale = new Vector3(0, 1, 1);
             reset = false;
         }
         else

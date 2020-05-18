@@ -156,15 +156,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Blue Potion
-  health: 0
-  mana: 100
+  health: 200
   used: 0
   isEdible: 1
-  value: 100
-  itemDescription: 'A vial of blue liquid, which invigorates the drinker, restoring
-    their mana.
+  value: 300
+  itemDescription: 'A vial of red liquid, capable of restoring injuries when imbibed.
 
-    Value: 100'
+    Value:
+    300'
 --- !u!114 &179976857746398830
 MonoBehaviour:
   m_ObjectHideFlags: 0

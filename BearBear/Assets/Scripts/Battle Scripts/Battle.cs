@@ -35,10 +35,11 @@ public class Battle : MonoBehaviour
     private System.Random ran = new System.Random();
     public void InitBattle()
     {
-        inv.closeInventory();
+        FindObjectOfType<KeyboardInputManager>().hideAllUi();
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement(); //disable character movement
         FindObjectOfType<KeyboardInputManager>().disableChat(); //prevents opening chat while in battle
         FindObjectOfType<MonstersController>().goingOutOfMobArea(); //pauses monster movements
+
         player = over_player.GetComponent<Stats>();
         enemy = over_enemy.GetComponent<Stats>();
         p_HP = player.GetCHP();
@@ -46,7 +47,7 @@ public class Battle : MonoBehaviour
         state = BattleState.START;
         overworld_camera.gameObject.SetActive(false);
         battleScene.SetActive(true);
-        inv.MoveCanvas(battleScene.GetComponentInChildren<Canvas>());
+        gameObject.GetComponent<UIManager>().MoveCanvas(battleScene.GetComponentInChildren<Canvas>());
         statGen.resetStatGen();
         battleUI = battleScene.GetComponent<BattleUI>();
         StartCoroutine("BattleLoop");
@@ -68,6 +69,11 @@ public class Battle : MonoBehaviour
             {
                 while (state == BattleState.ACTION || state == BattleState.BAG)
                 {
+                    if (Input.GetKeyDown("escape") || Input.GetKeyDown("i"))
+                    {
+                        inv.closeInventory();
+                        state = BattleState.ACTION;
+                    }
                     //waits for the player to push an action button, as defined in the ui stuff
                     yield return null;
                 }
@@ -206,7 +212,7 @@ public class Battle : MonoBehaviour
         }
         yield return new WaitForSeconds(delay * 2);
         //do shit based on result of battle
-        inv.MoveCanvas(GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>());
+        gameObject.GetComponent<UIManager>().MoveCanvas(GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>());
         player.SetCHP(p_HP);
         enemy.SetCHP(e_HP);
         if (result == 1)

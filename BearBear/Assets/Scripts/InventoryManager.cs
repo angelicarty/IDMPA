@@ -279,11 +279,6 @@ public class InventoryManager : MonoBehaviour
         FindObjectOfType<DialogueManager>().dialoguePrompt(itemAddedDialogue);
     }
 
-    public void MoveCanvas(Canvas target)
-    {//moves the inventory ui to a new canvas, for combat/overworld transition 
-        inventoryPanel.transform.SetParent(target.transform, false);
-    }
-
     public void EatItem(GameObject item)
     {
         if (item.GetComponent<ItemProperties>().isEdible)

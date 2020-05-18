@@ -124,8 +124,8 @@ public class BattleUI : MonoBehaviour
             p_display.reset = true;
             e_display.reset = true;
         }
-        p_display.scale = calcBarLength(controller.GetPlayerHP(0), controller.GetPlayerHP(1));
-        e_display.scale = calcBarLength(controller.GetEnemyHP(0), controller.GetEnemyHP(1));
+        p_display.scale = 1 - calcBarLength(controller.GetPlayerHP(0), controller.GetPlayerHP(1));
+        e_display.scale = 1 - calcBarLength(controller.GetEnemyHP(0), controller.GetEnemyHP(1));
 
         p_display.StartCoroutine("UpdateHealthBar");
         e_display.StartCoroutine("UpdateHealthBar");

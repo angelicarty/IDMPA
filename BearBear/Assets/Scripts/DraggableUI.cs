@@ -24,5 +24,4 @@ public class DraggableUI : MonoBehaviour, IDragHandler, IBeginDragHandler
         offsetX = thingToMove.transform.position.x - Input.mousePosition.x;
         offsetY = thingToMove.transform.position.y - Input.mousePosition.y;
     }
-
 }
