@@ -12,4 +12,5 @@ public class EquipmentProperties : MonoBehaviour
     public int DEF;
     public int SATK;
     public int SDEF;
+    public int SPD;
 }

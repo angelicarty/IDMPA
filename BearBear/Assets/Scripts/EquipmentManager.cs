@@ -20,4 +20,40 @@ public class EquipmentManager : MonoBehaviour
     {
         equipmentUI.SetActive(false);
     }
+
+    public EquipmentProperties GetHand()
+    {
+        try
+        {
+            return slot_hand.GetComponentInChildren<EquipmentProperties>();
+        }
+        catch (System.Exception e)
+        {
+            return null;
+        }
+    }
+
+    public EquipmentProperties GetHead()
+    {
+        try
+        {
+            return slot_head.GetComponentInChildren<EquipmentProperties>();
+        }
+        catch (System.Exception e)
+        {
+            return null;
+        }
+    }
+
+    public EquipmentProperties GetNeck()
+    {
+        try
+        {
+            return slot_neck.GetComponentInChildren<EquipmentProperties>();
+        }
+        catch (System.Exception e)
+        {
+            return null;
+        }
+    }
 }

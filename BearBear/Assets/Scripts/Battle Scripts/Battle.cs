@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 
 //This script controls the battle scene and damage calculations and stuff. Its attached object is created when the player collides with an enemy
 public enum BattleState {START, ACTION, BAG, P1, P2, END}
-public enum ActionType {ATTACK, ITEM, SPECIAL }
+public enum ActionType {ATTACK, ITEM, SPECIAL}
+
+
 public class Battle : MonoBehaviour
 {
     public int delay;//amount of time between stuff happening
@@ -29,8 +31,12 @@ public class Battle : MonoBehaviour
 
     public StatGen statGen;
     public InventoryManager inv;
+    public EquipmentManager equipment;
     private GameObject used_item;//when player uses an item, it gets stored here
     public bool debug = false;
+
+    //stores stats after modification from equipment, etc. Index 0 is MHP, so is ignored
+    private int[] effective_stats = new int[6];
 
     private System.Random ran = new System.Random();
     public void InitBattle()
@@ -39,7 +45,7 @@ public class Battle : MonoBehaviour
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement(); //disable character movement
         FindObjectOfType<KeyboardInputManager>().disableChat(); //prevents opening chat while in battle
         FindObjectOfType<MonstersController>().goingOutOfMobArea(); //pauses monster movements
-
+        
         player = over_player.GetComponent<Stats>();
         enemy = over_enemy.GetComponent<Stats>();
         p_HP = player.GetCHP();
@@ -50,6 +56,7 @@ public class Battle : MonoBehaviour
         gameObject.GetComponent<UIManager>().MoveCanvas(battleScene.GetComponentInChildren<Canvas>());
         statGen.resetStatGen();
         battleUI = battleScene.GetComponent<BattleUI>();
+        UpdateStats();
         StartCoroutine("BattleLoop");
     }
 
@@ -86,7 +93,7 @@ public class Battle : MonoBehaviour
                 {
                     case ActionType.ATTACK:
 
-                        e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
+                        e_HP = Attack(effective_stats[(int)Stat.ATK], e_HP, enemy.GetDEF());
                         battleUI.PlayerAttacking();
                         statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
                         if (debug) { Debug.Log("e_HP = " + e_HP); }
@@ -99,7 +106,7 @@ public class Battle : MonoBehaviour
                         }
                         else
                         {
-                            p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
+                            p_HP = Attack(enemy.GetATK(), p_HP, effective_stats[(int)Stat.DEF]);
                             battleUI.PlayerDefending();
 
                             statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
@@ -127,11 +134,11 @@ public class Battle : MonoBehaviour
                             yield return new WaitForSeconds(delay);
                         }
                         else if (used_item_prop.isEquipment)
-                        { 
-                            //TODO: equip the item
+                        {
+                            UpdateStats();
                         }
                         //enemy attack
-                        p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
+                        p_HP = Attack(enemy.GetATK(), p_HP, effective_stats[(int)Stat.DEF]);
                         statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                         if (debug) { Debug.Log("p_HP = " + p_HP); }
                         yield return new WaitForSeconds(delay);
@@ -159,7 +166,7 @@ public class Battle : MonoBehaviour
                 {
                     case ActionType.ATTACK:
 
-                        p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
+                        p_HP = Attack(enemy.GetATK(), p_HP, effective_stats[(int)Stat.DEF]);
                         battleUI.PlayerDefending();
                         statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                         if (debug) { Debug.Log("p_HP = " + p_HP); }
@@ -172,7 +179,7 @@ public class Battle : MonoBehaviour
                         }
                         else
                         {
-                            e_HP = Attack(player.GetATK(), e_HP, enemy.GetDEF());
+                            e_HP = Attack(effective_stats[(int)Stat.ATK], e_HP, enemy.GetDEF());
                             battleUI.PlayerAttacking();
                             statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
                             if (debug) { Debug.Log("e_HP = " + e_HP); }
@@ -192,7 +199,7 @@ public class Battle : MonoBehaviour
 
                     case ActionType.ITEM:
                         //enemy attack
-                        p_HP = Attack(enemy.GetATK(), p_HP, player.GetDEF());
+                        p_HP = Attack(enemy.GetATK(), p_HP, effective_stats[(int)Stat.DEF]);
                         statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                         if (debug) { Debug.Log("p_HP = " + p_HP); }
                         yield return new WaitForSeconds(delay);
@@ -215,7 +222,7 @@ public class Battle : MonoBehaviour
                         }
                         else if (used_item_prop.isEquipment)//equip
                         {
-                            //TODO: equip the item
+                            UpdateStats();
                         }
                         break;
 
@@ -273,7 +280,7 @@ public class Battle : MonoBehaviour
     public void ActionAttack()
     {
         action = ActionType.ATTACK;
-        if (player.GetSPD() >= enemy.GetSPD())
+        if (effective_stats[(int)Stat.SPD] >= enemy.GetSPD())
         {
             state = BattleState.P1;
         }
@@ -307,7 +314,7 @@ public class Battle : MonoBehaviour
             inv.closeInventory();
             action = ActionType.ITEM;
             used_item = item;
-            if (player.GetSPD() >= enemy.GetSPD())
+            if (effective_stats[(int)Stat.SPD] >= enemy.GetSPD())
             {
                 state = BattleState.P1;
             }
@@ -317,6 +324,26 @@ public class Battle : MonoBehaviour
                 statGen.addProb((int)Stat.SPD);//SPEED INCREASES IF PLAYER GOES SECOND TODO
             }
         }
+    }
+
+    //UPDATE CURRENT STATS
+    private void UpdateStats()
+    {
+        EquipmentProperties hand = equipment.GetHand();
+        if (hand == null)
+            hand = new EquipmentProperties();
+        EquipmentProperties head = equipment.GetHead();
+        if (head == null)
+            head = new EquipmentProperties();
+        EquipmentProperties neck = equipment.GetNeck();
+        if (neck == null)
+            neck = new EquipmentProperties();
+
+        effective_stats[(int)Stat.ATK] = player.GetATK() + hand.ATK + head.ATK + neck.ATK;
+        effective_stats[(int)Stat.DEF] = player.GetDEF() + hand.DEF + head.DEF + neck.DEF;
+        effective_stats[(int)Stat.SATK] = player.GetSATK() + hand.SATK + head.SATK + neck.SATK;
+        effective_stats[(int)Stat.SDEF] = player.GetSDEF() + hand.SDEF + head.SDEF + neck.SDEF;
+        effective_stats[(int)Stat.SPD] = player.GetSPD() + hand.SPD + head.SPD + neck.SPD;
     }
 
     //ENDING STUFF
