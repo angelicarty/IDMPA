@@ -32,6 +32,7 @@ public class InventoryManager : MonoBehaviour
     //INFO BOX
     public void isMousedOver(string thisName, string desc)
     {
+        Debug.Log("MOUSE OVER " + thisName);
         isMousedOverItem = true;
         var childCount = itemDescBox.transform.parent.childCount;
         itemDescBox.transform.SetAsLastSibling();
@@ -365,6 +366,7 @@ public class InventoryManager : MonoBehaviour
                     newHead.transform.SetAsLastSibling();
                     newHead.GetComponent<Image>().enabled = true;
                     newHead.GetComponent<Button>().enabled = true;
+                    newHead.name = item.name;
                     break;
 
                 case EquipType.NECK:
@@ -381,6 +383,7 @@ public class InventoryManager : MonoBehaviour
                     newNeck.transform.SetAsLastSibling();
                     newNeck.GetComponent<Image>().enabled = true;
                     newNeck.GetComponent<Button>().enabled = true;
+
                     break;
             }
             
@@ -390,6 +393,7 @@ public class InventoryManager : MonoBehaviour
 
     public void UnequipItem(GameObject item)
     {
+        item.name = item.name.Replace("(Clone)", "");
         if (addItem(item, 1))
         {
             isNotMousedOver();
