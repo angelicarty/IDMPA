@@ -41,7 +41,7 @@ Camera:
   m_GameObject: {fileID: 6703824101647870362}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -60,7 +60,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 10
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -111,7 +111,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6703824103144776172}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
@@ -162,7 +162,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 11033d80bd090c94d9956ae7a28e9d0e, type: 3}
   - {fileID: 21300000, guid: a7afee69e02da73468f71e8a3b19f447, type: 3}
   - {fileID: 21300000, guid: 24e3d61c90506d342a2351375f8c24d7, type: 3}
-  walkingSpeed: 10
+  walkingSpeed: 5
 --- !u!114 &6703824103144776171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,9 +178,13 @@ MonoBehaviour:
   MHP: 0
   CHP: 0
   ATK: 0
+  DEF: 0
+  sATK: 0
+  sDEF: 0
   SPD: 0
-  battleActor: {fileID: 7189433857148676713, guid: 8c143ae7f17ef2344803383faa521e45,
+  battleActor: {fileID: 5761743709407009622, guid: 8c143ae7f17ef2344803383faa521e45,
     type: 3}
+  name: BearBear
 --- !u!212 &6703824103144776169
 SpriteRenderer:
   m_ObjectHideFlags: 0
