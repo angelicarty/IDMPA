@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 179976857746398830}
   - component: {fileID: 1950917552751760209}
   m_Layer: 5
-  m_Name: Neck_Kokarda2
+  m_Name: Neck_KokardaTemp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

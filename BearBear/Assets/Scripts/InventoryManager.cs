@@ -29,12 +29,13 @@ public class InventoryManager : MonoBehaviour
 
     bool isMousedOverItem;
 
+    //INFO BOX
     public void isMousedOver(string thisName, string desc)
     {
         isMousedOverItem = true;
         var childCount = itemDescBox.transform.parent.childCount;
         itemDescBox.transform.SetAsLastSibling();
-        offsetX = -(itemDescBox.GetComponent<RectTransform>().sizeDelta.x + 10) / 2;
+        offsetX = -(itemDescBox.GetComponent<RectTransform>().sizeDelta.x + 10);
         offsetY = -(itemDescBox.GetComponent<RectTransform>().sizeDelta.y + 10) / 2;
         itemDescText.GetComponent<Text>().text = desc;
         itemNameText.GetComponent<Text>().text = thisName;
@@ -60,7 +61,7 @@ public class InventoryManager : MonoBehaviour
 
         if(Input.GetKeyDown("m"))
         {
-            giveItem(testingItem, 6);
+            giveItem(testingItem, 1);
         }
         if(Input.GetKeyDown("k"))
         {
@@ -79,7 +80,8 @@ public class InventoryManager : MonoBehaviour
             mouseOverItem();
         }
     }
-
+    
+    //SHOP
     public int purchaseItem(GameObject item, int count, int costPerObject)
     {
         if(gold >= (count * costPerObject))
@@ -312,6 +314,7 @@ public class InventoryManager : MonoBehaviour
         }
         else if (item.GetComponent<ItemProperties>().isEquipment)
         {
+            
             string slotname = EventSystem.current.currentSelectedGameObject.transform.parent.name;
             int num;
             int.TryParse(slotname, out num);
@@ -332,35 +335,52 @@ public class InventoryManager : MonoBehaviour
             switch (item.GetComponent<EquipmentProperties>().type)
             {
                 case EquipType.HAND:
-                    //places old item in ;inventory
+
                     Debug.Log("hand");
-                    try
+                    //places old item in inventory
+                    if (equipmentManager.slot_hand.GetComponentInChildren<ItemProperties>() != null)
                     {
-                        addItem(equipmentManager.slot_hand.GetComponentInChildren<ItemProperties>().gameObject, 1);
-                        Destroy(equipmentManager.slot_hand.GetComponentInChildren<ItemProperties>().gameObject);
-                    }catch (Exception e2){}
+                        UnequipItem(equipmentManager.slot_hand.GetComponentInChildren<ItemProperties>().gameObject);
+                    }
+                    UnequipItem(equipmentManager.slot_hand.GetComponentInChildren<ItemProperties>().gameObject);
+
                     //equips new item
-                    Instantiate(item, equipmentManager.slot_hand.transform, false).transform.SetAsLastSibling();
+                    GameObject newHand = Instantiate(item, equipmentManager.slot_hand.transform, false);
+                    newHand.transform.SetAsLastSibling();
+                    newHand.GetComponent<Image>().enabled = true;
+                    newHand.GetComponent<Button>().enabled = true;
                     break;
+
                 case EquipType.HEAD:
-                    //places old item in ;inventory
-                    try 
-                    { 
-                        addItem(equipmentManager.slot_hat.GetComponentInChildren<ItemProperties>().gameObject, 1);
-                        Destroy(equipmentManager.slot_hat.GetComponentInChildren<ItemProperties>().gameObject);
-                    }catch (Exception e2) { }
+
+                    Debug.Log("head");
+                    //places old item in inventory
+                    if (equipmentManager.slot_head.GetComponentInChildren<ItemProperties>() != null)
+                    {
+                        UnequipItem(equipmentManager.slot_head.GetComponentInChildren<ItemProperties>().gameObject);
+                    }
+
                     //equips new item
-                    Instantiate(item, equipmentManager.slot_hat.transform, false).transform.SetAsLastSibling();
+                    GameObject newHead = Instantiate(item, equipmentManager.slot_head.transform, false);
+                    newHead.transform.SetAsLastSibling();
+                    newHead.GetComponent<Image>().enabled = true;
+                    newHead.GetComponent<Button>().enabled = true;
                     break;
+
                 case EquipType.NECK:
-                    //places old item in ;inventory
+
                     Debug.Log("neck");
-                    try { 
-                        addItem(equipmentManager.slot_neck.GetComponentInChildren<ItemProperties>().gameObject, 1);
-                        Destroy(equipmentManager.slot_neck.GetComponentInChildren<ItemProperties>().gameObject);
-                    }catch (Exception e2) { Debug.Log("no existing item"); }
+                    //places old item in ;inventory
+                    if (equipmentManager.slot_neck.GetComponentInChildren<ItemProperties>() != null)
+                    {
+                        UnequipItem(equipmentManager.slot_neck.GetComponentInChildren<ItemProperties>().gameObject);
+                    }
+
                     //equips new item
-                    Instantiate(item, equipmentManager.slot_neck.transform, false).transform.SetAsLastSibling();
+                    GameObject newNeck = Instantiate(item, equipmentManager.slot_neck.transform, false);
+                    newNeck.transform.SetAsLastSibling();
+                    newNeck.GetComponent<Image>().enabled = true;
+                    newNeck.GetComponent<Button>().enabled = true;
                     break;
             }
             
@@ -368,6 +388,15 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void UnequipItem(GameObject item)
+    {
+        if (addItem(item, 1))
+        {
+            isNotMousedOver();
+            Destroy(item);
+        }
+        
+    }
     public bool isInvEmpty()
     {
         for(int i=0; i < invSlots.Length; i++)

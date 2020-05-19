@@ -102,6 +102,8 @@ public class KeyboardInputManager : MonoBehaviour
         FindObjectOfType<InventoryManager>().closeInventory();
         questOpen = false;
         FindObjectOfType<QuestManager>().closeQuestLog();
+        equipment = false;
+        FindObjectOfType<EquipmentManager>().hide();
     }
 
     public void shopDialogueToggleShop()

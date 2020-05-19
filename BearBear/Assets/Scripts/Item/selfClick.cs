@@ -16,6 +16,10 @@ public class selfClick : MonoBehaviour
         {
             shop.sellThis(gameObject);
         }
+        else if (gameObject.GetComponentInParent<EquipSlotFlag>() != null)
+        {
+            FindObjectOfType<InventoryManager>().UnequipItem(gameObject);
+        }
         else
         {
             FindObjectOfType<InventoryManager>().UseItem(gameObject);

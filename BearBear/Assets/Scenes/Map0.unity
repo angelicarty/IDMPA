@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 48946547}
   - component: {fileID: 48946546}
   m_Layer: 0
-  m_Name: SleepingBunny (1)
+  m_Name: SleepingBunny_Cave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -531,6 +531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 52666212}
   - component: {fileID: 52666213}
+  - component: {fileID: 52666214}
   m_Layer: 5
   m_Name: Neck
   m_TagString: Untagged
@@ -566,6 +567,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52666211}
   m_CullTransparentMesh: 0
+--- !u!114 &52666214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52666211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3ff882f58b030468993ca31940eafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &53702441
 GameObject:
   m_ObjectHideFlags: 0
@@ -1937,6 +1950,7 @@ GameObject:
   m_Component:
   - component: {fileID: 263320995}
   - component: {fileID: 263320996}
+  - component: {fileID: 263320997}
   m_Layer: 5
   m_Name: Weapon
   m_TagString: Untagged
@@ -1972,6 +1986,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 263320994}
   m_CullTransparentMesh: 0
+--- !u!114 &263320997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263320994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3ff882f58b030468993ca31940eafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &277772983
 GameObject:
   m_ObjectHideFlags: 0
@@ -2949,7 +2975,7 @@ GameObject:
   - component: {fileID: 414831335}
   - component: {fileID: 414831334}
   m_Layer: 0
-  m_Name: SleepingBunny
+  m_Name: SleepingBunny_Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3503,11 +3529,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipmentUI: {fileID: 798841960}
   slot_hand: {fileID: 263320994}
-  slot_hat: {fileID: 686181789}
+  slot_head: {fileID: 686181789}
   slot_neck: {fileID: 52666211}
-  itemDescBox: {fileID: 509249967}
-  itemDescText: {fileID: 2091588213}
-  itemNameText: {fileID: 1312878785}
 --- !u!1 &504360154
 GameObject:
   m_ObjectHideFlags: 0
@@ -4726,6 +4749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 686181790}
   - component: {fileID: 686181791}
+  - component: {fileID: 686181792}
   m_Layer: 5
   m_Name: Hat
   m_TagString: Untagged
@@ -4761,6 +4785,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686181789}
   m_CullTransparentMesh: 0
+--- !u!114 &686181792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686181789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3ff882f58b030468993ca31940eafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &690469446
 GameObject:
   m_ObjectHideFlags: 0
@@ -9497,36 +9533,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312878785}
   m_CullTransparentMesh: 0
---- !u!1 &1338155226
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1338155227}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1338155227
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338155226}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 19
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1339416504
 GameObject:
   m_ObjectHideFlags: 0
@@ -15405,7 +15411,7 @@ PrefabInstance:
         type: 3}
       propertyPath: testingItem
       value: 
-      objectReference: {fileID: 3547253407065860030, guid: f1a90359257354c4bbba012f7e9cdc91,
+      objectReference: {fileID: 3547253407065860030, guid: 71946683d061f014d94a7fad8b08085f,
         type: 3}
     - target: {fileID: 6809110346480237054, guid: 937666c7755055841b37a46c4ddcbae5,
         type: 3}

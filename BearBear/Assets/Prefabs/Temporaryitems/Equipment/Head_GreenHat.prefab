@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: -271940277847312342}
   - component: {fileID: 5353904476452013804}
   - component: {fileID: 179976857746398830}
+  - component: {fileID: 2243941760538526474}
   m_Layer: 5
-  m_Name: PotionRed
+  m_Name: Head_GreenHat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d8f4a3f45f7264d41a0c60a4dc56b16f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 229f354b7e9ae3743a8f66940a4a0e98, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -155,16 +156,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4258a4f7766ba3546bba838c1212f2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Red Potion
-  health: 100
-  mana: 0
+  name: Green Hat
+  health: 0
   used: 0
-  isEdible: 1
-  value: 100
-  itemDescription: 'A vial of red liquid, capable of restoring injuries when imbibed.
+  isEdible: 0
+  isEquipment: 1
+  value: 500
+  itemDescription: 'A pretty green hat which is surprisingly tough, enahncing both
+    the wearers protection and fashion sense
 
-    Value:
-    100'
+    Value: 500'
 --- !u!114 &179976857746398830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,3 +178,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11cdad9cef2fdd4689197ce54f8d20a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2243941760538526474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547253407065860030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70b7ec9c34316c4fa25128520d6e973, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  ATK: 0
+  DEF: 50
+  SATK: 0
+  SDEF: 0
