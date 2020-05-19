@@ -315,7 +315,7 @@ public class InventoryManager : MonoBehaviour
         }
         else if (item.GetComponent<ItemProperties>().isEquipment)
         {
-            
+
             string slotname = EventSystem.current.currentSelectedGameObject.transform.parent.name;
             int num;
             int.TryParse(slotname, out num);
@@ -364,7 +364,8 @@ public class InventoryManager : MonoBehaviour
                     }
 
                     //equips new item
-                    GameObject newHead = Instantiate(item, equipmentManager.slot_head.transform, false);
+                    GameObject newHead = Instantiate(item, equipmentManager.slot_head.transform);
+                   
                     newHead.transform.SetAsLastSibling();
                     newHead.GetComponent<Image>().enabled = true;
                     newHead.GetComponent<Button>().enabled = true;
@@ -404,6 +405,7 @@ public class InventoryManager : MonoBehaviour
 
     public void UnequipItem(GameObject item)
     {
+        //adds item to inventory, removes from equipment slot
         item.name = item.name.Replace("(Clone)", "");
         if (addItem(item, 1))
         {

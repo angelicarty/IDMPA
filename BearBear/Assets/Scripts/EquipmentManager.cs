@@ -18,6 +18,7 @@ public class EquipmentManager : MonoBehaviour
 
     public void hide()
     {
+        FindObjectOfType<InventoryManager>().isNotMousedOver();
         equipmentUI.SetActive(false);
     }
 
