@@ -6011,37 +6011,37 @@ PrefabInstance:
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: MHP
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: CHP
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: ATK
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: DEF
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: sATK
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: sDEF
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: SPD
-      value: 999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776172, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
@@ -15573,4 +15573,5 @@ MonoBehaviour:
   overworld_camera: {fileID: 0}
   statGen: {fileID: 7310382382739665809}
   inv: {fileID: 1832920265}
+  equipment: {fileID: 502918248}
   debug: 0
