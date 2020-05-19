@@ -32,7 +32,7 @@ public class Battle : MonoBehaviour
     public StatGen statGen;
     public InventoryManager inv;
     public EquipmentManager equipment;
-    private GameObject used_item;//when player uses an item, it gets stored here
+    private ItemProperties used_item_prop;//when player uses an item, it gets stored here
     public bool debug = false;
 
     //stores stats after modification from equipment, etc. Index 0 is MHP, so is ignored
@@ -127,7 +127,6 @@ public class Battle : MonoBehaviour
 
                     case ActionType.ITEM:
                         //use item
-                        ItemProperties used_item_prop = used_item.GetComponent<ItemProperties>();
                         if (used_item_prop.isEdible)
                         {
                             Heal(used_item_prop.Eat());
@@ -136,9 +135,11 @@ public class Battle : MonoBehaviour
                         else if (used_item_prop.isEquipment)
                         {
                             UpdateStats();
+                            yield return new WaitForSeconds(delay);
                         }
                         //enemy attack
                         p_HP = Attack(enemy.GetATK(), p_HP, effective_stats[(int)Stat.DEF]);
+                        battleUI.PlayerDefending();
                         statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                         if (debug) { Debug.Log("p_HP = " + p_HP); }
                         yield return new WaitForSeconds(delay);
@@ -165,7 +166,7 @@ public class Battle : MonoBehaviour
                 switch (action)
                 {
                     case ActionType.ATTACK:
-
+                        //enemy attack
                         p_HP = Attack(enemy.GetATK(), p_HP, effective_stats[(int)Stat.DEF]);
                         battleUI.PlayerDefending();
                         statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
@@ -201,6 +202,7 @@ public class Battle : MonoBehaviour
                         //enemy attack
                         p_HP = Attack(enemy.GetATK(), p_HP, effective_stats[(int)Stat.DEF]);
                         statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
+                        battleUI.PlayerDefending();
                         if (debug) { Debug.Log("p_HP = " + p_HP); }
                         yield return new WaitForSeconds(delay);
                         if (p_HP <= 0)
@@ -214,7 +216,6 @@ public class Battle : MonoBehaviour
                             state = BattleState.ACTION;
                         }
                         //use item
-                        ItemProperties used_item_prop = used_item.GetComponent<ItemProperties>();
                         if (used_item_prop.isEdible)//heal
                         {
                             Heal(used_item_prop.Eat());
@@ -223,6 +224,7 @@ public class Battle : MonoBehaviour
                         else if (used_item_prop.isEquipment)//equip
                         {
                             UpdateStats();
+                            yield return new WaitForSeconds(delay);
                         }
                         break;
 
@@ -299,7 +301,7 @@ public class Battle : MonoBehaviour
 
     public void ActionItem()
     {
-        used_item = null;
+        used_item_prop = null;
         inv.openInventory();
         state = BattleState.BAG;
 
@@ -307,13 +309,13 @@ public class Battle : MonoBehaviour
 
     }
 
-    public void ActionSelectItem(GameObject item)
+    public void ActionSelectItem(ItemProperties item)
     {
         if (state == BattleState.BAG)
         {
             inv.closeInventory();
             action = ActionType.ITEM;
-            used_item = item;
+            used_item_prop = new ItemProperties(item);
             if (effective_stats[(int)Stat.SPD] >= enemy.GetSPD())
             {
                 state = BattleState.P1;

@@ -20,4 +20,14 @@ public class ItemProperties : MonoBehaviour
         return health;
     }
 
+    public ItemProperties(ItemProperties old)
+    {
+        name = old.name;
+        health = old.health;
+        isEdible = old.isEdible;
+        isEquipment = old.isEquipment;
+        value = old.value;
+        itemDescription = old.itemDescription;
+    }
+
 }

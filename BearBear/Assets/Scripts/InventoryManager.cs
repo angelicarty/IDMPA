@@ -306,7 +306,7 @@ public class InventoryManager : MonoBehaviour
             try
             {//in combat
                 GameObject test = GameObject.FindGameObjectWithTag("BattleScene");//breaks if out of combat
-                GameObject.FindGameObjectWithTag("BattleController").GetComponent<Battle>().ActionSelectItem(item);
+                GameObject.FindGameObjectWithTag("BattleController").GetComponent<Battle>().ActionSelectItem(item.GetComponent<ItemProperties>());
             }
             catch (System.Exception e)
             {//out of combat
@@ -332,6 +332,8 @@ public class InventoryManager : MonoBehaviour
                 Destroy(invSlots[num - 1].slot.transform.GetChild(0).gameObject);
 
             }
+
+
 
             switch (item.GetComponent<EquipmentProperties>().type)
             {
@@ -386,8 +388,17 @@ public class InventoryManager : MonoBehaviour
 
                     break;
             }
-            
-            //equip it in the appropriate slot
+
+            try
+            {//in combat
+                GameObject test = GameObject.FindGameObjectWithTag("BattleScene");//breaks if out of combat
+                GameObject.FindGameObjectWithTag("BattleController").GetComponent<Battle>().ActionSelectItem(item.GetComponent<ItemProperties>());
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log("Item equipped out of combat");
+                //out of combat, do nothing
+            }
         }
     }
 
