@@ -11828,11 +11828,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5401757de8759e745b7cbca200ac8811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  name: 
   equipmentIDs: []
   inventoryIds: []
   inventoryCounts: 
   gold: 0
+  statValues: 00000000000000000000000000000000000000000000000000000000
 --- !u!1 &1349594371
 GameObject:
   m_ObjectHideFlags: 0
@@ -15343,7 +15344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -530, y: -130}
+  m_AnchoredPosition: {x: -510.2, y: -130}
   m_SizeDelta: {x: 60, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1817895582
