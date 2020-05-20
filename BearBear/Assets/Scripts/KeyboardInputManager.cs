@@ -10,6 +10,31 @@ public class KeyboardInputManager : MonoBehaviour
     public bool shopDialogue = false;
     bool characterStats = false;
     bool equipment = false;
+    bool gameMenu = false;
+    public GameObject blur;
+    public GameObject inGameMenu;
+
+    MonstersController monstersController;
+    QuestManager questManager;
+    EquipmentManager equipmentManager;
+    InventoryManager inventoryManager;
+    CharacterStats characterStatsManager;
+    DialogueManager dialogueManager;
+    ShopManager shopManager;
+    CharacterMove characterMove;
+   
+
+    private void Start()
+    {
+        monstersController = FindObjectOfType<MonstersController>();
+        questManager = FindObjectOfType<QuestManager>();
+        equipmentManager = FindObjectOfType<EquipmentManager>();
+        inventoryManager = FindObjectOfType<InventoryManager>();
+        characterStatsManager = FindObjectOfType<CharacterStats>();
+        dialogueManager = FindObjectOfType<DialogueManager>();
+        shopManager = FindObjectOfType<ShopManager>();
+        characterMove = FindObjectOfType<CharacterMove>();
+    }
     void Update()
     {
         if (characterChat)
@@ -24,12 +49,12 @@ public class KeyboardInputManager : MonoBehaviour
                 if (questOpen)
                 {
                     questOpen = false;
-                    FindObjectOfType<QuestManager>().closeQuestLog();
+                    questManager.closeQuestLog();
                 }
                 else
                 {
                     questOpen = true;
-                    FindObjectOfType<QuestManager>().openQuestLog();
+                    questManager.openQuestLog();
                 }
             }
 
@@ -38,12 +63,12 @@ public class KeyboardInputManager : MonoBehaviour
                 if(inventoryOpen)
                 {
                     inventoryOpen = false;
-                    FindObjectOfType<InventoryManager>().closeInventory();
+                    inventoryManager.closeInventory();
                 }
                 else
                 {
                     inventoryOpen = true;
-                    FindObjectOfType<InventoryManager>().openInventory();
+                    inventoryManager.openInventory();
                 }
             }
 
@@ -52,12 +77,12 @@ public class KeyboardInputManager : MonoBehaviour
                 if (characterStats)
                 {
                     characterStats = false;
-                    FindObjectOfType<CharacterStats>().hideStats();
+                    characterStatsManager.hideStats();
                 }
                 else
                 {
                     characterStats = true;
-                    FindObjectOfType<CharacterStats>().displayStats();
+                    characterStatsManager.displayStats();
                 }
             }
 
@@ -66,19 +91,45 @@ public class KeyboardInputManager : MonoBehaviour
                 if (equipment)
                 {
                     equipment = false;
-                    FindObjectOfType<EquipmentManager>().hide();
+                    equipmentManager.hide();
                 }
                 else
                 {
                     equipment = true;
-                    FindObjectOfType<EquipmentManager>().show();
+                    equipmentManager.show();
                 }
             }
 
             if (Input.GetKeyDown("escape"))
             {
-                hideAllUi();
+                if (!gameMenu)
+                {
+                    hideAllUi();
+                    menu();
+                    gameMenu = true;
+                }
+                else
+                {
+                    hideAllUi();
+                    blur.SetActive(false);
+                    enableCharacterMovement();
+                    if(monstersController.isInMobArea())
+                    {
+                        monstersController.resumeMobMovement();
+                    }
+                }
             }
+        }
+    }
+
+    void menu()
+    {
+        blur.SetActive(true);
+        inGameMenu.SetActive(true);
+        disableCharacterMovement();
+        if (monstersController.isInMobArea())
+        {
+            monstersController.pausesMobMovement();
         }
     }
 
@@ -86,24 +137,26 @@ public class KeyboardInputManager : MonoBehaviour
     {
         if (!shopDialogue)
         {
-            FindObjectOfType<DialogueManager>().pressedSpace();
+            dialogueManager.pressedSpace();
         }
         else
         {
-            FindObjectOfType<ShopManager>().pressedSpace();
+            shopManager.pressedSpace();
         }
     }
 
     public void hideAllUi()
     {
         characterStats = false;
-        FindObjectOfType<CharacterStats>().hideStats();
+        characterStatsManager.hideStats();
         inventoryOpen = false;
-        FindObjectOfType<InventoryManager>().closeInventory();
+        inventoryManager.closeInventory();
         questOpen = false;
-        FindObjectOfType<QuestManager>().closeQuestLog();
+        questManager.closeQuestLog();
         equipment = false;
-        FindObjectOfType<EquipmentManager>().hide();
+        equipmentManager.hide();
+        gameMenu = false;
+        inGameMenu.SetActive(false);
     }
 
     public void shopDialogueToggleShop()
@@ -117,7 +170,7 @@ public class KeyboardInputManager : MonoBehaviour
 
     public void disableCharacterMovement() //prevents character from moving
     {
-        FindObjectOfType<CharacterMove>().disableWalking();
+        characterMove.disableWalking();
     }
 
     public void disableChat()
@@ -132,6 +185,6 @@ public class KeyboardInputManager : MonoBehaviour
 
     public void enableCharacterMovement() //reenable character to move
     {
-        FindObjectOfType<CharacterMove>().enableWalking();
+        characterMove.enableWalking();
     }
 }

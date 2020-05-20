@@ -21,6 +21,10 @@ public class MonstersController : MonoBehaviour
 
     bool InMobArea = true;  //temp default to true for testing purpose
 
+    public bool isInMobArea()
+    {
+        return InMobArea;
+    }
     private void OnEnable()
     {
         //populate with mobs the moment the map loads (?)
@@ -65,6 +69,11 @@ public class MonstersController : MonoBehaviour
     public void goingOutOfMobArea()
     {
         InMobArea = false;
+        pausesMobMovement();
+    }
+
+    public void pausesMobMovement()
+    {
         for (int i = 0; i < spawnedMobs.Length; i++)
         {
             if (spawnedMobs[i])
@@ -72,8 +81,18 @@ public class MonstersController : MonoBehaviour
                 spawnedMobs[i].GetComponent<SlimeWalk>().slimeStopWalking();
             }
         }
-    } 
+    }
 
+    public void resumeMobMovement()
+    {
+        for (int i = 0; i < spawnedMobs.Length; i++)
+        {
+            if (spawnedMobs[i])
+            {
+                spawnedMobs[i].GetComponent<SlimeWalk>().slimeWalking();
+            }
+        }
+    }
     public void goingIntoMobArea()
     {
         if (InMobArea)
@@ -83,13 +102,7 @@ public class MonstersController : MonoBehaviour
         else
         {
             InMobArea = true;
-            for (int i = 0; i < spawnedMobs.Length; i++)
-            {
-                if (spawnedMobs[i])
-                {
-                    spawnedMobs[i].GetComponent<SlimeWalk>().slimeWalking();
-                }
-            }
+            resumeMobMovement();
         }
     }
 
