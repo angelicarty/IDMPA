@@ -57,4 +57,35 @@ public class EquipmentManager : MonoBehaviour
             return null;
         }
     }
+
+    //gets all equipment IDs for saving
+    public string[] GetAllIds()
+    {
+        string[] IDs = new string[3];
+        try
+        {
+             IDs[0] = slot_hand.GetComponentInChildren<EquipmentProperties>().name.Replace("(Clone)", "");
+        }
+        catch (System.Exception e)
+        {
+            IDs[0] = "-";
+        }
+        try
+        {
+            IDs[1] = slot_head.GetComponentInChildren<EquipmentProperties>().name.Replace("(Clone)", "");
+        }
+        catch (System.Exception e)
+        {
+            IDs[1] = "-";
+        }
+        try
+        {
+            IDs[2] = slot_neck.GetComponentInChildren<EquipmentProperties>().name.Replace("(Clone)", "");
+        }
+        catch (System.Exception e)
+        {
+            IDs[2] = "-";
+        }
+        return IDs;
+    }
 }

@@ -4485,6 +4485,31 @@ MonoBehaviour:
   slot_hand: {fileID: 263320994}
   slot_head: {fileID: 686181789}
   slot_neck: {fileID: 52666211}
+--- !u!114 &502918250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502918247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809d1678a040aab4e97881778c6fb5db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Items:
+  - {fileID: 3547253407065860030, guid: 792b824e4dbf70842bdfb66c6ede7f84, type: 3}
+  - {fileID: 3547253407065860030, guid: 71946683d061f014d94a7fad8b08085f, type: 3}
+  - {fileID: 3547253407065860030, guid: f1a90359257354c4bbba012f7e9cdc91, type: 3}
+  - {fileID: 3547253407065860030, guid: 86dcd218f246e534189c6e7aa97c8e64, type: 3}
+  - {fileID: 7335266869444238848, guid: e66610922a2a2e444a089f32f000a6b4, type: 3}
+  - {fileID: 3547253407065860030, guid: 7fa6a32e3afcae44f89b448ecab33f94, type: 3}
+  - {fileID: 3547253407065860030, guid: 6aa5b23d6a6cdc24ba6fa3471c11db9f, type: 3}
+  - {fileID: 3547253407065860030, guid: cdb630749bc2775469c70e179240e709, type: 3}
+  - {fileID: 7335266869444238848, guid: be6699cf01024c445b7e7ec180e83381, type: 3}
+  - {fileID: 7335266869444238848, guid: 26efd52ee7d513f40b4f740efb8bf25c, type: 3}
+  - {fileID: 7335266869444238848, guid: 1bd28908655d3364ea5cd823486cb32b, type: 3}
+  - {fileID: 7335266869444238848, guid: 578429c9984170040b90480da688d30d, type: 3}
 --- !u!1 &504360154
 GameObject:
   m_ObjectHideFlags: 0
@@ -7396,6 +7421,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6703824103144776171, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
+        type: 3}
+      propertyPath: battleActor
+      value: 
+      objectReference: {fileID: 5761743709407009622, guid: 8c143ae7f17ef2344803383faa521e45,
+        type: 3}
     - target: {fileID: 6703824103144776172, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: m_Name
@@ -11716,6 +11747,7 @@ GameObject:
   - component: {fileID: 1341034784}
   - component: {fileID: 1341034786}
   - component: {fileID: 1341034787}
+  - component: {fileID: 1341034788}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -11736,7 +11768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  saveID: BearLoadTest
+  data: {fileID: 1341034788}
 --- !u!4 &1341034785
 Transform:
   m_ObjectHideFlags: 0
@@ -11784,6 +11816,23 @@ MonoBehaviour:
   ATKText: {fileID: 1955816580}
   defText: {fileID: 1504426099}
   spdText: {fileID: 603020237}
+--- !u!114 &1341034788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341034783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5401757de8759e745b7cbca200ac8811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  equipmentIDs: []
+  inventoryIds: []
+  inventoryCounts: 
+  gold: 0
 --- !u!1 &1349594371
 GameObject:
   m_ObjectHideFlags: 0
@@ -15508,7 +15557,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -530, y: -100}
+  m_AnchoredPosition: {x: -266.9, y: -60.3}
   m_SizeDelta: {x: 60, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1836289559

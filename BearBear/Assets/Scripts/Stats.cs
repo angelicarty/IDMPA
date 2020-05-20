@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Stats : MonoBehaviour
 {
     //TODO: initialisation, levelup
@@ -100,4 +101,14 @@ public class Stats : MonoBehaviour
         SPD += i;
     }
 
+    public void Reset()
+    {
+        MHP = 0; 
+        CHP = 0;
+        ATK = 0;
+        DEF = 0;
+        sATK = 0;
+        sDEF = 0;
+        SPD = 0;
+    }
 }

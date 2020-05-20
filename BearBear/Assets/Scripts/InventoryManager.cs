@@ -315,8 +315,12 @@ public class InventoryManager : MonoBehaviour
         }
         else if (item.GetComponent<ItemProperties>().isEquipment)
         {
-
-            string slotname = EventSystem.current.currentSelectedGameObject.transform.parent.name;
+            string slotname = "1";
+            try
+            {//used for initating the equipment, it calls use without clicking so this breaks
+                slotname = EventSystem.current.currentSelectedGameObject.transform.parent.name;
+            }
+            catch (System.Exception e){ }
             int num;
             int.TryParse(slotname, out num);
             invSlots[num - 1].count -= 1;
@@ -424,5 +428,92 @@ public class InventoryManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    //gets all item IDs and quantities for saving
+    public string[] GetAllIds()
+    {
+        string[] output = new string[invSlots.Length];
+        for (int i = 0; i < invSlots.Length; i++)
+        {
+            if (invSlots[i].isEmpty)
+            {
+                output[i] = "-";
+            }
+            else
+            { 
+                output[i] = invSlots[i].slot.transform.GetChild(0).gameObject.name.Replace("(Clone)", "");
+
+            }
+        }
+        return output;
+    }
+
+    //gets the quantity of items in each slot
+    public int[] GetAllCounts()
+    {
+        int[] output = new int[invSlots.Length];
+        for (int i = 0; i < invSlots.Length; i++)
+        {
+            if (invSlots[i].isEmpty)
+            { 
+                output[i] = 0;
+            }
+            else
+            {
+                output[i] = getCount(invSlots[i].slot.transform.GetChild(0).gameObject);
+            }
+        }
+        return output;
+    }
+
+    //for loading, adds the equipped equipment to inventory and uses it
+    public void InitEquipment(string[] IDs)
+    {
+        Debug.Log("LOADING EQUIPMENT");
+        ItemList list = FindObjectOfType<ItemList>();
+
+        for (int i = 0; i < IDs.Length; i++)
+        {
+            if (IDs[i] != "-")
+            {
+                foreach (GameObject item in list.Items)
+                {
+                    if (IDs[i] == item.name)
+                    {
+                        addItem(item, 1);
+                        UseItem(item);
+                    }
+                }
+            }
+        }
+    }
+
+    //for loading, adds the equipped equipment to inventory and uses it
+    public void InitInventory(string[] IDs, int[] counts)
+    {
+        Debug.Log("LOADING INVENTORY");
+        ItemList list = FindObjectOfType<ItemList>();
+        int num;
+
+        for (int i = 0; i < IDs.Length; i++)
+        {
+            if(IDs[i] != "-") 
+            { 
+                foreach (GameObject item in list.Items)
+                {
+                    if (IDs[i] == item.name)
+                    {
+                        
+                        addItem(item, counts[i]);
+                    }
+                }
+            }
+        }
+    }
+
+    public int GetGold()
+    {
+        return gold;
     }
 }
