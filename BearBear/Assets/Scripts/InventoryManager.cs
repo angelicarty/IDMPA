@@ -349,13 +349,13 @@ public class InventoryManager : MonoBehaviour
                     {
                         UnequipItem(equipmentManager.slot_hand.GetComponentInChildren<ItemProperties>().gameObject);
                     }
-                    UnequipItem(equipmentManager.slot_hand.GetComponentInChildren<ItemProperties>().gameObject);
 
                     //equips new item
                     GameObject newHand = Instantiate(item, equipmentManager.slot_hand.transform, false);
                     newHand.transform.SetAsLastSibling();
                     newHand.GetComponent<Image>().enabled = true;
                     newHand.GetComponent<Button>().enabled = true;
+                    newHand.GetComponent<MouseOverItem>().enabled = true;
                     break;
 
                 case EquipType.HEAD:
@@ -373,6 +373,7 @@ public class InventoryManager : MonoBehaviour
                     newHead.transform.SetAsLastSibling();
                     newHead.GetComponent<Image>().enabled = true;
                     newHead.GetComponent<Button>().enabled = true;
+                    newHead.GetComponent<MouseOverItem>().enabled = true;
                     newHead.name = item.name;
                     break;
 
@@ -390,7 +391,8 @@ public class InventoryManager : MonoBehaviour
                     newNeck.transform.SetAsLastSibling();
                     newNeck.GetComponent<Image>().enabled = true;
                     newNeck.GetComponent<Button>().enabled = true;
-
+                    newNeck.GetComponent<MouseOverItem>().enabled = true;
+                    newNeck.name = item.name;
                     break;
             }
 
