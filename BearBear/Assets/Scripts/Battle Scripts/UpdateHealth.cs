@@ -24,7 +24,7 @@ public class UpdateHealth : MonoBehaviour
             yield return RepeatLerp(gameObject.transform.localScale, new Vector3(scale, 1, 1), duration);
 
 
-            Debug.Log("UPDATING HEALTH BAR: " + scale);
+            //Debug.Log("UPDATING HEALTH BAR: " + scale);
         }
 
     }

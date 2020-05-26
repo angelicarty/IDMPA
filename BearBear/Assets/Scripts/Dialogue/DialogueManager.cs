@@ -25,6 +25,7 @@ public class DialogueManager : MonoBehaviour
     bool waitingForReply;
     GameObject npc;
     bool giveReward;
+    public QuestManager qm;
     Quest currentQuest;
     bool canChat;
     Sprite speakerSprite;
@@ -124,13 +125,29 @@ public class DialogueManager : MonoBehaviour
         else
         {
             //there is quest trigger
+            currentQuest = GetTakenQuest(questPresent.id);
 
-            string questStatus = questPresent.quest.questStatus;
-            currentQuest = questPresent.quest;
-            if (questStatus.ToLower() == "taken")
+            if (currentQuest == null)
             {
+                //there is a quest trigger but the quest aint taken
+                AllDialogues = dialogues;
+                currentDialogue = dialogues[Random.Range(0, dialogues.Length)];
+
+                talkerName = currentDialogue.talkerName;
+                if (currentDialogue.triggerOptions)
+                {
+                    respondRequired = true;
+                }
+                else
+                {
+                    respondRequired = false;
+                }
+            }
+            else if (currentQuest.questStatus == QuestStatus.TAKEN)
+            {
+
                 //if quest conditions are fufilled, 
-                if(FindObjectOfType<QuestManager>().isQuestComplete(questPresent.quest))
+                if (qm.IsQuestComplete(currentQuest))
                 {
                     if (FindObjectOfType<InventoryManager>().isInvFull()) //if inventory is full
                     {
@@ -150,25 +167,15 @@ public class DialogueManager : MonoBehaviour
                 }
 
             }
-            else if (questStatus.ToLower() == "complete")
+            else if (currentQuest.questStatus == QuestStatus.COMPLETED)
             {
                 AllDialogues = questPresent.questCompleteDialogue;
                 currentDialogue = AllDialogues[Random.Range(0, dialogues.Length)];
             }
             else //there is a quest trigger but the quest aint taken
             {
-                AllDialogues = dialogues;
-                currentDialogue = dialogues[Random.Range(0, dialogues.Length)];
-
-                talkerName = currentDialogue.talkerName;
-                if (currentDialogue.triggerOptions)
-                {
-                    respondRequired = true;
-                }
-                else
-                {
-                    respondRequired = false;
-                }
+                //should never get here
+                Debug.LogError("Dialogue manager thinks the quest is availabe, but the player already has it");
             }
 
             endChat = false;
@@ -184,6 +191,21 @@ public class DialogueManager : MonoBehaviour
         }
 
 
+    }
+
+    public Quest GetTakenQuest(string giverId)
+    {
+        //returns game object of taken quest from quest giver's id
+        Quest[] questLog = qm.GetComponentsInChildren<Quest>();
+        foreach (Quest quest in questLog)
+        {
+            if (quest.questGiverId == giverId)
+            {
+                return quest;
+            }
+        }
+        //if no id
+        return null;
     }
 
     public void StartRespondDialogue(Dialogue dialogue)
@@ -253,7 +275,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (giveReward)
         {
-            FindObjectOfType<QuestManager>().toGiveReward(currentQuest);
+            FindObjectOfType<QuestManager>().ToGiveReward(currentQuest);
         }
         if (respondRequired)
         {

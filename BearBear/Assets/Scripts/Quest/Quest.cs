@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[System.Serializable]
-public class Quest
+public enum QuestStatus { AVAILABLE, TAKEN, COMPLETED}
+public class Quest : MonoBehaviour
 {
-    public GameObject questGiver;
+    public string questGiverId;
     public string questDescription;
     public string questName;
     public string monsterToKill;
@@ -15,7 +14,7 @@ public class Quest
     public string objectToCollect;
     public int numberToCollect;
     public int collectionCount;
-    public string questStatus;
+    public QuestStatus questStatus;
 
     public GameObject itemReward;
     public int itemRewardCount;
@@ -27,4 +26,3 @@ public class Quest
     public int sdef;
     public int spd;
 }
-

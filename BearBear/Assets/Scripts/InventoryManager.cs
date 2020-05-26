@@ -343,7 +343,7 @@ public class InventoryManager : MonoBehaviour
             {
                 case EquipType.HAND:
 
-                    Debug.Log("hand");
+                    //Debug.Log("hand");
                     //places old item in inventory
                     if (equipmentManager.slot_hand.GetComponentInChildren<ItemProperties>() != null)
                     {
@@ -360,7 +360,7 @@ public class InventoryManager : MonoBehaviour
 
                 case EquipType.HEAD:
 
-                    Debug.Log("head");
+                    //Debug.Log("head");
                     //places old item in inventory
                     if (equipmentManager.slot_head.GetComponentInChildren<ItemProperties>() != null)
                     {
@@ -379,7 +379,7 @@ public class InventoryManager : MonoBehaviour
 
                 case EquipType.NECK:
 
-                    Debug.Log("neck");
+                    //Debug.Log("neck");
                     //places old item in ;inventory
                     if (equipmentManager.slot_neck.GetComponentInChildren<ItemProperties>() != null)
                     {

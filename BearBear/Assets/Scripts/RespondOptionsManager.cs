@@ -91,7 +91,7 @@ public class RespondOptionsManager : MonoBehaviour
                     dialogueManager.StartRespondDialogue(replies[0]);
                     if (option1)
                     {
-                        questGiver.GetComponent<QuestTrigger>().triggerQuest();
+                        questGiver.GetComponent<QuestTrigger>().TriggerQuest();
                     }
                     respondBox.SetActive(false);
                     resetThis();
@@ -100,7 +100,7 @@ public class RespondOptionsManager : MonoBehaviour
                     dialogueManager.StartRespondDialogue(replies[1]);
                     if (option2)
                     {
-                        questGiver.GetComponent<QuestTrigger>().triggerQuest();
+                        questGiver.GetComponent<QuestTrigger>().TriggerQuest();
                     }
                     respondBox.SetActive(false);
                     resetThis();

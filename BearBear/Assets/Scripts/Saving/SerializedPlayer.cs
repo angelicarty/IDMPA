@@ -11,7 +11,11 @@ public class SerializedPlayer : MonoBehaviour
     public string[] inventoryIds;
     public int[] inventoryCounts;
     public int gold;
-    //TODO: quests
+
+    public string[] questTakenIds;
+    public string[] questCompletedIds;
+    public int[] questProgress;
+
 
     public int[] statValues = new int[7];
     public void GetInfo()
@@ -30,7 +34,12 @@ public class SerializedPlayer : MonoBehaviour
         inventoryIds = FindObjectOfType<InventoryManager>().GetAllIds();
         inventoryCounts = FindObjectOfType<InventoryManager>().GetAllCounts();
         gold = FindObjectOfType<InventoryManager>().GetGold();
-        //quests
+
+        QuestManager qm = FindObjectOfType<QuestManager>();
+        questTakenIds = qm.GetAllTakenIds();
+        questCompletedIds = qm.GetAllCompletedIds();
+        questProgress = qm.GetAllQuestProgress();
+
 
     }
 
@@ -52,7 +61,9 @@ public class SerializedPlayer : MonoBehaviour
         inv.InitEquipment(equipmentIDs);
         inv.InitInventory(inventoryIds, inventoryCounts);
         inv.addGold(gold);
-        //quests
+
+        QuestManager qm = FindObjectOfType<QuestManager>();
+        qm.InitQuests(questTakenIds, questCompletedIds, questProgress);
 
     }
 }

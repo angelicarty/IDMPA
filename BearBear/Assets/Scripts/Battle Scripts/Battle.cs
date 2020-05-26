@@ -354,17 +354,17 @@ public class Battle : MonoBehaviour
         Debug.Log("You win!");
 
         Loot();
-        FindObjectOfType<QuestManager>().killed(over_enemy.name);
+        FindObjectOfType<QuestManager>().Killed(over_enemy.name);
         Destroy(over_enemy);
         battleScene.SetActive(false);
         overworld_camera.gameObject.SetActive(true);
         FindObjectOfType<KeyboardInputManager>().enableChat(); //resume pressing space to  chat 
-        runStatGen(1);
+        RunStatGen(1);
     }
 
     private void EndLose()
     {
-        runStatGen(0.5f);
+        RunStatGen(0.5f);
         Debug.Log("You lose!");
         //TODO: player death stuff
         player.SetCHP(player.GetMHP());
@@ -395,7 +395,7 @@ public class Battle : MonoBehaviour
     }
 
     //STAT GEN STUFF
-    private void runStatGen(float mod)
+    private void RunStatGen(float mod)
     {
         bool[] table = statGen.calcStat();
 

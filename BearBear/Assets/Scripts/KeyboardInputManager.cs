@@ -49,12 +49,12 @@ public class KeyboardInputManager : MonoBehaviour
                 if (questOpen)
                 {
                     questOpen = false;
-                    questManager.closeQuestLog();
+                    questManager.CloseQuestLog();
                 }
                 else
                 {
                     questOpen = true;
-                    questManager.openQuestLog();
+                    questManager.OpenQuestLog();
                 }
             }
 
@@ -152,7 +152,7 @@ public class KeyboardInputManager : MonoBehaviour
         inventoryOpen = false;
         inventoryManager.closeInventory();
         questOpen = false;
-        questManager.closeQuestLog();
+        questManager.CloseQuestLog();
         equipment = false;
         equipmentManager.hide();
         gameMenu = false;

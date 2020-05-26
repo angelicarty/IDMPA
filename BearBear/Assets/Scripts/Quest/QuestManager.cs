@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    List<Quest> completedQuests = new List<Quest>();
-    public List<Quest> takenQuests = new List<Quest>();
-    Quest currentQuest;
+    List<GameObject> completedQuests = new List<GameObject>();
+    public List<GameObject> takenQuests = new List<GameObject>();
+    GameObject currentQuest;
     public GameObject[] questList;
     public GameObject questUI;
     public GameObject nextArrow;
@@ -20,7 +19,7 @@ public class QuestManager : MonoBehaviour
     public GameObject questDescriptionBoxTracker;
     public Stats playerStat;
 
-    public void selectQuest(int num)
+    public void SelectQuest(int num)
     {
         if ((num * (pageNum + 1)) == selectedQuestNum)
         {
@@ -33,12 +32,12 @@ public class QuestManager : MonoBehaviour
             currentQuest = takenQuests[num * (pageNum + 1)];
             selectedQuestNum = num * (pageNum + 1);
             questDescriptionBox.SetActive(true);
-            questDescriptionNameBox.GetComponent<UnityEngine.UI.Text>().text = takenQuests[num * (pageNum + 1)].questName;
-            questDescriptionDescBox.GetComponent<UnityEngine.UI.Text>().text = takenQuests[num * (pageNum + 1)].questDescription;
+            questDescriptionNameBox.GetComponent<UnityEngine.UI.Text>().text = takenQuests[num * (pageNum + 1)].GetComponent<Quest>().questName;
+            questDescriptionDescBox.GetComponent<UnityEngine.UI.Text>().text = takenQuests[num * (pageNum + 1)].GetComponent<Quest>().questDescription;
 
-            if(currentQuest.numberToKill != 0)
+            if(currentQuest.GetComponent<Quest>().numberToKill != 0)
             {
-                questTracker += currentQuest.monsterToKill + " : " + currentQuest.killCount + "/" + currentQuest.numberToKill;
+                questTracker += currentQuest.GetComponent<Quest>().monsterToKill + " : " + currentQuest.GetComponent<Quest>().killCount + "/" + currentQuest.GetComponent<Quest>().numberToKill;
             }
 
             questDescriptionBoxTracker.GetComponent<UnityEngine.UI.Text>().text = questTracker;
@@ -47,22 +46,22 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void openQuestLog()
+    public void OpenQuestLog()
     {
         questUI.SetActive(true);
         pageNum = 0;
-        displayQuestLog();
+        DisplayQuestLog();
     }
 
-    public void closeQuestLog()
+    public void CloseQuestLog()
     {
         questDescriptionBox.SetActive(false);
         questUI.SetActive(false);
     }
 
-    void displayQuestLog()
+    void DisplayQuestLog()
     {
-        for(int i =0; i<questList.Length;i++)
+        for(int i = 0; i < questList.Length;i++)
         {
             questList[i].SetActive(false);
         }
@@ -71,7 +70,7 @@ public class QuestManager : MonoBehaviour
             if (j+(pageNum*questList.Length) < takenQuests.Count)
             {
                 questList[j].SetActive(true);
-                questList[j].GetComponentInChildren<UnityEngine.UI.Text>().text = takenQuests[j + (pageNum * questList.Length)].questName;
+                questList[j].GetComponentInChildren<UnityEngine.UI.Text>().text = takenQuests[j + (pageNum * questList.Length)].GetComponent<Quest>().questName;
             }
         }
         if (takenQuests.Count > (pageNum+1)*questList.Length)
@@ -92,31 +91,32 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void nextPage()
+    public void NextPage()
     {
         pageNum++;
-        displayQuestLog();
+        DisplayQuestLog();
     }
 
-    public void prevPage()
+    public void PrevPage()
     {
         pageNum--;
-        displayQuestLog();
+        DisplayQuestLog();
     }
 
-    public void loadQuests()
+    public void LoadQuests()
     {
         //put quest into the right list based on quest status from file
     }
 
-    void questComplete(Quest currQuest)
+    void QuestComplete(GameObject currQuest)
     {
+           //TODO:
         takenQuests.Remove(currQuest);
         completedQuests.Add(currQuest);
     }
 
 
-    public void killed(string monsterName)
+    public void Killed(string monsterName)
     {
         Debug.Log(monsterName);
         //if monster name is in list of quest
@@ -125,18 +125,18 @@ public class QuestManager : MonoBehaviour
         {
             for (int i = 0; i < takenQuests.Count; i++)
             {
-                if(monsterName.ToLower().Contains(takenQuests[i].monsterToKill.ToLower()) && takenQuests[i].killCount < takenQuests[i].numberToKill)
+                if(monsterName.ToLower().Contains(takenQuests[i].GetComponent<Quest>().monsterToKill.ToLower()) && takenQuests[i].GetComponent<Quest>().killCount < takenQuests[i].GetComponent<Quest>().numberToKill)
                 {
-                    takenQuests[i].killCount++;
+                    takenQuests[i].GetComponent<Quest>().killCount++;
                 }
             }
             
         }
     }
 
-    public bool isQuestComplete(Quest currentQuest)
+    public bool IsQuestComplete(Quest currentQuest)
     {
-        if (currentQuest.numberToKill <= currentQuest.killCount && currentQuest.questStatus.ToLower() == "taken")  //and object to collect
+        if (currentQuest.numberToKill <= currentQuest.killCount && currentQuest.questStatus == QuestStatus.TAKEN)  //and object to collect
         {
             return true;
         }
@@ -146,7 +146,7 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public bool giveReward(Quest currQuest)
+    public bool GiveReward(Quest currQuest)
     {
         if(FindObjectOfType<InventoryManager>().questGiveItem(currQuest.itemReward, currQuest.itemRewardCount))
         {
@@ -163,36 +163,158 @@ public class QuestManager : MonoBehaviour
 
     }
 
-    public void toGiveReward(Quest currQuest)
+    public void ToGiveReward(Quest currQuest)
     {
-        if (giveReward(currQuest))
+        if (GiveReward(currQuest))
         {
             FindObjectOfType<DialogueManager>().rewardGiven();
-            currQuest.questStatus = "complete";
-            questComplete(currentQuest);
+            currQuest.questStatus = QuestStatus.COMPLETED;
+            QuestComplete(currentQuest);
         }
         else
         {
-            currentQuest.questGiver.gameObject.GetComponent<QuestTrigger>().invIsFull();
+            //TODO: currentQuest.GetComponent<Quest>().questGiver.gameObject.GetComponent<QuestTrigger>().invIsFull();
         }
     }
 
-    public void pickUpQuest(Quest quest)
+    public void PickUpQuest(GameObject quest)
     {
-        takenQuests.Add(quest);
-        Debug.Log("added quests: " + quest.monsterToKill);
+        GameObject temp = Instantiate(quest, gameObject.transform);
+        temp.GetComponent<Quest>().questStatus = QuestStatus.TAKEN;
+        temp.name = temp.name.Replace("(Clone)", "");
+        takenQuests.Add(temp); 
+        Debug.Log("added quests: " + temp.GetComponent<Quest>().monsterToKill);
     }
 
-    public void dropQuest()
+    public void DropQuest()
     {
+        
         takenQuests.Remove(currentQuest);
-        currentQuest.questStatus = "available";
-        currentQuest.killCount = 0;
-        currentQuest.questGiver.GetComponent<DialogueTrigger>().questDropped();
-        Debug.Log("removed quests: " + currentQuest.monsterToKill);
-        displayQuestLog();
+        Quest quest = currentQuest.GetComponent<Quest>();
+        QuestTrigger[] givers = FindObjectsOfType<QuestTrigger>();
+        foreach (QuestTrigger giver in givers)
+        {
+            if (giver.id == quest.questGiverId)
+            {
+                giver.taken = false;
+                giver.GetComponent<DialogueTrigger>().questDropped();
+                break;
+            }
+        }
+
+
+        Debug.Log("removed quests: " + quest.monsterToKill);
+        DisplayQuestLog();
         questDescriptionBox.SetActive(false);
         selectedQuestNum = -1;
+        Destroy(currentQuest);
     }
 
+    //saving
+    public string[] GetAllTakenIds()
+    {
+        string[] output = new string[takenQuests.Count];
+        int i = 0;
+        foreach (GameObject quest in takenQuests)
+        {
+            output[i] = quest.name.Replace("(Clone)", "");
+            i++;
+        }
+        return output;
+    }
+
+    public string[] GetAllCompletedIds()
+    {
+        string[] output = new string[completedQuests.Count];
+        int i = 0;
+        foreach (GameObject quest in completedQuests)
+        {
+            output[i] = quest.name.Replace("(Clone)", "");
+            i++;
+        }
+        return output;
+    }
+
+    public int[] GetAllQuestProgress()
+    {
+        //TODO: check if quest is mob or item
+        int[] output = new int[takenQuests.Count];
+        int i = 0;
+        foreach (GameObject quest in takenQuests)
+        {
+            output[i] = quest.GetComponent<Quest>().killCount;
+            i++;
+        }
+        return output;
+    }
+
+    public void InitQuests(string[] taken, string[] complete, int[] progress)
+    {
+        GameObject temp;
+        List<GameObject> takenObj = new List<GameObject>();
+        List<GameObject> completeObj = new List<GameObject>();
+        QuestList list = FindObjectOfType<QuestList>();
+        //get quest objects from ids
+        for (int i = 0; i < list.Quests.Length; i++)
+        {
+            for (int j = 0; j < taken.Length; j++)
+            {
+                if (list.Quests[i].name == taken[j])
+                {
+                    takenObj.Add(list.Quests[i]);
+                } 
+            }
+            for (int j = 0; j < complete.Length; j++)
+            {
+                if (list.Quests[i].name == complete[j])
+                {
+                    completeObj.Add(list.Quests[i]);
+                }
+            }
+        }
+
+
+        for (int i = 0; i < takenObj.Count; i++)
+        {
+            temp = Instantiate(takenObj[i], gameObject.transform);
+            temp.name = temp.name.Replace("(Clone)", "");
+            temp.GetComponent<Quest>().killCount = progress[i];
+            temp.GetComponent<Quest>().questStatus = QuestStatus.TAKEN;
+            takenQuests.Add(temp);
+            temp = null;
+        }
+
+        for (int i = 0; i < completeObj.Count; i++)
+        {
+            temp = Instantiate(completeObj[i], gameObject.transform);
+            temp.GetComponent<Quest>().questStatus = QuestStatus.COMPLETED;
+            completedQuests.Add(temp);
+            temp = null;
+        }
+
+        //updates quest givers
+        QuestTrigger[] givers = FindObjectsOfType<QuestTrigger>();
+        foreach (QuestTrigger giver in givers)
+        {
+            foreach (GameObject quest in takenQuests)
+            {
+                if (giver.id == quest.GetComponent<Quest>().questGiverId)
+                {
+                    giver.GetComponent<DialogueTrigger>().questTaken(giver.questTakenDialogue);
+                    giver.taken = true;
+                    break;
+                }
+            }
+
+            foreach (GameObject quest in completedQuests)
+            {
+                if (giver.id == quest.GetComponent<Quest>().questGiverId)
+                {
+                    giver.GetComponent<DialogueTrigger>().questTaken(giver.questTakenDialogue);
+                    giver.taken = true;
+                    break;
+                }
+            }
+        }
+    }
 }

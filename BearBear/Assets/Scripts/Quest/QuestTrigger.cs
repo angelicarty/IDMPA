@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class QuestTrigger : MonoBehaviour
 {
-    public Quest quest;
+    public GameObject quest;
     public Sprite speakerSprite;
     public Dialogue[] questTakenDialogue;
     public Dialogue[] questCompleteDialogue;
     public Dialogue[] invFullDialogue;
 
-    public void triggerQuest()
+    public string id;//ID used to tie quests to givers, used because you can't save static references
+    public bool taken;//taken flag, used to avoid editing prefab object
+
+    public void TriggerQuest()
     {
-        if (quest.questStatus == "available")
+        if (!taken)
         {
-            quest.questStatus = "taken";
             gameObject.GetComponent<DialogueTrigger>().questTaken(questTakenDialogue);
-            FindObjectOfType<QuestManager>().pickUpQuest(quest);
+            FindObjectOfType<QuestManager>().PickUpQuest(quest);
+            taken = true;
         }
     }
-    public void invIsFull()
+    public void InvIsFull()
     {
         FindObjectOfType<DialogueManager>().startDialogue(invFullDialogue, gameObject, speakerSprite);
     }
