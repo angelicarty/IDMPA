@@ -18,6 +18,7 @@ public class SerializedPlayer : MonoBehaviour
 
 
     public int[] statValues = new int[7];
+    public int[] defaultStats = new int[7];
     public void GetInfo()
     {
         Stats statObj = gameObject.GetComponent<PlayerManager>().player.GetComponent<Stats>();
@@ -64,6 +65,20 @@ public class SerializedPlayer : MonoBehaviour
 
         QuestManager qm = FindObjectOfType<QuestManager>();
         qm.InitQuests(questTakenIds, questCompletedIds, questProgress);
+    }
+
+    public void SetDefaultInfo(string name)
+    {
+        Stats statObj = gameObject.GetComponent<PlayerManager>().player.GetComponent<Stats>();
+        statObj.name = name;
+        statObj.Reset();//just to be sure
+        statObj.ModMHP(defaultStats[0]);
+        statObj.SetCHP(defaultStats[1]);
+        statObj.ModATK(defaultStats[2]);
+        statObj.ModDEF(defaultStats[3]);
+        statObj.ModSATK(defaultStats[4]);
+        statObj.ModSDEF(defaultStats[5]);
+        statObj.ModSPD(defaultStats[6]);
 
     }
 }

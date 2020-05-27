@@ -46,7 +46,16 @@ public class SaveManager : MonoBehaviour
         string path = GetPath(saveID);
         if (!File.Exists(path))
         {
-            Debug.LogError("FILE " + saveID + " NOT FOUND");
+            //starting a new game, load defaults
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                data.SetDefaultInfo(saveID);
+                data.GetInfo();
+                string output = JsonUtility.ToJson(data);
+                sw.WriteLine(output);
+            }
+
+            //Debug.LogError("FILE " + saveID + " NOT FOUND");
         }
         else
         {
