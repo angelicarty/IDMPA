@@ -8,6 +8,21 @@ public class SaveManager : MonoBehaviour
 {
     public Stats player;
     public SerializedPlayer data;
+    FileContainer container;
+    string fileName;
+
+    void OnEnable()
+    {
+        container = FindObjectOfType<FileContainer>();
+        if (container == null)
+        {
+            fileName = "test";
+        }
+        else
+        {
+            fileName = container.fileName;
+        }
+    }
 
     private string GetPath(string saveID)
     {
@@ -17,13 +32,13 @@ public class SaveManager : MonoBehaviour
 
     public void LoadPlayer()
     {
-        Load("test");
+        Load(fileName);
         
     }
 
     public void SavePlayer()
     {
-        Save("test");
+        Save(fileName);
     }
 
     public void Load(string saveID)
