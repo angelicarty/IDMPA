@@ -11,7 +11,7 @@ public class FileDisplay : MonoBehaviour
     public Transform scrollbox;
     private void OnEnable()
     {
-        string[] saves = loadManager.GetSaves();
+        List<string> saves = loadManager.GetSaves();
         fileButtons = new List<GameObject>();
         GameObject temp;
         foreach (string save in saves)

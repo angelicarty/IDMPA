@@ -11,8 +11,7 @@ public class MenuSaveLoad : MonoBehaviour
     public InputField new_name;
     public Text new_error;
 
-    private static int save_count = 3;
-    private string[] saves = new string[save_count];
+    List<string> saves;
     public void New_game()
     {
         string input = new_name.text;
@@ -54,15 +53,14 @@ public class MenuSaveLoad : MonoBehaviour
     }
 
 
-    private string[] InitSaves()
+    private List<string> InitSaves()
     {//TODO fuck
         Debug.Log("LOADING SAVE FILES");
-        string[] output = new string[save_count];
+        List<string> output = new List<string>();
         int i = 0;
         foreach (string file in Directory.EnumerateFiles(@"c:\BearBear", "*.json"))
         {
-            if (i >= save_count) break;
-            output[i] = RemoveFromEnd(file.Substring(file.LastIndexOf('\\') + 1), ".json");
+            output.Add(RemoveFromEnd(file.Substring(file.LastIndexOf('\\') + 1), ".json"));
             Debug.Log(output[i++]);
         }
         return output;
@@ -87,7 +85,7 @@ public class MenuSaveLoad : MonoBehaviour
         }
     }
 
-    public string[] GetSaves()
+    public List<string> GetSaves()
     {
         saves = InitSaves();
         return saves;
