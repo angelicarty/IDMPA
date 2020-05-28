@@ -10,43 +10,52 @@ public class MenuSaveLoad : MonoBehaviour
 
     public InputField new_name;
     public Text new_error;
-
+    public const int saveCount = 3;
     List<string> saves;
     public void New_game()
     {
+        
         string input = new_name.text;
         bool failed = false;
 
         if (input == "") failed = true;
-        //check for dupes
-        foreach (string name in saves)
+        if (saves.Count >= saveCount)
         {
-            if (input.Equals(name))
-            {
-                new_error.text = "That name has already been used! Try a different one";
-                failed = true;
-                break;
-            }
-        }
-        if (!failed)
-        {
-            //check for illegal characters
-            if (input.Contains("/") || input.Contains("\\") || input.Contains(":") || input.Contains("*") || input.Contains("?") || input.Contains("\"") || input.Contains("<") || input.Contains(">") || input.Contains("|"))
-            {
-                new_error.text = "Sorry, that name contains illegal characters!\nPlease don't use /, \\, :, *, ?, \", <, >, or |";
-                failed = true;
-            }
-        }
-        if (!failed)
-        {
-            container.fileName = input;
-            //TODO: create file and start game
-            Debug.Log("NEW GAME PASSED, NOW FINISH THIS SCRIPT");
-            FindObjectOfType<LoadNewScene>().LoadScene();
+            new_error.text = "You can only have three save files! Delete one and try again";
+            failed = true;
         }
         else
         {
-            Debug.Log("Save creation failed");
+            //check for dupes
+            foreach (string name in saves)
+            {
+                if (input.Equals(name))
+                {
+                    new_error.text = "That name has already been used! Try a different one";
+                    failed = true;
+                    break;
+                }
+            }
+            if (!failed)
+            {
+                //check for illegal characters
+                if (input.Contains("/") || input.Contains("\\") || input.Contains(":") || input.Contains("*") || input.Contains("?") || input.Contains("\"") || input.Contains("<") || input.Contains(">") || input.Contains("|"))
+                {
+                    new_error.text = "Sorry, that name contains illegal characters!\nPlease don't use /, \\, :, *, ?, \", <, >, or |";
+                    failed = true;
+                }
+            }
+            if (!failed)
+            {
+                container.fileName = input;
+                //TODO: create file and start game
+                Debug.Log("NEW GAME PASSED, NOW FINISH THIS SCRIPT");
+                FindObjectOfType<LoadNewScene>().LoadScene();
+            }
+            else
+            {
+                Debug.Log("Save creation failed");
+            }
         }
 
 
@@ -54,7 +63,7 @@ public class MenuSaveLoad : MonoBehaviour
 
 
     private List<string> InitSaves()
-    {//TODO fuck
+    {
         Debug.Log("LOADING SAVE FILES");
         List<string> output = new List<string>();
         int i = 0;

@@ -6,23 +6,44 @@ using UnityEngine.UI;
 
 public class FileButtonProperties : MonoBehaviour
 {
-    public string name;
+    public string nameStr = "<Empty>";
+    public Text nameDis;
+    public GameObject bear;
+    public Button[] buttons;
     private string filePath;
 
-    private void OnEnable()
+    public void ResetDisplay()
     {
-        string filePath = @"c:\BearBear\" + name + ".json";
-
+        nameStr = "<Empty>";
+        nameDis.text = "<Empty>";
+        bear.SetActive(false);
+        buttons[0].interactable = false;
+        buttons[1].interactable = false;
     }
+
+    public void UpdateDisplay(string name)
+    {
+        nameStr = name;
+        nameDis.text = name;
+        bear.SetActive(true);
+        buttons[0].interactable = true;
+        buttons[1].interactable = true;
+    }
+
     public void Delete()
     {
+        filePath = @"c:\BearBear\" + nameStr + ".json";
         File.Delete(filePath);
-        Destroy(gameObject);
+        ResetDisplay();
     }
 
     public void LoadGame()
     {
-        FindObjectOfType<FileContainer>().fileName = name;
-        FindObjectOfType<LoadNewScene>().LoadScene();
+        if (nameStr != "<Empty>")
+        {
+            filePath = @"c:\BearBear\" + nameStr + ".json";
+            FindObjectOfType<FileContainer>().fileName = nameStr;
+            FindObjectOfType<LoadNewScene>().LoadScene();
+        }
     }
 }
