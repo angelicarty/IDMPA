@@ -12,9 +12,9 @@ public class MenuSaveLoad : MonoBehaviour
     public Text new_error;
     public const int saveCount = 3;
     List<string> saves;
-    public void New_game()
+    public void NewGame()
     {
-        
+
         string input = new_name.text;
         bool failed = false;
 
@@ -48,8 +48,6 @@ public class MenuSaveLoad : MonoBehaviour
             if (!failed)
             {
                 container.fileName = input;
-                //TODO: create file and start game
-                Debug.Log("NEW GAME PASSED, NOW FINISH THIS SCRIPT");
                 FindObjectOfType<LoadNewScene>().LoadScene();
             }
             else
@@ -67,18 +65,31 @@ public class MenuSaveLoad : MonoBehaviour
         Debug.Log("LOADING SAVE FILES");
         List<string> output = new List<string>();
         int i = 0;
-        foreach (string file in Directory.EnumerateFiles(@"c:\BearBear", "*.json"))
+        string saveDirectory = RemoveFromEnd(SaveManager.GetPath(""), "/.json");
+        Debug.Log("saveDirectory: " + saveDirectory);
+        bool passed = false;
+        do
         {
-            output.Add(RemoveFromEnd(file.Substring(file.LastIndexOf('\\') + 1), ".json"));
-            Debug.Log(output[i++]);
-        }
+            try
+            {
+                foreach (string file in Directory.EnumerateFiles(saveDirectory, "*.json"))
+                {
+                    output.Add(RemoveFromEnd(file.Substring(file.LastIndexOf('\\') + 1), ".json"));
+                    Debug.Log(output[i++]);
+                }
+                passed = true;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Directory.CreateDirectory(saveDirectory);
+            }
+        } while (!passed);
         return output;
     }
 
     void OnEnable()
     {
         container = FindObjectOfType<FileContainer>();
-        saves = InitSaves();
     }
 
     //suffix remove method: https://stackoverflow.com/questions/5284591/how-to-remove-a-suffix-from-end-of-string

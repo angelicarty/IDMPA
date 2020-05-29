@@ -32,7 +32,7 @@ public class FileButtonProperties : MonoBehaviour
 
     public void Delete()
     {
-        filePath = @"c:\BearBear\" + nameStr + ".json";
+        filePath = SaveManager.GetPath(nameStr);
         File.Delete(filePath);
         ResetDisplay();
     }
@@ -41,7 +41,7 @@ public class FileButtonProperties : MonoBehaviour
     {
         if (nameStr != "<Empty>")
         {
-            filePath = @"c:\BearBear\" + nameStr + ".json";
+            filePath = SaveManager.GetPath(nameStr);
             FindObjectOfType<FileContainer>().fileName = nameStr;
             FindObjectOfType<LoadNewScene>().LoadScene();
         }

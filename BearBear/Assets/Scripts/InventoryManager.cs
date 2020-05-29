@@ -308,7 +308,7 @@ public class InventoryManager : MonoBehaviour
                 GameObject test = GameObject.FindGameObjectWithTag("BattleScene");//breaks if out of combat
                 GameObject.FindGameObjectWithTag("BattleController").GetComponent<Battle>().ActionSelectItem(item.GetComponent<ItemProperties>());
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {//out of combat
                 playerStat.SetCHP(playerStat.GetCHP() + item.GetComponent<ItemProperties>().Eat());
             }
@@ -320,7 +320,7 @@ public class InventoryManager : MonoBehaviour
             {//used for initating the equipment, it calls use without clicking so this breaks
                 slotname = EventSystem.current.currentSelectedGameObject.transform.parent.name;
             }
-            catch (System.Exception e){ }
+            catch (System.Exception){ }
             int num;
             int.TryParse(slotname, out num);
             invSlots[num - 1].count -= 1;
@@ -401,7 +401,7 @@ public class InventoryManager : MonoBehaviour
                 GameObject test = GameObject.FindGameObjectWithTag("BattleScene");//breaks if out of combat
                 GameObject.FindGameObjectWithTag("BattleController").GetComponent<Battle>().ActionSelectItem(item.GetComponent<ItemProperties>());
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 Debug.Log("Item equipped out of combat");
                 //out of combat, do nothing

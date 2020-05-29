@@ -24,10 +24,10 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    private string GetPath(string saveID)
+    public static string GetPath(string saveID)
     {
         //TODO: make this dynamic
-        return @"c:\BearBear\" + saveID + ".json";
+        return Application.dataPath + "/Saves/" + saveID + ".json";
     }
 
     public void LoadPlayer()

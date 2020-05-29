@@ -28,7 +28,7 @@ public class EquipmentManager : MonoBehaviour
         {
             return slot_hand.GetComponentInChildren<EquipmentProperties>();
         }
-        catch (System.Exception e)
+        catch (System.Exception)
         {
             return null;
         }
@@ -40,7 +40,7 @@ public class EquipmentManager : MonoBehaviour
         {
             return slot_head.GetComponentInChildren<EquipmentProperties>();
         }
-        catch (System.Exception e)
+        catch (System.Exception)
         {
             return null;
         }
@@ -52,7 +52,7 @@ public class EquipmentManager : MonoBehaviour
         {
             return slot_neck.GetComponentInChildren<EquipmentProperties>();
         }
-        catch (System.Exception e)
+        catch (System.Exception)
         {
             return null;
         }
@@ -66,7 +66,7 @@ public class EquipmentManager : MonoBehaviour
         {
              IDs[0] = slot_hand.GetComponentInChildren<EquipmentProperties>().name.Replace("(Clone)", "");
         }
-        catch (System.Exception e)
+        catch (System.Exception)
         {
             IDs[0] = "-";
         }
@@ -74,7 +74,7 @@ public class EquipmentManager : MonoBehaviour
         {
             IDs[1] = slot_head.GetComponentInChildren<EquipmentProperties>().name.Replace("(Clone)", "");
         }
-        catch (System.Exception e)
+        catch (System.Exception)
         {
             IDs[1] = "-";
         }
@@ -82,7 +82,7 @@ public class EquipmentManager : MonoBehaviour
         {
             IDs[2] = slot_neck.GetComponentInChildren<EquipmentProperties>().name.Replace("(Clone)", "");
         }
-        catch (System.Exception e)
+        catch (System.Exception)
         {
             IDs[2] = "-";
         }
