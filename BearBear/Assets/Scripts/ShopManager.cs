@@ -62,7 +62,11 @@ public class ShopManager : MonoBehaviour
             return;
         }
         if(waiting && inShop && !pleaseEndConvo)
-        {
+        {/*
+            if(counter.activeSelf)
+            {
+                ThisMany();
+            }*/
             //do nothing
             return;
         }

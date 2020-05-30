@@ -32,7 +32,6 @@ public class InventoryManager : MonoBehaviour
     //INFO BOX
     public void isMousedOver(string thisName, string desc)
     {
-        Debug.Log("MOUSE OVER " + thisName);
         isMousedOverItem = true;
         var childCount = itemDescBox.transform.parent.childCount;
         itemDescBox.transform.SetAsLastSibling();
@@ -53,25 +52,6 @@ public class InventoryManager : MonoBehaviour
     {
         isMousedOverItem = false;
         itemDescBox.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-
-        if(Input.GetKeyDown("m"))
-        {
-            giveItem(testingItem, 1);
-        }
-        if(Input.GetKeyDown("k"))
-        {
-            addGold(10);
-        }
-        if(Input.GetKeyDown("j"))
-        {
-            minusGold(2);
-        }
     }
 
     private void LateUpdate()
@@ -196,7 +176,6 @@ public class InventoryManager : MonoBehaviour
             return true;
 
         }
-        Debug.Log("giving: " + item.name);
         if(addItem(item, count))
         {
             //item received
@@ -472,7 +451,6 @@ public class InventoryManager : MonoBehaviour
     //for loading, adds the equipped equipment to inventory and uses it
     public void InitEquipment(string[] IDs)
     {
-        Debug.Log("LOADING EQUIPMENT");
         ItemList list = FindObjectOfType<ItemList>();
 
         for (int i = 0; i < IDs.Length; i++)
@@ -494,7 +472,6 @@ public class InventoryManager : MonoBehaviour
     //for loading, adds the equipped equipment to inventory and uses it
     public void InitInventory(string[] IDs, int[] counts)
     {
-        Debug.Log("LOADING INVENTORY");
         ItemList list = FindObjectOfType<ItemList>();
         int num;
 

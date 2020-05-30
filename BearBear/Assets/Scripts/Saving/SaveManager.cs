@@ -62,7 +62,6 @@ public class SaveManager : MonoBehaviour
             using (StreamReader sr = File.OpenText(path))
             {
                 string input = sr.ReadLine();
-                Debug.Log(input);
                 JsonUtility.FromJsonOverwrite(input, data);
                 data.SetInfo();
             }
