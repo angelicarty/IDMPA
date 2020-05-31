@@ -12,7 +12,30 @@ public class VolControl : MonoBehaviour
     public Toggle bgm, sfx, master;
     bool SFXisMute, BGMisMute, masterIsMute;
 
-    
+
+    public AudioSource wildAreaBGM, townBGM;//, battleBGM;
+    public AudioSource clickSFX;
+
+    public void inWildArea()
+    {
+        wildAreaBGM.Play();
+        townBGM.Pause();
+        //battleBGM.Pause();
+    }
+
+    public void inTown()
+    {
+        townBGM.Play();
+        wildAreaBGM.Pause();
+        //battleBGM.Pause();
+    }
+
+    public void clicky()
+    {
+        clickSFX.Play();
+    } 
+
+
     private void Start()
     {
         if (!bgm.isOn)
