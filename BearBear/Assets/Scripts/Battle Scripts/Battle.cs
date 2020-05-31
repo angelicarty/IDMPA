@@ -40,12 +40,7 @@ public class Battle : MonoBehaviour
 
     private System.Random ran = new System.Random();
     public void InitBattle()
-    {
-        FindObjectOfType<KeyboardInputManager>().hideAllUi();
-        FindObjectOfType<KeyboardInputManager>().disableCharacterMovement(); //disable character movement
-        FindObjectOfType<KeyboardInputManager>().disableChat(); //prevents opening chat while in battle
-        FindObjectOfType<MonstersController>().goingOutOfMobArea(); //pauses monster movements
-        
+    {        
         player = over_player.GetComponent<Stats>();
         enemy = over_enemy.GetComponent<Stats>();
         p_HP = player.GetCHP();
@@ -237,6 +232,8 @@ public class Battle : MonoBehaviour
         }
         yield return new WaitForSeconds(delay * 2);
         //do shit based on result of battle
+        GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Conceal");
+        yield return new WaitForSeconds(1);
         gameObject.GetComponent<UIManager>().MoveCanvas(GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>());
         player.SetCHP(p_HP);
         enemy.SetCHP(e_HP);
@@ -358,8 +355,11 @@ public class Battle : MonoBehaviour
         Destroy(over_enemy);
         battleScene.SetActive(false);
         overworld_camera.gameObject.SetActive(true);
+        FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
         FindObjectOfType<KeyboardInputManager>().enableChat(); //resume pressing space to  chat 
+        FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
         RunStatGen(1);
+        GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Reveal");
     }
 
     private void EndLose()
@@ -367,9 +367,13 @@ public class Battle : MonoBehaviour
         RunStatGen(0.5f);
         Debug.Log("You lose!");
         //TODO: player death stuff
-        player.SetCHP(player.GetMHP());
-        EndRun();//TDOD: temp until proper death is in
-        //SceneManager.LoadScene("TitleMenu");//kicks the player to the title screen, easiest game over thing, though probably shouldn't be done here
+        FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
+        FindObjectOfType<KeyboardInputManager>().enableChat(); //resume pressing space to  chat 
+        FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
+        FindObjectOfType<PlayerManager>().Death();
+        battleScene.SetActive(false);
+        overworld_camera.gameObject.SetActive(true);
+        GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Reveal");
     }
 
     private void EndRun()
@@ -380,7 +384,7 @@ public class Battle : MonoBehaviour
         FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
         FindObjectOfType<KeyboardInputManager>().enableChat(); //resume pressing space to  chat 
         FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
-
+        GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Reveal");
     }
 
     //AWARDING LOOT

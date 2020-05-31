@@ -25,8 +25,10 @@ public class BattleUI : MonoBehaviour
     private Animator p_anim;
     private Animator e_anim;
 
+    public GameObject screenWipe;
     void OnEnable()
     {
+        //screenWipe.transform
         UpdateHealthBar(true);
         UpdateHealthBar(false);
         //Debug.Log("battle scene init thing loaded");
@@ -37,7 +39,7 @@ public class BattleUI : MonoBehaviour
         p_name.text = controller.GetPlayer().name;
         e_name.text = controller.GetEnemy().name;
 
-
+        GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Reveal");
     }
 
     void OnDisable()

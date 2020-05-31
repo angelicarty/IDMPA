@@ -14,7 +14,7 @@ public class MenuSaveLoad : MonoBehaviour
     List<string> saves;
     public void NewGame()
     {
-
+        saves = InitSaves();
         string input = new_name.text;
         bool failed = false;
 

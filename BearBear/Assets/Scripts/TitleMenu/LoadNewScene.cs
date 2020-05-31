@@ -6,15 +6,32 @@ using UnityEngine.SceneManagement;
 public class LoadNewScene : MonoBehaviour
 {
     public int sceneNumber;
-
+    private bool quit;
     public void LoadScene()
     {
-        SceneManager.LoadScene(sceneNumber);
+        GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Conceal");
+        quit = false;
+        StartCoroutine("DelayedExit");
     }
 
     public void Exit()
     {
-        Application.Quit();
+        GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Conceal");
+        quit = true;
+        StartCoroutine("DelayedExit");
+    }
+
+    IEnumerator DelayedExit()
+    {
+        yield return new WaitForSeconds(1);
+        if (quit)
+        {
+            Application.Quit();
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneNumber);
+        }
     }
 
 }
