@@ -55,7 +55,7 @@ MonoBehaviour:
   numberToCollect: 5
   collectionCount: 0
   questStatus: 0
-  itemReward: {fileID: 3547253407065860030, guid: f1a90359257354c4bbba012f7e9cdc91,
+  itemReward: {fileID: 3547253407065860030, guid: 71946683d061f014d94a7fad8b08085f,
     type: 3}
   itemRewardCount: 3
   maxHP: 10

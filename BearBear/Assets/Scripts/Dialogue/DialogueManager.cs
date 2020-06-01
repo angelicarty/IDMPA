@@ -232,7 +232,7 @@ public class DialogueManager : MonoBehaviour
         blur.SetActive(true);
         dialogBox.SetActive(true);
         FindObjectOfType<KeyboardInputManager>().disableCharacterMovement();
-        FindObjectOfType<MonstersController>().goingOutOfMobArea();
+        FindObjectOfType<MonstersController>().pausesMobMovement();
         nameBox.GetComponent<UnityEngine.UI.Text>().text = talkerName;
 
         if (sentences.Count == 0)
@@ -290,7 +290,10 @@ public class DialogueManager : MonoBehaviour
             dialogBox.SetActive(false);
             blur.SetActive(false);
             FindObjectOfType<KeyboardInputManager>().enableCharacterMovement();
-            FindObjectOfType<MonstersController>().goingIntoMobArea();
+            if (FindObjectOfType<MonstersController>().isInMobArea())
+            {
+                FindObjectOfType<MonstersController>().goingIntoMobArea();
+            }
         }
     }
 

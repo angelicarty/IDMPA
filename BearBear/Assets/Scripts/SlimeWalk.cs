@@ -35,7 +35,7 @@ public class SlimeWalk : MonoBehaviour
         StopCoroutine(itWalks());
     }
 
-    void Update() 
+    void LateUpdate() 
     {
         if (walks)
         {

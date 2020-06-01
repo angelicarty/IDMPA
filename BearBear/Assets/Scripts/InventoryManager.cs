@@ -218,6 +218,23 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public bool giveItemWithoutPrompt(GameObject item, int count)
+    {
+        if (item == null)
+        {
+            return true;
+
+        }
+        if (addItem(item, count))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     bool addItem(GameObject item, int count)
     {
         firstEmptyPosition = -1;

@@ -3675,9 +3675,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 1ce59cda32f3dcf4a8280b10239aeb81, type: 3}
     m_FontSize: 26
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
+    m_BestFit: 1
+    m_MinSize: 24
+    m_MaxSize: 26
     m_Alignment: 6
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -14195,6 +14195,122 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 211.9, y: 262.2}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &968688603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 968688604}
+  - component: {fileID: 968688605}
+  - component: {fileID: 968688607}
+  - component: {fileID: 968688606}
+  m_Layer: 0
+  m_Name: Tree
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &968688604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968688603}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.59, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1098801729}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &968688605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968688603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cabc39116b9aee148abf7bb98379feca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speakerSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  dialogues:
+  - talkerName: ???
+    sentences:
+    - You attempt to shake the tree...
+    triggerOptions: 0
+    optionreplies: []
+--- !u!114 &968688606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968688603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ecd010b6527d0478b0a70fd7ea3c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appleDrops:
+  - talkerName: ???
+    sentences:
+    - You attempt to shake the tree...
+    - Apple dropped.
+    triggerOptions: 0
+    optionreplies: []
+  noAppleDrops:
+  - talkerName: ???
+    sentences:
+    - You attempt to shake the tree...
+    - Nothing happened.
+    triggerOptions: 0
+    optionreplies: []
+  appleButNoSpace:
+  - talkerName: ???
+    sentences:
+    - You attempt to shake the tree...
+    - An apple dropped.
+    - But you have no space...
+    triggerOptions: 0
+    optionreplies: []
+  waitTime: 300
+  timePassed: 0
+  apple: {fileID: 7335266869444238848, guid: e66610922a2a2e444a089f32f000a6b4, type: 3}
+  dialogueBox: {fileID: 1486119257}
+--- !u!61 &968688607
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968688603}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.13462722, y: 1.0962583}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.5001404, y: 3.9618185}
+  m_EdgeRadius: 0
 --- !u!1 &972129139
 GameObject:
   m_ObjectHideFlags: 0
@@ -15940,6 +16056,7 @@ Transform:
   - {fileID: 48946550}
   - {fileID: 414831338}
   - {fileID: 890474537}
+  - {fileID: 968688604}
   m_Father: {fileID: 909197934}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16669,6 +16786,7 @@ MonoBehaviour:
   - {x: -4, y: -8, z: 0}
   - {x: 2, y: 2, z: 0}
   spawnTime: 5
+  InMobArea: 0
 --- !u!4 &1162526840
 Transform:
   m_ObjectHideFlags: 0
@@ -19379,7 +19497,7 @@ MonoBehaviour:
     optionreplies: []
   itemsForSale:
   - {fileID: 3547253407065860030, guid: 792b824e4dbf70842bdfb66c6ede7f84, type: 3}
-  - {fileID: 3547253407065860030, guid: 71946683d061f014d94a7fad8b08085f, type: 3}
+  - {fileID: 3547253407065860030, guid: a9a20da4fc80e3a46ab249f71cc3c8aa, type: 3}
   - {fileID: 3547253407065860030, guid: cdb630749bc2775469c70e179240e709, type: 3}
   shopkeeper: {fileID: 21300000, guid: 72f89d45d75647a469a752523622c574, type: 3}
 --- !u!1 &1360163279
@@ -28470,75 +28588,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2147385974}
   m_CullTransparentMesh: 0
---- !u!1001 &225526237155526184
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 225526237265536456, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
-        type: 3}
-      propertyPath: m_Name
-      value: Quest2
-      objectReference: {fileID: 0}
-    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 95.5806
-      objectReference: {fileID: 0}
-    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -84.749016
-      objectReference: {fileID: 0}
-    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.34179688
-      objectReference: {fileID: 0}
-    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dc3ba801153e0b54a9a54ebcb80a2f2f, type: 3}
 --- !u!1001 &1838972466394778328
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,7 +16,10 @@ public class DialogueTrigger : MonoBehaviour
         FindObjectOfType<DialogueManager>().startDialogue(dialogues, gameObject, speakerSprite);
     }
 
-
+    public void refreshDialogues()
+    {
+        FindObjectOfType<DialogueManager>().startDialogue(dialogues, gameObject, speakerSprite);
+    }
 
     public void questDropped()
     {

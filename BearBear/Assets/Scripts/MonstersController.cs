@@ -19,7 +19,7 @@ public class MonstersController : MonoBehaviour
     public float spawnTime;
     float currentTime;
 
-    bool InMobArea = false;  
+    public bool InMobArea = false;  
 
     public bool isInMobArea()
     {
@@ -94,7 +94,7 @@ public class MonstersController : MonoBehaviour
     }
     public void goingIntoMobArea()
     {
-
+        Debug.Log("what?");
         pausesMobMovement();
         InMobArea = true;
         resumeMobMovement();
