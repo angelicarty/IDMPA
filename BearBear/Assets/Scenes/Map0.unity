@@ -8214,7 +8214,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2520611092021244903}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243869617}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a334e1b46181be34293259068e174511, type: 3}
@@ -11954,6 +11954,10 @@ GameObject:
   m_Component:
   - component: {fileID: 873001283}
   - component: {fileID: 873001284}
+  - component: {fileID: 873001287}
+  - component: {fileID: 873001286}
+  - component: {fileID: 873001285}
+  - component: {fileID: 873001288}
   m_Layer: 0
   m_Name: SmolSheep - Quest
   m_TagString: Untagged
@@ -11969,7 +11973,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873001282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.34, y: -3.08, z: 0}
+  m_LocalPosition: {x: 0.29, y: -8.31, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 1961854946}
@@ -12025,6 +12029,124 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &873001285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873001282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81af265b23c826a40bf8296cc0fec5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 4346983879075438343, guid: ddfc1a803a01eb4478ac071066bc5ad3, type: 3}
+  speakerSprite: {fileID: 21300000, guid: 043b256024b9be346998d84badabb0f7, type: 3}
+  questTakenDialogue:
+  - talkerName: Woolie
+    sentences:
+    - I'm awaiting your good news.
+    triggerOptions: 0
+    optionreplies: []
+  questCompleteDialogue:
+  - talkerName: Woolie
+    sentences:
+    - Thank you so much for your help. I hope the items I've given you are of use.
+    triggerOptions: 0
+    optionreplies: []
+  invFullDialogue:
+  - talkerName: Woolie
+    sentences:
+    - 'I''m sorry, your inventory is full right now. '
+    triggerOptions: 0
+    optionreplies: []
+  id: Woolie
+  taken: 0
+--- !u!61 &873001286
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873001282}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -2.3862834, y: 0.9544239}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 14.4, y: 8.1}
+    newSize: {x: 14.4, y: 8.1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 13.446046, y: 17.371368}
+  m_EdgeRadius: 0
+--- !u!61 &873001287
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873001282}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.613544, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 14.4, y: 8.1}
+    newSize: {x: 14.4, y: 8.1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.173666, y: 8.1}
+  m_EdgeRadius: 0
+--- !u!114 &873001288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873001282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cabc39116b9aee148abf7bb98379feca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speakerSprite: {fileID: 21300000, guid: 043b256024b9be346998d84badabb0f7, type: 3}
+  dialogues:
+  - talkerName: Woolie
+    sentences:
+    - Hey there!
+    - I need your help. I've prepared a handsome reward for you if you help me.
+    - What do you say?
+    triggerOptions: 1
+    optionreplies:
+    - talkerName: Woolie
+      option: I accept
+      reply:
+      - 'Yay! I need you to kill 10 of those slimes outside of town and get me 5
+        blue slime goo. '
+      acceptQuest: 1
+    - talkerName: Woolie
+      option: I'm Sorry, No
+      reply:
+      - Oh, alright then. Come back if you change your mind
+      acceptQuest: 0
 --- !u!4 &873184436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4525981767666727016, guid: 2a67ddc7e2ac62541b08a2c70ea13f37,
@@ -16781,26 +16903,6 @@ RectTransform:
   m_AnchoredPosition: {x: 56.94, y: 19.66}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1243869617 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2520611091532901247, guid: 296fc1bb3ba6e3f429f7afbcc3184b15,
-    type: 3}
-  m_PrefabInstance: {fileID: 2520611092021244903}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1243869619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243869617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d2eeeab26266a9488f033bd2d55f201, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Quests:
-  - {fileID: 3482120282007199178, guid: b45dca6aa5114a74b9cd2b30ca0b78ea, type: 3}
 --- !u!1 &1249229907
 GameObject:
   m_ObjectHideFlags: 0
@@ -27789,7 +27891,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerStat
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1119126276}
     - target: {fileID: 2520611091532901247, guid: 296fc1bb3ba6e3f429f7afbcc3184b15,
         type: 3}
       propertyPath: m_Name
@@ -28693,7 +28795,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerStat
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1119126276}
     - target: {fileID: 6809110346480237054, guid: 937666c7755055841b37a46c4ddcbae5,
         type: 3}
       propertyPath: inventoryPanel
@@ -28708,7 +28810,7 @@ PrefabInstance:
         type: 3}
       propertyPath: testingItem
       value: 
-      objectReference: {fileID: 3547253407065860030, guid: 71946683d061f014d94a7fad8b08085f,
+      objectReference: {fileID: 7335266869444238848, guid: be6699cf01024c445b7e7ec180e83381,
         type: 3}
     - target: {fileID: 6809110346480237054, guid: 937666c7755055841b37a46c4ddcbae5,
         type: 3}

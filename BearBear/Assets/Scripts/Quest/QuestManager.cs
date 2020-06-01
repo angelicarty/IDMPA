@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
@@ -38,6 +39,11 @@ public class QuestManager : MonoBehaviour
             if(currentQuest.GetComponent<Quest>().numberToKill != 0)
             {
                 questTracker += currentQuest.GetComponent<Quest>().monsterToKill + " : " + currentQuest.GetComponent<Quest>().killCount + "/" + currentQuest.GetComponent<Quest>().numberToKill;
+            }
+            if(currentQuest.GetComponent<Quest>().numberToCollect != 0)
+            {
+                questTracker += Environment.NewLine + currentQuest.GetComponent<Quest>().objectToCollect + " : " + FindObjectOfType<InventoryManager>().getCount(currentQuest.GetComponent<Quest>().objectToCollect)
+                    + "/" + currentQuest.GetComponent<Quest>().numberToCollect;
             }
 
             questDescriptionBoxTracker.GetComponent<UnityEngine.UI.Text>().text = questTracker;
@@ -136,7 +142,8 @@ public class QuestManager : MonoBehaviour
 
     public bool IsQuestComplete(Quest currentQuest)
     {
-        if (currentQuest.numberToKill <= currentQuest.killCount && currentQuest.questStatus == QuestStatus.TAKEN)  //and object to collect
+        if (currentQuest.numberToKill <= currentQuest.killCount && currentQuest.numberToCollect <= FindObjectOfType<InventoryManager>().getCount(currentQuest.objectToCollect) &&
+            currentQuest.questStatus == QuestStatus.TAKEN)  
         {
             return true;
         }
@@ -150,7 +157,11 @@ public class QuestManager : MonoBehaviour
     {
         if(FindObjectOfType<InventoryManager>().questGiveItem(currQuest.itemReward, currQuest.itemRewardCount))
         {
+            Debug.Log("1");
+            //remove quest object
+            FindObjectOfType<InventoryManager>().removeItem(currQuest.objectToCollect, currQuest.numberToCollect);
             //give stat reward, if giving item reward can be done
+            Debug.Log("2");
             playerStat.ModMHP(currQuest.maxHP);
             playerStat.ModATK(currQuest.atk);
             playerStat.ModDEF(currQuest.def);

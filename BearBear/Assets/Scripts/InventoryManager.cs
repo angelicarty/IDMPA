@@ -56,6 +56,10 @@ public class InventoryManager : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (Input.GetKeyDown("["))
+        {
+            giveItem(testingItem, 10);
+        }
         if(isMousedOverItem)
         {
             mouseOverItem();
@@ -133,37 +137,59 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < invSlots.Length; i++)
         {
-            if(invSlots[i].slot.transform.GetChild(0).gameObject == item)
+            if (!invSlots[i].isEmpty)
             {
-                Debug.Log(invSlots[i].count);
-                return invSlots[i].count;
+                var occupant = invSlots[i].slot.transform.GetChild(0).gameObject;
+                int numOfLettersOfOccupant = occupant.name.Length;
+                if (item.name.Length <= occupant.name.Length)
+                {
+                    string itemInSlot = occupant.name.Substring(0, item.name.Length);
+                    if (item.name == itemInSlot)
+                    {
+                        return invSlots[i].count;
+                        
+                    }
+                }
             }
         }
-        return 0;
+            return 0;
     }
+
+
 
     public void removeItem(GameObject item,int count)
     {
         for (int i = 0; i < invSlots.Length; i++)
         {
-            if (invSlots[i].slot.transform.GetChild(0).gameObject == item)
+            if (!invSlots[i].isEmpty)
             {
-                Debug.Log(invSlots[i].count);
-                if(count < invSlots[i].count)
+                var occupant = invSlots[i].slot.transform.GetChild(0).gameObject;
+                int numOfLettersOfOccupant = occupant.name.Length;
+                if (item.name.Length <= occupant.name.Length)
                 {
-                    invSlots[i].count -= count;
-                    invSlots[i].countDisplay.GetComponent<Text>().text = invSlots[i].count.ToString();
-                }
-                else
-                {
-                    isNotMousedOver();
-                    Destroy(invSlots[i].slot.transform.GetChild(0).gameObject);
-                    invSlots[i].count = 0;
-                    invSlots[i].countDisplay.SetActive(false);
-                    invSlots[i].isEmpty = true;
+                    string itemInSlot = occupant.name.Substring(0, item.name.Length);
+                    if (item.name == itemInSlot)
+                    {
+                        if (count < invSlots[i].count)
+                        {
+                            invSlots[i].count -= count;
+                            invSlots[i].countDisplay.GetComponent<Text>().text = invSlots[i].count.ToString();
+                        }
+                        else
+                        {
+                            isNotMousedOver();
+                            Destroy(invSlots[i].slot.transform.GetChild(0).gameObject);
+                            invSlots[i].count = 0;
+                            invSlots[i].countDisplay.SetActive(false);
+                            invSlots[i].isEmpty = true;
+                        }
+
+                    }
                 }
             }
         }
+
+        
     }
 
     public bool giveItem(GameObject item, int count)

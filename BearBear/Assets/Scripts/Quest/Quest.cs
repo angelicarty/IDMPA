@@ -11,7 +11,7 @@ public class Quest : MonoBehaviour
     public string monsterToKill;
     public int numberToKill;
     public int killCount;
-    public string objectToCollect;
+    public GameObject objectToCollect;
     public int numberToCollect;
     public int collectionCount;
     public QuestStatus questStatus;
