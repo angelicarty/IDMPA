@@ -38,6 +38,7 @@ public class VolControl : MonoBehaviour
 
     private void Start()
     {
+        inTown();
         if (!bgm.isOn)
         {
             BGMisMute = true;

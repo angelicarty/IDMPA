@@ -19,7 +19,7 @@ public class MonstersController : MonoBehaviour
     public float spawnTime;
     float currentTime;
 
-    bool InMobArea = true;  //temp default to true for testing purpose
+    bool InMobArea = false;  
 
     public bool isInMobArea()
     {
@@ -34,7 +34,7 @@ public class MonstersController : MonoBehaviour
             spawnMonster();
         }
         //and then freeze time till player comes into the map
-        //goingOutOfMobArea();
+        goingOutOfMobArea();
     }
 
     void spawnMonster()

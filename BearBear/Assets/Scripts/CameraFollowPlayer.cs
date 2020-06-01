@@ -63,6 +63,8 @@ public class CameraFollowPlayer : MonoBehaviour
 
     public void playerChangedMap()
     {
+        followUD = true;
+        followLR = true;
         transform.position = target.TransformPoint(new Vector3(0, 0, -10));
     }
 }
