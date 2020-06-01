@@ -11,8 +11,17 @@ public class TeleportPoints : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            FindObjectOfType<CameraFollowPlayer>().playerChangedMap();
-            player.transform.position = teleportTo.transform.position;
+            StartCoroutine("MapTransition");
+
         }
+    }
+
+    IEnumerator MapTransition()
+    {
+        GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Conceal");
+        yield return new WaitForSeconds(1);
+        FindObjectOfType<CameraFollowPlayer>().playerChangedMap();
+        player.transform.position = teleportTo.transform.position;
+        GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Reveal");
     }
 }

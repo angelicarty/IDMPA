@@ -94,16 +94,11 @@ public class MonstersController : MonoBehaviour
     }
     public void goingIntoMobArea()
     {
-        if (InMobArea)
-        {
-            //nada
-        }
-        else
-        {
-            pausesMobMovement();
-            InMobArea = true;
-            resumeMobMovement();
-        }
+
+        pausesMobMovement();
+        InMobArea = true;
+        resumeMobMovement();
+
     }
 
     private bool checkSpawnSpots()

@@ -115,13 +115,7 @@ public class KeyboardInputManager : MonoBehaviour
                 }
                 else
                 {
-                    hideAllUi();
-                    blur.SetActive(false);
-                    enableCharacterMovement();
-                    if(monstersController.isInMobArea())
-                    {
-                        monstersController.goingIntoMobArea();
-                    }
+                    ClosePauseMenu();
                 }
             }
         }
@@ -135,6 +129,17 @@ public class KeyboardInputManager : MonoBehaviour
         if (monstersController.isInMobArea())
         {
             monstersController.pausesMobMovement();
+        }
+    }
+
+    public void ClosePauseMenu()
+    {
+        hideAllUi();
+        blur.SetActive(false);
+        enableCharacterMovement();
+        if (monstersController.isInMobArea())
+        {
+            monstersController.goingIntoMobArea();
         }
     }
 

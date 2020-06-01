@@ -355,9 +355,8 @@ public class Battle : MonoBehaviour
         Destroy(over_enemy);
         battleScene.SetActive(false);
         overworld_camera.gameObject.SetActive(true);
-        FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
         FindObjectOfType<KeyboardInputManager>().enableChat(); //resume pressing space to  chat 
-        FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
+
         RunStatGen(1);
         GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Reveal");
     }
@@ -367,8 +366,8 @@ public class Battle : MonoBehaviour
         RunStatGen(0.5f);
         Debug.Log("You lose!");
         //TODO: player death stuff
-        FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
         FindObjectOfType<KeyboardInputManager>().enableChat(); //resume pressing space to  chat 
+        FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
         FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
         FindObjectOfType<PlayerManager>().Death();
         battleScene.SetActive(false);
@@ -381,15 +380,21 @@ public class Battle : MonoBehaviour
         Debug.Log("You run away!");
         battleScene.SetActive(false);
         overworld_camera.gameObject.SetActive(true);
-        FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
         FindObjectOfType<KeyboardInputManager>().enableChat(); //resume pressing space to  chat 
+        FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
         FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
+
         GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Reveal");
     }
 
     //AWARDING LOOT
     private void Loot()
     {
+        if (over_enemy.GetComponent<MobDropContainer>().drop == null)
+        {
+            FindObjectOfType<KeyboardInputManager>().enableCharacterMovement(); //re-enable character movement
+            FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
+        }
         Debug.Log("Awarding loot");
         if (!inv.giveItem(over_enemy.GetComponent<MobDropContainer>().drop, 1))
         { 

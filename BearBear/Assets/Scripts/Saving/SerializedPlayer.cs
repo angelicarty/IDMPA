@@ -14,10 +14,13 @@ public class SerializedPlayer : MonoBehaviour
 
     public string[] questTakenIds;
     public string[] questCompletedIds;
-    public int[] questProgress;
+    public int[] questKillProg;
+    public int[] questItemProg;
 
 
     public int[] statValues = new int[7];
+
+    //doesn't need to be serialised, but can't be changed in the editor otherwise
     public int[] defaultStats = new int[7];
     public void GetInfo()
     {
@@ -39,8 +42,8 @@ public class SerializedPlayer : MonoBehaviour
         QuestManager qm = FindObjectOfType<QuestManager>();
         questTakenIds = qm.GetAllTakenIds();
         questCompletedIds = qm.GetAllCompletedIds();
-        questProgress = qm.GetAllQuestProgress();
-
+        questKillProg = qm.GetKillQuestProgress();
+        questItemProg = qm.GetItemQuestProgress();
 
     }
 
@@ -64,7 +67,7 @@ public class SerializedPlayer : MonoBehaviour
         inv.addGold(gold);
 
         QuestManager qm = FindObjectOfType<QuestManager>();
-        qm.InitQuests(questTakenIds, questCompletedIds, questProgress);
+        qm.InitQuests(questTakenIds, questCompletedIds, questKillProg, questItemProg);
     }
 
     public void SetDefaultInfo(string name)
@@ -79,6 +82,5 @@ public class SerializedPlayer : MonoBehaviour
         statObj.ModSATK(defaultStats[4]);
         statObj.ModSDEF(defaultStats[5]);
         statObj.ModSPD(defaultStats[6]);
-
     }
 }

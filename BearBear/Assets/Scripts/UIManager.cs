@@ -15,4 +15,9 @@ public class UIManager : MonoBehaviour
             ui.transform.SetParent(target.transform, false);
         } 
     }
+
+    public void ClosePauseMenu()
+    { 
+        FindObjectOfType<KeyboardInputManager>().ClosePauseMenu();
+    }
 }

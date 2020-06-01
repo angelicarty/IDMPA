@@ -42,7 +42,7 @@ public class QuestManager : MonoBehaviour
             }
             if(currentQuest.GetComponent<Quest>().numberToCollect != 0)
             {
-                questTracker += Environment.NewLine + currentQuest.GetComponent<Quest>().objectToCollect + " : " + FindObjectOfType<InventoryManager>().getCount(currentQuest.GetComponent<Quest>().objectToCollect)
+                questTracker += Environment.NewLine + currentQuest.GetComponent<Quest>().objectToCollect.GetComponent<ItemProperties>().name + " : " + FindObjectOfType<InventoryManager>().getCount(currentQuest.GetComponent<Quest>().objectToCollect)
                     + "/" + currentQuest.GetComponent<Quest>().numberToCollect;
             }
 
@@ -246,7 +246,7 @@ public class QuestManager : MonoBehaviour
         return output;
     }
 
-    public int[] GetAllQuestProgress()
+    public int[] GetKillQuestProgress()
     {
         //TODO: check if quest is mob or item
         int[] output = new int[takenQuests.Count];
@@ -259,7 +259,20 @@ public class QuestManager : MonoBehaviour
         return output;
     }
 
-    public void InitQuests(string[] taken, string[] complete, int[] progress)
+    public int[] GetItemQuestProgress()
+    {
+        //TODO: check if quest is mob or item
+        int[] output = new int[takenQuests.Count];
+        int i = 0;
+        foreach (GameObject quest in takenQuests)
+        {
+            output[i] = quest.GetComponent<Quest>().collectionCount;
+            i++;
+        }
+        return output;
+    }
+
+    public void InitQuests(string[] taken, string[] complete, int[] killProgress, int[] itemProgress)
     {
         GameObject temp;
         List<GameObject> takenObj = new List<GameObject>();
@@ -289,7 +302,8 @@ public class QuestManager : MonoBehaviour
         {
             temp = Instantiate(takenObj[i], gameObject.transform);
             temp.name = temp.name.Replace("(Clone)", "");
-            temp.GetComponent<Quest>().killCount = progress[i];
+            temp.GetComponent<Quest>().killCount = killProgress[i];
+            temp.GetComponent<Quest>().collectionCount = itemProgress[i];
             temp.GetComponent<Quest>().questStatus = QuestStatus.TAKEN;
             takenQuests.Add(temp);
             temp = null;
