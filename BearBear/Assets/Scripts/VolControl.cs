@@ -13,8 +13,7 @@ public class VolControl : MonoBehaviour
     bool SFXisMute, BGMisMute, masterIsMute;
 
 
-    public AudioSource wildAreaBGM, townBGM;//, battleBGM;
-    public AudioSource clickSFX;
+    public AudioSource wildAreaBGM, townBGM;
 
     public void inWildArea()
     {
@@ -29,11 +28,6 @@ public class VolControl : MonoBehaviour
         wildAreaBGM.Pause();
         //battleBGM.Pause();
     }
-
-    public void clicky()
-    {
-        clickSFX.Play();
-    } 
 
 
     private void Start()
