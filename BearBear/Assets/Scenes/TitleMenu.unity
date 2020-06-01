@@ -6596,7 +6596,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Batty, Naomi, Creatro
+  m_Text: Batty Birb, Naomi, Creatro
 --- !u!222 &1553162981
 CanvasRenderer:
   m_ObjectHideFlags: 0
