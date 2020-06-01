@@ -32,9 +32,8 @@ public class MonstersController : MonoBehaviour
         {
             counter = i;
             spawnMonster();
+            pausesMobMovement();
         }
-        //and then freeze time till player comes into the map
-        goingOutOfMobArea();
     }
 
     void spawnMonster()
@@ -83,7 +82,7 @@ public class MonstersController : MonoBehaviour
         }
     }
 
-    public void resumeMobMovement()
+    private void resumeMobMovement()
     {
         for (int i = 0; i < spawnedMobs.Length; i++)
         {
@@ -101,6 +100,7 @@ public class MonstersController : MonoBehaviour
         }
         else
         {
+            pausesMobMovement();
             InMobArea = true;
             resumeMobMovement();
         }

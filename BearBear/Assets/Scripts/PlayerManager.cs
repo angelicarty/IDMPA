@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
         player.transform.position = spawnLocation;
         saver.player = player.GetComponent<Stats>();
         saver.LoadPlayer();
-        battleController.overworld_camera = player.GetComponentInChildren<Camera>();
+        battleController.overworld_camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     public void Death()

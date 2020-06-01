@@ -8,7 +8,7 @@ public class MusicTrigger : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            FindObjectOfType<MonstersController>().isInMobArea();
+            FindObjectOfType<MonstersController>().goingIntoMobArea();
             FindObjectOfType<VolControl>().inWildArea();
         }
     }

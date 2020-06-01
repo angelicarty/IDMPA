@@ -115,7 +115,7 @@ public class KeyboardInputManager : MonoBehaviour
                     enableCharacterMovement();
                     if(monstersController.isInMobArea())
                     {
-                        monstersController.resumeMobMovement();
+                        monstersController.goingIntoMobArea();
                     }
                 }
             }
