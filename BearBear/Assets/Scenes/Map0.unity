@@ -11301,12 +11301,12 @@ PrefabInstance:
     - target: {fileID: 6703824103144776173, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 96.5
+      value: 82.18
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776173, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -82.4
+      value: -92.8
       objectReference: {fileID: 0}
     - target: {fileID: 6703824103144776173, guid: 5c6cbbbe45d5a8f4a8ebc18d34b08099,
         type: 3}
@@ -18386,7 +18386,7 @@ MonoBehaviour:
   player: {fileID: 1119126272}
   saver: {fileID: 1341034784}
   battleController: {fileID: 7310382382739665815}
-  spawnLocation: {x: 0, y: 0, z: 0}
+  spawnLocation: {x: 82.1, y: -92.5, z: 0}
 --- !u!114 &1341034787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27883,8 +27883,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6703824102452113400}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 82.18, y: -90.92, z: -10}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
