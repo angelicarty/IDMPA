@@ -94,7 +94,6 @@ public class MonstersController : MonoBehaviour
     }
     public void goingIntoMobArea()
     {
-        Debug.Log("what?");
         pausesMobMovement();
         InMobArea = true;
         resumeMobMovement();
