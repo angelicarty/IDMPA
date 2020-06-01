@@ -73,3 +73,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Quests:
   - {fileID: 4346983879075438343, guid: ddfc1a803a01eb4478ac071066bc5ad3, type: 3}
+  - {fileID: 225526237265536456, guid: dc3ba801153e0b54a9a54ebcb80a2f2f, type: 3}

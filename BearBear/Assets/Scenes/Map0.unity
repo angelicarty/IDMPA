@@ -5402,8 +5402,8 @@ RectTransform:
   m_Father: {fileID: 1967070569}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.06690669, y: 0}
-  m_AnchorMax: {x: 0.06690669, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: -0.56}
   m_SizeDelta: {x: 30.82, y: 1.12}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6956,7 +6956,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1961854946}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &538127040
 MonoBehaviour:
@@ -7035,8 +7035,8 @@ RectTransform:
   m_Father: {fileID: 1784334649}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.8749875, y: 0}
-  m_AnchorMax: {x: 0.8749875, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -3, y: 0.000011444092}
   m_SizeDelta: {x: 25.75, y: 2.24}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7606,6 +7606,8 @@ GameObject:
   - component: {fileID: 573173762}
   - component: {fileID: 573173764}
   - component: {fileID: 573173763}
+  - component: {fileID: 573173766}
+  - component: {fileID: 573173765}
   m_Layer: 0
   m_Name: Sheep2
   m_TagString: Untagged
@@ -7640,7 +7642,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speakerSprite: {fileID: 21300000, guid: 7183022f614e30a42a881c1a50a48d44, type: 3}
-  dialogues: []
+  dialogues:
+  - talkerName: Sheep Sheep
+    sentences:
+    - Hi! I'm on duty right now, so I can't chat with ya.
+    triggerOptions: 0
+    optionreplies: []
 --- !u!212 &573173764
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7691,6 +7698,58 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &573173765
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573173761}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17, y: 12.72}
+    newSize: {x: 17, y: 12.72}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 17, y: 12.72}
+  m_EdgeRadius: 0
+--- !u!61 &573173766
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573173761}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.37843704, y: -0.6878891}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17, y: 12.72}
+    newSize: {x: 17, y: 12.72}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.162819, y: 9.00528}
+  m_EdgeRadius: 0
 --- !u!1 &574248306
 GameObject:
   m_ObjectHideFlags: 0
@@ -8381,8 +8440,9 @@ GameObject:
   - component: {fileID: 612654280}
   - component: {fileID: 612654279}
   - component: {fileID: 612654281}
+  - component: {fileID: 612654283}
   m_Layer: 0
-  m_Name: Giraffe
+  m_Name: Giraffe-Quest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8505,6 +8565,22 @@ MonoBehaviour:
       reply:
       - AH! ...I guess i'll just keep waiting her for mommy then...
       acceptQuest: 0
+  - talkerName: Giraffe
+    sentences:
+    - I'm getting hungry...I hope mommy comes back soon...
+    - I could really go for some apples right now...
+    triggerOptions: 1
+    optionreplies:
+    - talkerName: Giraffe
+      option: I'll help
+      reply:
+      - You will? I will wait here for you then!
+      acceptQuest: 1
+    - talkerName: Giraffe
+      option: I see
+      reply:
+      - I'll keep waiting here for mommy! She should be back soon...
+      acceptQuest: 0
 --- !u!212 &612654282
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8555,6 +8631,59 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &612654283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612654277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81af265b23c826a40bf8296cc0fec5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 225526237265536456, guid: dc3ba801153e0b54a9a54ebcb80a2f2f, type: 3}
+  speakerSprite: {fileID: 21300000, guid: e1e54b5c903ef344cb823793323319e5, type: 3}
+  questTakenDialogue:
+  - talkerName: Giraffe
+    sentences:
+    - So hungry.......
+    triggerOptions: 0
+    optionreplies: []
+  - talkerName: Giraffe
+    sentences:
+    - I hope mommy comes back soon...
+    triggerOptions: 0
+    optionreplies: []
+  questCompleteDialogue:
+  - talkerName: Giraffe
+    sentences:
+    - I got it from mommy but you can have it as thanks for the food.
+    - I can now continue waiting for mommy.
+    triggerOptions: 0
+    optionreplies: []
+  - talkerName: Giraffe
+    sentences:
+    - I got it from mommy but you can have it as thanks for the food. Do you think
+      mommy will come back soon?
+    - She's been gone for awhile...
+    triggerOptions: 0
+    optionreplies: []
+  - talkerName: Giraffe
+    sentences:
+    - I got it from mommy but you can have it as thanks for the food. I hope mommy
+      comes back soon...
+    triggerOptions: 0
+    optionreplies: []
+  invFullDialogue:
+  - talkerName: Giraffe
+    sentences:
+    - Your bag is full...I'll hold on to this till you empty up some space.
+    triggerOptions: 0
+    optionreplies: []
+  id: Giraffe
+  taken: 0
 --- !u!1 &613871652
 GameObject:
   m_ObjectHideFlags: 0
@@ -8700,8 +8829,8 @@ RectTransform:
   m_Father: {fileID: 735074050}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.4109411, y: 0}
-  m_AnchorMax: {x: 0.4109411, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 1.6899986, y: -0.5}
   m_SizeDelta: {x: 33.38, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8964,6 +9093,162 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 640329741}
   m_CullTransparentMesh: 0
+--- !u!1 &645030875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 645030876}
+  - component: {fileID: 645030880}
+  - component: {fileID: 645030879}
+  - component: {fileID: 645030878}
+  - component: {fileID: 645030877}
+  m_Layer: 0
+  m_Name: Sheep2 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &645030876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645030875}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -17.62, y: -2.91, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1961854946}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &645030877
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645030875}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17, y: 12.72}
+    newSize: {x: 17, y: 12.72}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 17, y: 12.72}
+  m_EdgeRadius: 0
+--- !u!61 &645030878
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645030875}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.37843704, y: -0.6878891}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17, y: 12.72}
+    newSize: {x: 17, y: 12.72}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.162819, y: 9.00528}
+  m_EdgeRadius: 0
+--- !u!114 &645030879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645030875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cabc39116b9aee148abf7bb98379feca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speakerSprite: {fileID: 21300000, guid: 7183022f614e30a42a881c1a50a48d44, type: 3}
+  dialogues:
+  - talkerName: Sheepu
+    sentences:
+    - Hi there! My brothers and I are on duty right now. We're gonna keep the town
+      safe!
+    triggerOptions: 0
+    optionreplies: []
+--- !u!212 &645030880
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645030875}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1034907931
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 7183022f614e30a42a881c1a50a48d44, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 17, y: 12.72}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &677559204
 GameObject:
   m_ObjectHideFlags: 0
@@ -10686,7 +10971,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778417995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 89.9, y: -74.53, z: 0}
+  m_LocalPosition: {x: 88.87, y: -75.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -11942,7 +12227,7 @@ Transform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 1961854946}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &873001284
 SpriteRenderer:
@@ -12020,6 +12305,26 @@ MonoBehaviour:
     - Thank you so much for your help. I hope the items I've given you are of use.
     triggerOptions: 0
     optionreplies: []
+  - talkerName: Woolie
+    sentences:
+    - I'm just gonna stay here and enjoy the day. Good luck out there!
+    triggerOptions: 0
+    optionreplies: []
+  - talkerName: Woolie
+    sentences:
+    - Were my reward helpful?
+    triggerOptions: 1
+    optionreplies:
+    - talkerName: Woolie
+      option: Yes
+      reply:
+      - I'm glad then!
+      acceptQuest: 0
+    - talkerName: Woolie
+      option: Nope
+      reply:
+      - Oh...Well, it was the best I could offer...
+      acceptQuest: 0
   invFullDialogue:
   - talkerName: Woolie
     sentences:
@@ -13677,6 +13982,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 965269330}
+  - component: {fileID: 965269332}
   - component: {fileID: 965269331}
   m_Layer: 0
   m_Name: Rock
@@ -13699,19 +14005,53 @@ Transform:
   m_Father: {fileID: 523839859}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &965269331
-BoxCollider:
+--- !u!61 &965269331
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965269329}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.04077828, y: 0.11553234}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.9342613, y: 2.863926, z: 1}
-  m_Center: {x: 0.19342613, y: 0.19342613, z: 0}
+  m_Size: {x: 2.8213398, y: 2.6718316}
+  m_EdgeRadius: 0
+--- !u!50 &965269332
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965269329}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &966105749
 GameObject:
   m_ObjectHideFlags: 0
@@ -13800,7 +14140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &967078354
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16421,7 +16761,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1961854946}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1176699587
 MonoBehaviour:
@@ -17054,6 +17394,162 @@ RectTransform:
   m_AnchoredPosition: {x: 56.94, y: 19.66}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1248993787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1248993788}
+  - component: {fileID: 1248993792}
+  - component: {fileID: 1248993791}
+  - component: {fileID: 1248993790}
+  - component: {fileID: 1248993789}
+  m_Layer: 0
+  m_Name: Sheep2 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1248993788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248993787}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.87, y: 8.76, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1961854946}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1248993789
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248993787}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17, y: 12.72}
+    newSize: {x: 17, y: 12.72}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 17, y: 12.72}
+  m_EdgeRadius: 0
+--- !u!61 &1248993790
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248993787}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.37843704, y: -0.6878891}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 17, y: 12.72}
+    newSize: {x: 17, y: 12.72}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.162819, y: 9.00528}
+  m_EdgeRadius: 0
+--- !u!114 &1248993791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248993787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cabc39116b9aee148abf7bb98379feca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speakerSprite: {fileID: 21300000, guid: 7183022f614e30a42a881c1a50a48d44, type: 3}
+  dialogues:
+  - talkerName: Sheepo
+    sentences:
+    - You can't go out this way, the monsters outside are very strong. Stay here
+      where it is safe.
+    triggerOptions: 0
+    optionreplies: []
+--- !u!212 &1248993792
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248993787}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1034907931
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 7183022f614e30a42a881c1a50a48d44, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 17, y: 12.72}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1249229907
 GameObject:
   m_ObjectHideFlags: 0
@@ -17920,7 +18416,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.8749875, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18553,7 +19049,8 @@ MonoBehaviour:
   gold: 0
   questTakenIds: []
   questCompletedIds: []
-  questProgress: 
+  questKillProg: 
+  questItemProg: 
   statValues: 00000000000000000000000000000000000000000000000000000000
   defaultStats: 14000000140000001400000014000000140000001400000014000000
 --- !u!1 &1349594371
@@ -18818,31 +19315,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   welcomeDialogue:
-    talkerName: Bloop
+    talkerName: Fluff Fluff
     sentences:
     - Hewwo. Welcome to my shop.
     triggerOptions: 0
     optionreplies: []
   noMoneyDialogue:
-    talkerName: shopkeeper
+    talkerName: Fluff Fluff
     sentences:
     - You don't have enough money to purchase this
     triggerOptions: 0
     optionreplies: []
   noSpaceDialogue:
-    talkerName: shopkeeper
+    talkerName: Fluff Fluff
     sentences:
     - You don't have any inventory space
     triggerOptions: 0
     optionreplies: []
   goodbyeDialogue:
-    talkerName: shopkeeper
+    talkerName: Fluff Fluff
     sentences:
     - See you soon
     triggerOptions: 0
     optionreplies: []
   buyingDialogue:
-    talkerName: Bloop
+    talkerName: Fluff Fluff
     sentences:
     - 'Thanks for buying! '
     triggerOptions: 0
@@ -19277,6 +19774,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398702650}
   m_CullTransparentMesh: 0
+--- !u!1 &1404563503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1404563504}
+  - component: {fileID: 1404563506}
+  - component: {fileID: 1404563505}
+  m_Layer: 0
+  m_Name: No-one Home (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1404563504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404563503}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.07, y: 8.85, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1961854946}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1404563505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404563503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cabc39116b9aee148abf7bb98379feca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speakerSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  dialogues:
+  - talkerName: ???
+    sentences:
+    - '*Knock knock* It seems no one is home...'
+    triggerOptions: 0
+    optionreplies: []
+--- !u!61 &1404563506
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404563503}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1408094124
 GameObject:
   m_ObjectHideFlags: 0
@@ -20483,102 +21057,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469944813}
   m_CullTransparentMesh: 0
---- !u!1 &1475790403
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1475790404}
-  - component: {fileID: 1475790406}
-  - component: {fileID: 1475790405}
-  m_Layer: 0
-  m_Name: Sheep2 (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1475790404
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475790403}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.8, y: 8.94, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1961854946}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1475790405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475790403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cabc39116b9aee148abf7bb98379feca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speakerSprite: {fileID: 21300000, guid: 7183022f614e30a42a881c1a50a48d44, type: 3}
-  dialogues: []
---- !u!212 &1475790406
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475790403}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1034907931
-  m_SortingLayer: 1
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7183022f614e30a42a881c1a50a48d44, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 17, y: 12.72}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &1479342084
 GameObject:
   m_ObjectHideFlags: 0
@@ -21003,7 +21481,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.4109411, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -23205,7 +23683,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7aec3ae445c25634897a2f897ed1ee96, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3ef5f959aa09144297cbefd960655e0, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -23481,7 +23959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717601395}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.16, y: -13.24, z: 0}
+  m_LocalPosition: {x: -2.51, y: -14.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -23835,7 +24313,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1961854946}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1768953415
 MonoBehaviour:
@@ -25592,102 +26070,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1908112170}
   m_CullTransparentMesh: 0
---- !u!1 &1908551614
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1908551615}
-  - component: {fileID: 1908551617}
-  - component: {fileID: 1908551616}
-  m_Layer: 0
-  m_Name: Sheep2 (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1908551615
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908551614}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.52, y: -2.39, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1961854946}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1908551616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908551614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cabc39116b9aee148abf7bb98379feca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speakerSprite: {fileID: 21300000, guid: 7183022f614e30a42a881c1a50a48d44, type: 3}
-  dialogues: []
---- !u!212 &1908551617
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908551614}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1034907931
-  m_SortingLayer: 1
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7183022f614e30a42a881c1a50a48d44, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 17, y: 12.72}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &1923243402
 GameObject:
   m_ObjectHideFlags: 0
@@ -26200,13 +26582,15 @@ Transform:
   - {fileID: 573173762}
   - {fileID: 1281611416}
   - {fileID: 880107553}
-  - {fileID: 1908551615}
-  - {fileID: 1475790404}
   - {fileID: 873001283}
   - {fileID: 538127039}
   - {fileID: 2100821895}
   - {fileID: 1768953414}
   - {fileID: 1176699586}
+  - {fileID: 1404563504}
+  - {fileID: 2034645309}
+  - {fileID: 645030876}
+  - {fileID: 1248993788}
   m_Father: {fileID: 1923243404}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26741,6 +27125,83 @@ Transform:
   m_Father: {fileID: 1923243404}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2034645308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2034645309}
+  - component: {fileID: 2034645311}
+  - component: {fileID: 2034645310}
+  m_Layer: 0
+  m_Name: No-one Home (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2034645309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034645308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.11, y: 10.07, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1961854946}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2034645310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034645308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cabc39116b9aee148abf7bb98379feca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speakerSprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  dialogues:
+  - talkerName: ???
+    sentences:
+    - '*Knock knock* It seems no one is home...'
+    triggerOptions: 0
+    optionreplies: []
+--- !u!61 &2034645311
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034645308}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2043832276
 GameObject:
   m_ObjectHideFlags: 0
@@ -27308,6 +27769,8 @@ GameObject:
   - component: {fileID: 2100821895}
   - component: {fileID: 2100821897}
   - component: {fileID: 2100821896}
+  - component: {fileID: 2100821899}
+  - component: {fileID: 2100821898}
   m_Layer: 0
   m_Name: a slime
   m_TagString: Untagged
@@ -27327,7 +27790,7 @@ Transform:
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 1961854946}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2100821896
 MonoBehaviour:
@@ -27341,7 +27804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cabc39116b9aee148abf7bb98379feca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speakerSprite: {fileID: 0}
+  speakerSprite: {fileID: 21300000, guid: e63569013a7ba6d42a029110a6e53495, type: 3}
   dialogues:
   - talkerName: ???
     sentences:
@@ -27399,6 +27862,58 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &2100821898
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100821894}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.13855678, y: -0.06569433}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.4707871, y: 0.58215964}
+    oldSize: {x: 2.26, y: 2.25}
+    newSize: {x: 1.61, y: 1.61}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.1873937, y: 2.9857202}
+  m_EdgeRadius: 0
+--- !u!61 &2100821899
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100821894}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.066021085, y: -0.15895262}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.4707871, y: 0.58215964}
+    oldSize: {x: 2.26, y: 2.25}
+    newSize: {x: 1.61, y: 1.61}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.26, y: 0.9132605}
+  m_EdgeRadius: 0
 --- !u!1 &2102817368
 GameObject:
   m_ObjectHideFlags: 0
@@ -27753,7 +28268,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.06690669, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -27793,6 +28308,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2147385974}
   m_CullTransparentMesh: 0
+--- !u!1001 &225526237155526184
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 225526237265536456, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
+        type: 3}
+      propertyPath: m_Name
+      value: Quest2
+      objectReference: {fileID: 0}
+    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 95.5806
+      objectReference: {fileID: 0}
+    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -84.749016
+      objectReference: {fileID: 0}
+    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.34179688
+      objectReference: {fileID: 0}
+    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 225526237265536458, guid: dc3ba801153e0b54a9a54ebcb80a2f2f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dc3ba801153e0b54a9a54ebcb80a2f2f, type: 3}
 --- !u!1001 &1838972466394778328
 PrefabInstance:
   m_ObjectHideFlags: 0
