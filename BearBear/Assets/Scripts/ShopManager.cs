@@ -78,6 +78,18 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    public void pressedESC()
+    {
+        if (waiting && inShop && !pleaseEndConvo)
+        {
+            dialogueManager.dialoguePromptWithSprite(changeYourMind, shopKeeper);
+            pleaseEndConvo = true;
+            waiting = false;
+            shopUI.SetActive(false);
+            inventoryManager.closeInventory();
+            return;
+        }
+    }
 
     private void Start()
     {

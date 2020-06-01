@@ -102,6 +102,11 @@ public class KeyboardInputManager : MonoBehaviour
 
             if (Input.GetKeyDown("escape"))
             {
+                if(shopDialogue)
+                {
+                    shopManager.pressedESC();
+                    return;
+                }
                 if (!gameMenu)
                 {
                     hideAllUi();
