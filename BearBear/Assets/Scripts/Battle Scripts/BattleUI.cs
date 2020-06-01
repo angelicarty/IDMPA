@@ -73,7 +73,7 @@ public class BattleUI : MonoBehaviour
         }
         if (index > -1)
         {
-            actionButtons[index].color = Color.blue;
+            actionButtons[index].color = Color.grey;
         }
     }
 

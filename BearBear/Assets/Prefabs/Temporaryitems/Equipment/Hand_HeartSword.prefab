@@ -165,6 +165,8 @@ MonoBehaviour:
   itemDescription: 'A large, sharp and exceptionally fancy sword, perfect for dispensing
     justice!
 
+    Attack: 50
+
     Value: 1000'
 --- !u!114 &179976857746398830
 MonoBehaviour:

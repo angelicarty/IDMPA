@@ -162,8 +162,10 @@ MonoBehaviour:
   isEdible: 0
   isEquipment: 1
   value: 500
-  itemDescription: 'A pretty green hat which is surprisingly tough, enahncing both
+  itemDescription: 'A pretty green hat which is surprisingly tough, enhancing both
     the wearers protection and fashion sense
+
+    Defence: 50
 
     Value: 500'
 --- !u!114 &179976857746398830
@@ -195,3 +197,4 @@ MonoBehaviour:
   DEF: 50
   SATK: 0
   SDEF: 0
+  SPD: 0

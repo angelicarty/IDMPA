@@ -10,7 +10,7 @@ public class MainMenuTutorial : MonoBehaviour
     {
         tutorials[pagenum].SetActive(false);
         pagenum++;
-        if(pagenum >= tutorials.Length - 1)
+        if(pagenum > tutorials.Length - 1)
         {
             pagenum = 0;
         }

@@ -164,7 +164,10 @@ MonoBehaviour:
   value: 100
   itemDescription: 'A large red ribbon that protects you
 
-    Value: 100'
+    Defence: 20
+
+    Value:
+    100'
 --- !u!114 &179976857746398830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,3 +197,4 @@ MonoBehaviour:
   DEF: 20
   SATK: 0
   SDEF: 0
+  SPD: 0
