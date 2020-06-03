@@ -348,17 +348,18 @@ public class Battle : MonoBehaviour
     //ENDING STUFF
     private void EndWin()
     {
+        RunStatGen(1);
         Debug.Log("You win!");
 
         Loot();
         FindObjectOfType<QuestManager>().Killed(over_enemy.name);
-        Destroy(over_enemy);
+
         battleScene.SetActive(false);
         overworld_camera.gameObject.SetActive(true);
         FindObjectOfType<KeyboardInputManager>().enableChat(); //resume pressing space to  chat 
 
-        RunStatGen(1);
         GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Reveal");
+        Destroy(over_enemy);
     }
 
     private void EndLose()
@@ -396,10 +397,7 @@ public class Battle : MonoBehaviour
             FindObjectOfType<MonstersController>().goingIntoMobArea(); //resume monster movements
         }
         Debug.Log("Awarding loot");
-        if (!inv.giveItem(over_enemy.GetComponent<MobDropContainer>().drop, 1))
-        { 
-        //discards the item
-        }
+        inv.giveItem(over_enemy.GetComponent<MobDropContainer>().drop, 1);
 
     }
 

@@ -290,10 +290,10 @@ public class DialogueManager : MonoBehaviour
             dialogBox.SetActive(false);
             blur.SetActive(false);
             FindObjectOfType<KeyboardInputManager>().enableCharacterMovement();
-            if (FindObjectOfType<MonstersController>().isInMobArea())
-            {
+            //if (FindObjectOfType<MonstersController>().isInMobArea())
+            //{
                 FindObjectOfType<MonstersController>().goingIntoMobArea();
-            }
+            //}
         }
     }
 

@@ -216,6 +216,7 @@ public class InventoryManager : MonoBehaviour
             FindObjectOfType<DialogueManager>().dialoguePrompt(itemAddedDialogue);
             return false;
         }
+
     }
 
     public bool giveItemWithoutPrompt(GameObject item, int count)
