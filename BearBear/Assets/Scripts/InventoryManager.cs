@@ -35,7 +35,7 @@ public class InventoryManager : MonoBehaviour
         isMousedOverItem = true;
         var childCount = itemDescBox.transform.parent.childCount;
         itemDescBox.transform.SetAsLastSibling();
-        offsetX = -(itemDescBox.GetComponent<RectTransform>().sizeDelta.x + 10);
+        offsetX = -(itemDescBox.GetComponent<RectTransform>().sizeDelta.x + 100);
         offsetY = -(itemDescBox.GetComponent<RectTransform>().sizeDelta.y + 10) / 2;
         itemDescText.GetComponent<Text>().text = desc;
         itemNameText.GetComponent<Text>().text = thisName;
