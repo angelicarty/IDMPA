@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1333846980379504841}
   - component: {fileID: -5947285196942497987}
   m_Layer: 5
-  m_Name: SlimeFluid_Pink
+  m_Name: Loot_SlimeFluidPink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,11 +159,12 @@ MonoBehaviour:
   health: 0
   used: 0
   isEdible: 0
-  value: 10
+  isEquipment: 0
+  value: 50
   itemDescription: 'A puddle of pink slime fluid. You don''t wanna know where it
     comes from.
 
-    Value: 10'
+    Value: 50'
 --- !u!114 &-5947285196942497987
 MonoBehaviour:
   m_ObjectHideFlags: 0

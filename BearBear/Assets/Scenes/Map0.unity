@@ -14748,7 +14748,7 @@ MonoBehaviour:
     - But you have no space...
     triggerOptions: 0
     optionreplies: []
-  waitTime: 300
+  waitTime: 60
   timePassed: 0
   apple: {fileID: 7335266869444238848, guid: e66610922a2a2e444a089f32f000a6b4, type: 3}
   dialogueBox: {fileID: 1486119257}
@@ -19814,7 +19814,7 @@ MonoBehaviour:
   questKillProg: 
   questItemProg: 
   statValues: 00000000000000000000000000000000000000000000000000000000
-  defaultStats: 14000000140000001400000014000000140000001400000014000000
+  defaultStats: 1e0000001e000000140000000a000000140000001400000014000000
 --- !u!1 &1349594371
 GameObject:
   m_ObjectHideFlags: 0

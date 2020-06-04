@@ -52,8 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MHP: 20
   CHP: 20
-  ATK: 20
-  DEF: 10
+  ATK: 15
+  DEF: 5
   sATK: 1
   sDEF: 1
   SPD: 1
