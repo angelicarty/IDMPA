@@ -182,7 +182,7 @@ public class CharacterMove : MonoBehaviour
         {
             for (int i = 0; i < movingUpSprites.Length; i++)
             {
-                yield return new WaitForSeconds(0.08f);
+                yield return new WaitForSecondsRealtime(0.08f);
 
                 if (movingLeft || movingRight)
                 {
@@ -215,7 +215,7 @@ public class CharacterMove : MonoBehaviour
         {
             for (int i = 0; i < movingDownSprites.Length; i++)
             {
-                yield return new WaitForSeconds(0.08f);
+                yield return new WaitForSecondsRealtime(0.08f);
 
 
                 if (movingLeft || movingRight)
@@ -247,7 +247,7 @@ public class CharacterMove : MonoBehaviour
         {
             for (int i = 0; i < movingRightSprites.Length; i++)
             {
-                yield return new WaitForSeconds(0.08f);
+                yield return new WaitForSecondsRealtime(0.08f);
 
 
                 gameObject.GetComponent<SpriteRenderer>().sprite = movingRightSprites[i];
@@ -268,7 +268,7 @@ public class CharacterMove : MonoBehaviour
         {
             for (int i = 0; i < movingRightSprites.Length; i++)
             {
-                yield return new WaitForSeconds(0.08f);
+                yield return new WaitForSecondsRealtime(0.08f);
 
                 gameObject.GetComponent<SpriteRenderer>().sprite = movingRightSprites[i];
                 if (!movingLeft)

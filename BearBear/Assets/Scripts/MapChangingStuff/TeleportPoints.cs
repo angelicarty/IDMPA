@@ -19,7 +19,7 @@ public class TeleportPoints : MonoBehaviour
     IEnumerator MapTransition()
     {
         GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Conceal");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(1);
         FindObjectOfType<CameraFollowPlayer>().playerChangedMap();
         player.transform.position = teleportTo.transform.position;
         GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Reveal");

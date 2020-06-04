@@ -20,7 +20,7 @@ public class SlimeWalk : MonoBehaviour
         slimePosition = gameObject.transform.position;
         //initialPosition = slimePosition;
         newDirection();
-        slimeWalking(); //temp
+        //slimeWalking(); //temp
     }
 
     public void slimeWalking() //calls when player get out of battle, or when scene loads
@@ -54,7 +54,7 @@ public class SlimeWalk : MonoBehaviour
         {
             for (int i = walkSpriteCounter; i < slimeWalk.Length; i++)
             {
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSecondsRealtime(0.2f);
                 gameObject.GetComponent<SpriteRenderer>().sprite = slimeWalk[i];
                 slimePosition = gameObject.transform.position;
 
@@ -93,7 +93,7 @@ public class SlimeWalk : MonoBehaviour
                 }
             }
             walkSpriteCounter = 0;
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSecondsRealtime(0.6f);
         }
     }
 

@@ -20,7 +20,7 @@ public class UpdateHealth : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSecondsRealtime(0.5f);
             yield return RepeatLerp(gameObject.transform.localScale, new Vector3(scale, 1, 1), duration);
 
 

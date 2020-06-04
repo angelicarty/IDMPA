@@ -92,7 +92,7 @@ public class Battle : MonoBehaviour
                         battleUI.PlayerAttacking();
                         statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
                         if (debug) { Debug.Log("e_HP = " + e_HP); }
-                        yield return new WaitForSeconds(delay);
+                        yield return new WaitForSecondsRealtime(delay);
                         if (e_HP <= 0)
                         {
                             battleUI.EnemyDeath();
@@ -106,7 +106,7 @@ public class Battle : MonoBehaviour
 
                             statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                             if (debug) { Debug.Log("p_HP = " + p_HP); }
-                            yield return new WaitForSeconds(delay);
+                            yield return new WaitForSecondsRealtime(delay);
                             if (p_HP <= 0)
                             {
                                 battleUI.PlayerDeath();
@@ -125,19 +125,19 @@ public class Battle : MonoBehaviour
                         if (used_item_prop.isEdible)
                         {
                             Heal(used_item_prop.Eat());
-                            yield return new WaitForSeconds(delay);
+                            yield return new WaitForSecondsRealtime(delay);
                         }
                         else if (used_item_prop.isEquipment)
                         {
                             UpdateStats();
-                            yield return new WaitForSeconds(delay);
+                            yield return new WaitForSecondsRealtime(delay);
                         }
                         //enemy attack
                         p_HP = Attack(enemy.GetATK(), p_HP, effective_stats[(int)Stat.DEF]);
                         battleUI.PlayerDefending();
                         statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                         if (debug) { Debug.Log("p_HP = " + p_HP); }
-                        yield return new WaitForSeconds(delay);
+                        yield return new WaitForSecondsRealtime(delay);
                         if (p_HP <= 0)
                         {
                             battleUI.PlayerDeath();
@@ -166,7 +166,7 @@ public class Battle : MonoBehaviour
                         battleUI.PlayerDefending();
                         statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                         if (debug) { Debug.Log("p_HP = " + p_HP); }
-                        yield return new WaitForSeconds(delay);
+                        yield return new WaitForSecondsRealtime(delay);
                         if (p_HP <= 0)
                         {
                             battleUI.PlayerDeath();
@@ -179,7 +179,7 @@ public class Battle : MonoBehaviour
                             battleUI.PlayerAttacking();
                             statGen.addProb((int)Stat.ATK);//ATTACK INCREASES WHEN PLAYER USES NORMAL ATTACK
                             if (debug) { Debug.Log("e_HP = " + e_HP); }
-                            yield return new WaitForSeconds(delay);
+                            yield return new WaitForSecondsRealtime(delay);
                             if (e_HP <= 0)
                             {
                                 battleUI.EnemyDeath();
@@ -199,7 +199,7 @@ public class Battle : MonoBehaviour
                         statGen.addProb((int)Stat.DEF);//DEFENCE INCREASES WHEN PLAYER IS HIT BY NORMAL ATTACK
                         battleUI.PlayerDefending();
                         if (debug) { Debug.Log("p_HP = " + p_HP); }
-                        yield return new WaitForSeconds(delay);
+                        yield return new WaitForSecondsRealtime(delay);
                         if (p_HP <= 0)
                         {
                             battleUI.PlayerDeath();
@@ -214,12 +214,12 @@ public class Battle : MonoBehaviour
                         if (used_item_prop.isEdible)//heal
                         {
                             Heal(used_item_prop.Eat());
-                            yield return new WaitForSeconds(delay);
+                            yield return new WaitForSecondsRealtime(delay);
                         }
                         else if (used_item_prop.isEquipment)//equip
                         {
                             UpdateStats();
-                            yield return new WaitForSeconds(delay);
+                            yield return new WaitForSecondsRealtime(delay);
                         }
                         break;
 
@@ -230,10 +230,10 @@ public class Battle : MonoBehaviour
                 }//switch end
             }
         }
-        yield return new WaitForSeconds(delay * 2);
+        yield return new WaitForSecondsRealtime(delay * 2);
         //do shit based on result of battle
         GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Conceal");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(1);
         gameObject.GetComponent<UIManager>().MoveCanvas(GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>());
         player.SetCHP(p_HP);
         enemy.SetCHP(e_HP);

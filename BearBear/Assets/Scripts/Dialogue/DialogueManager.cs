@@ -258,7 +258,7 @@ public class DialogueManager : MonoBehaviour
                 yield break;
             }
             chatBox.GetComponent<UnityEngine.UI.Text>().text += letter;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSecondsRealtime(0.02f);
         }
         typing = false;
     }

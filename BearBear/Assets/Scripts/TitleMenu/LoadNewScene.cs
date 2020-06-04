@@ -23,7 +23,7 @@ public class LoadNewScene : MonoBehaviour
 
     IEnumerator DelayedExit()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(1);
         if (quit)
         {
             Application.Quit();
