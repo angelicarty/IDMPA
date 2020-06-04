@@ -59,6 +59,8 @@ public class ShopManager : MonoBehaviour
             dialogueManager.endDialogue();
             inventoryManager.closeInventory();
             pleaseEndConvo = false;
+            isBuying = false;
+            isSelling = false;
             return;
         }
         if(waiting && inShop && !pleaseEndConvo)
@@ -87,6 +89,8 @@ public class ShopManager : MonoBehaviour
             waiting = false;
             shopUI.SetActive(false);
             inventoryManager.closeInventory();
+            isBuying = false;
+            isSelling = false;
             return;
         }
     }
@@ -101,6 +105,8 @@ public class ShopManager : MonoBehaviour
 
     public void triggerShop(Dialogue welcomeDia,Dialogue noMuns,Dialogue noSpace,Dialogue bye,Dialogue buy ,GameObject[] items, Sprite sKeeper)
     {
+        isBuying = false;
+        isSelling = false;
         welcomeDialogue = welcomeDia;
         itemsForSale = items;
         noMoneyDialogue = noMuns;
@@ -120,6 +126,8 @@ public class ShopManager : MonoBehaviour
 
     public void openShop()
     {
+        isBuying = false;
+        isSelling = false;
         dialogueManager.dialoguePromptWithSprite(welcomeDialogue, shopKeeper);
         respondOptionsManager.triggerShopReplies();
         pleaseEndConvo = true;
@@ -134,6 +142,8 @@ public class ShopManager : MonoBehaviour
         waiting = false;
         pleaseEndConvo = false;
         boughtSold = false;
+        isBuying = false;
+        isSelling = false;
     }
 
     public bool isPlayerInShop()
