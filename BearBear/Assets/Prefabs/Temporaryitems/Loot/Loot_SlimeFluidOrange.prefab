@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1333846980379504841}
   - component: {fileID: -4734058293039796617}
   m_Layer: 5
-  m_Name: SlimeFluid_Orange
+  m_Name: Loot_SlimeFluidOrange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,10 +159,11 @@ MonoBehaviour:
   health: 0
   used: 0
   isEdible: 0
-  value: 10
+  isEquipment: 0
+  value: 20
   itemDescription: 'A puddle of orange slime fluid
 
-    Value: 10'
+    Value: 20'
 --- !u!114 &-4734058293039796617
 MonoBehaviour:
   m_ObjectHideFlags: 0
