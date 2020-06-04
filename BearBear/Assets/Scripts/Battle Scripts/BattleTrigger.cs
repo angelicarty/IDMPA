@@ -18,7 +18,7 @@ public class BattleTrigger : MonoBehaviour
             FindObjectOfType<KeyboardInputManager>().hideAllUi();
             FindObjectOfType<KeyboardInputManager>().disableCharacterMovement(); //disable character movement
             FindObjectOfType<KeyboardInputManager>().disableChat(); //prevents opening chat while in battle
-            FindObjectOfType<MonstersController>().goingOutOfMobArea(); //pauses monster movements
+            FindObjectOfType<MonstersController>().pausesMobMovement(); //pauses monster movements
             GameObject.FindGameObjectWithTag("ScreenWipe").GetComponent<Animator>().SetTrigger("Conceal");
             StartCoroutine("DelayedBattleStart");
         }

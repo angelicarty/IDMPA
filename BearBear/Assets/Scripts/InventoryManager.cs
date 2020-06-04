@@ -300,7 +300,7 @@ public class InventoryManager : MonoBehaviour
 
     void itemAddedPrompt()
     {
-        FindObjectOfType<MonstersController>().goingOutOfMobArea();
+        FindObjectOfType<MonstersController>().pausesMobMovement();
         sentence = "You obtained " + itemCount + " " + itemName;
         itemAddedDialogue.sentences[0] = sentence;
         FindObjectOfType<DialogueManager>().dialoguePrompt(itemAddedDialogue);
