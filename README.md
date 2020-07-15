@@ -1,6 +1,8 @@
 # IDMPA
 
 A 2d RPG game, with turn-based combat, quests, shops, and traumatised npcs. 
+  With the theme of childhood imagination, most design choices are made based on the main character. An example would be the turn based battle system. 
+  The main character would always wait for it's oponent to have a reply to his action before continuing with his own action. It is simply impolite to continue without.
 
 Art by creatro:
 - player character
