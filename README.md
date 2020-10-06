@@ -19,7 +19,11 @@ Art by Batty:
 - player character
 - Items and Equipments
 
-Programming and Game Design by Kristine & Harry 
+Programming 
+- Kristine & Harry
+
+Game Design 
+- Kristine 
 
 skybox by ruoxuan 
 
