@@ -30,3 +30,5 @@ skybox by ruoxuan
 bugs:
 - ocasionally the shop system will freak out if you press space too quickly.
 - somehow game get confused if you're buying or selling an item if shop is freaking out.
+
+Update: Rewriting how shop works, cuz it was done in a very sloppy last minute timeline way
